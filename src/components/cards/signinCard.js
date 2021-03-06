@@ -1,4 +1,5 @@
 import './signupin.css';
+import dotenv from 'dotenv';
 import {FormControl,Button,InputGroup,Spinner ,Form} from 'react-bootstrap';
 import NavBar from '../navbar/navbar';
 import {SiMailDotRu} from 'react-icons/si';
@@ -9,6 +10,8 @@ import { Link } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
 import {googleClientID} from '../../config';
 import {signupAPI,signinAPI} from '../../repository/auth.handler';
+
+dotenv.config();
 
 
 const SignInCard = () => {
@@ -24,7 +27,7 @@ const SignInCard = () => {
         color:'text-muted'
     });
     const [activeState,setActiveState] = useState(true);
-    const clientId = googleClientID;
+    const clientId = process.env.REACT_APP_google_client_id;
 
 
     const responseGoogle = (responce) => {

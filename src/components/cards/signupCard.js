@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import './signupin.css';
 import {FormControl,Button,InputGroup,Spinner ,Form} from 'react-bootstrap';
 import NavBar from '../navbar/navbar';
@@ -6,9 +7,9 @@ import {useState,useEffect} from 'react';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {FcGoogle} from 'react-icons/fc';
 import {Link,useHistory} from 'react-router-dom';
-import {googleClientID} from '../../config';
 import { GoogleLogin } from 'react-google-login';
 
+dotenv.config();
 
 
 const SignupCard = () => {
@@ -19,7 +20,8 @@ const SignupCard = () => {
     const [activeState,setActiveState] = useState(true);
     const history = useHistory();
 
-    const clientId = googleClientID;
+    const clientId = process.env.REACT_APP_google_client_id;
+
 
     const signupHandler = () => {
         setActiveState(false);
