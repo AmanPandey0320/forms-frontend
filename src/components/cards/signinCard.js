@@ -7,22 +7,78 @@ import {RiLockPasswordLine} from 'react-icons/ri';
 import {FcGoogle} from 'react-icons/fc';
 import { Link } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
+import {googleClientID} from '../../config';
+import {signupAPI,signinAPI} from '../../repository/auth.handler';
 
 
 const SignInCard = () => {
 
-    const [passwordSmall,setPasswordSmall] = useState('');
-    const [emailSmall,setEmailSmall] = useState("We will never share this with anyone.");
-    const [activeState,serActiveState] = useState(true);
+    const [passwordSmall,setPasswordSmall] = useState({
+        text:' ',
+        color:'text-primary'
+    });
+    const [email,setEmail]=useState(' ');
+    const [password,setPassword]=useState(' ');
+    const [emailSmall,setEmailSmall] = useState({
+        text:"We will never share this with anyone.",
+        color:'text-muted'
+    });
+    const [activeState,setActiveState] = useState(true);
+    const clientId = googleClientID;
+
 
     const responseGoogle = (responce) => {
         const token = responce.accessToken;
         console.log(token);
+        //TODO: call the api to sign in for google token   
     }
 
-    const signupHandler = () => {
-        serActiveState(false);
-        alert('Signup')
+    const passwordHandler = (event)=>{
+        const value = event.target.value;
+        if(value.length < 8)
+        setPasswordSmall({text:"password should have at least 8 characters!",color:'text-danger'});
+        if(value.length >= 8){
+            setPasswordSmall({text:" ",color:'text-primary'});
+            setPassword(value)
+        }
+    }
+
+    const emailHandler = (event)=>{
+        const value = event.target.value;
+
+        if(value.split('@').length != 2 || value.split('.').length < 2){
+            setEmailSmall({
+                text:"Email is wrongly fromatted!",
+                color:'text-danger'
+            });
+        }else{
+            setEmailSmall({
+                text:"We will never share this with anyone.",
+                color:'text-muted'
+            });
+            setEmail(value);
+        }
+
+    }
+    // type,name,google_token,email,password
+    const signinHandler = () => {
+        setActiveState(false);
+        signinAPI({
+
+            type:'00',
+            email:email,
+            password:password
+
+
+        },(err,responce)=>{
+            if(err){
+                console.log(err);
+            }else{
+                console.log(responce);
+            }
+            setActiveState(true);
+        });
+        
     }
 
     return ( 
@@ -38,9 +94,9 @@ const SignInCard = () => {
                         <InputGroup.Prepend>
                         <InputGroup.Text><SiMailDotRu color="black"/></InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl id="signup-email-txt" placeholder="Enter your email address" />
+                        <FormControl id="signin-email-txt" type="email" onChange={emailHandler}  placeholder="Enter your email address" />
                     </InputGroup>
-                    <small  className="text-muted">We wi'll never share this with anyone.</small>
+                    <small  className={emailSmall.color}>{emailSmall.text}</small>
                 </form>
 
                 <form className="w3-container">
@@ -49,13 +105,13 @@ const SignInCard = () => {
                         <InputGroup.Prepend>
                         <InputGroup.Text><RiLockPasswordLine color="black"/></InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl id="signup-password-txt" placeholder="Enter your password" />
+                        <FormControl id="signin-password-txt" type="password" onChange={passwordHandler} placeholder="Enter your password" />
                     </InputGroup>
-                    <small className="text-muted">{passwordSmall}</small>
+                    <small className={passwordSmall.color}>{passwordSmall.text}</small>
                 </form>
 
                 <p style={{textAlign:"center",marginTop:"8px"}}>
-                    {activeState && <Button variant="outline-primary" onClick={signupHandler} active> Sign-in</Button>}
+                    {activeState && <Button variant="outline-primary" onClick={signinHandler} active> Sign-in</Button>}
                     {!activeState && <Button variant="primary" disabled>Please wait ...&nbsp;<Spinner animation="grow" size="sm" variant="light"/></Button>}
                 </p>
 
@@ -64,9 +120,9 @@ const SignInCard = () => {
 
                 <p style={{textAlign:"center"}}>
                     <GoogleLogin
-                    clientId="465185534423-al90tb9d5eot840g7b8gvt9g8lmck9i2.apps.googleusercontent.com"
+                    clientId={clientId}
                     render={renderProps => (
-                        <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant="light"><span className="pt-1">Continue with <FcGoogle/>oogle</span></Button>
+                        <Button onClick={renderProps.onClick} variant="light"><span className="pt-1">Continue with <FcGoogle/>oogle</span></Button>
                       )}
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}

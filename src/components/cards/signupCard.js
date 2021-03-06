@@ -10,6 +10,7 @@ import {googleClientID} from '../../config';
 import { GoogleLogin } from 'react-google-login';
 
 
+
 const SignupCard = () => {
 
     const [passwordSmall,setPasswordSmall] = useState('');
@@ -18,12 +19,14 @@ const SignupCard = () => {
     const [activeState,setActiveState] = useState(true);
     const history = useHistory();
 
+    const clientId = googleClientID;
+
     const signupHandler = () => {
         setActiveState(false);
     }
     const responseGoogle = (responce) => {
         const token = responce.accessToken;
-        console.log(token);
+        console.log(responce);
     }
 
     return ( 
@@ -75,9 +78,9 @@ const SignupCard = () => {
 
                 <p style={{textAlign:"center"}}>
                     <GoogleLogin
-                    clientId="465185534423-al90tb9d5eot840g7b8gvt9g8lmck9i2.apps.googleusercontent.com"
+                    clientId={clientId}
                     render={renderProps => (
-                        <Button onClick={renderProps.onClick} disabled={renderProps.disabled} variant="light"><span className="pt-1">Continue with <FcGoogle/>oogle</span></Button>
+                        <Button onClick={renderProps.onClick} variant="light"><span className="pt-1">Continue with <FcGoogle/>oogle</span></Button>
                       )}
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}
