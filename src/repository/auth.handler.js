@@ -2,8 +2,8 @@ import Cookie from 'universal-cookie';
 import dotenv from 'dotenv';
 const axios = require('axios');
 dotenv.config();
-// const baseUrl = 'http://localhost:5600';
-const baseUrl = process.env.REACT_APP_server_url
+let baseUrl = 'http://localhost:5600';
+// baseUrl = process.env.REACT_APP_server_url
 const cookie = new Cookie();
 
 console.log(baseUrl);
