@@ -1,14 +1,14 @@
-import {React,Component} from 'react';
+import {React,useState,useEffect} from 'react';
 
-class Home extends Component {
 
-    render() {
+const Home = () => {
+
+
         return(
             <div className="my-nav-below">
                 <h1>Home</h1>
             </div>
         );
-    }
 
 }
 

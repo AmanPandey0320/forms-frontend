@@ -6,25 +6,109 @@ import {SiMailDotRu} from 'react-icons/si';
 import {useState,useEffect} from 'react';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {FcGoogle} from 'react-icons/fc';
-import {Link,useHistory} from 'react-router-dom';
+import {Link,useHistory,browserHistory} from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import {signupAPI} from '../../repository/auth.handler';
 
 dotenv.config();
 
 
 const SignupCard = () => {
 
-    const [passwordSmall,setPasswordSmall] = useState('');
-    const [emailSmall,setEmailSmall] = useState("We will never share this with anyone.");
-    const [confirmPasswordSmall,setconfirmPasswordSmall] = useState('');
+    const [passwordSmall,setPasswordSmall] = useState({
+        text:' ',
+        color:'text-muted'
+    });
+    const [emailSmall,setEmailSmall] = useState({
+        text:"We will never share this with anyone.",
+        color:'text-muted'
+    });
+    const [confirmPasswordSmall,setconfirmPasswordSmall] = useState({text:" ",color:'text-muted'});
     const [activeState,setActiveState] = useState(true);
+    const [email,setEmail]=useState(' ');
+    const [password,setPassword]=useState(' ');
+    const [confirmPass ,setConfirmPass]=useState(' ');
     const history = useHistory();
 
     const clientId = process.env.REACT_APP_google_client_id;
 
 
+    const emailHandler = (event)=>{
+        const value = event.target.value;
+
+        if(value.split('@').length != 2 || value.split('.').length < 2){
+            setEmailSmall({
+                text:"Email is wrongly fromatted!",
+                color:'text-danger'
+            });
+        }else{
+            setEmailSmall({
+                text:"We will never share this with anyone.",
+                color:'text-success'
+            });
+            setEmail(value);
+        }
+
+    }
+
+    const passwordHandler = (event)=>{
+        const value = event.target.value;
+        if(value.length < 8)
+        setPasswordSmall({text:"password should have at least 8 characters!",color:'text-danger'});
+        if(value.length >= 8){
+            setPasswordSmall({text:"Everything looks good!",color:'text-success'});
+            setPassword(value)
+        }
+    }
+    
+    const confirmPasswordHandler = (event)=>{
+
+        const value = event.target.value;
+        // console.log(value);
+        if(value != password){
+            setConfirmPass(' ');
+            setconfirmPasswordSmall({text:'Passwords do not match!',color:'text-warning'});
+        }else{
+            setConfirmPass(value);
+            setconfirmPasswordSmall({text:"Everything looks good!",color:"text-success"})
+        }
+
+    }
+
+    // "type":"00",
+    // "name":"aman",
+    // "email":"info.cse2k19@gmail.com",
+    // "password":"aman@1234"
+
+
     const signupHandler = () => {
         setActiveState(false);
+        if(confirmPass != password){
+            setActiveState(true);
+            alert('Passwords do not match!');
+        }else if(!email){
+            setActiveState(true);
+            alert('Email cannot be null!');
+        }else{
+
+            const data = {
+                type: '00',
+                email: email,
+                password: password,
+            }
+
+            signupAPI(data,(err)=>{
+                if(err){
+                    setActiveState(true);
+                    alert('Unable to sign up!');
+                }else{
+                    setActiveState(true);
+                    history.push('/');
+                }
+            })
+
+        }
+
     }
     const responseGoogle = (responce) => {
         const token = responce.accessToken;
@@ -43,9 +127,9 @@ const SignupCard = () => {
                         <InputGroup.Prepend>
                         <InputGroup.Text><SiMailDotRu color="black"/></InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl id="signup-email-txt" placeholder="Enter your email address" />
+                        <FormControl id="signup-email-txt" onChange={emailHandler} placeholder="Enter your email address" />
                     </InputGroup>
-                    <small  className="text-muted">We wi'll never share this with anyone.</small>
+                    <small  className={emailSmall.color}>{emailSmall.text}</small>
                 </form>
 
                 <form className="w3-container">
@@ -54,9 +138,9 @@ const SignupCard = () => {
                         <InputGroup.Prepend>
                         <InputGroup.Text><RiLockPasswordLine color="black"/></InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl id="signup-password-txt" placeholder="Enter your password" />
+                        <FormControl id="signup-password-txt" onChange={passwordHandler} placeholder="Enter your password" />
                     </InputGroup>
-                    <small className="text-muted">{passwordSmall}</small>
+                    <small className={passwordSmall.color}>{passwordSmall.text}</small>
                 </form>
 
                 <form className="w3-container">
@@ -65,9 +149,9 @@ const SignupCard = () => {
                         <InputGroup.Prepend>
                         <InputGroup.Text><RiLockPasswordLine color="black"/></InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl id="signup-confirm-password-txt" placeholder="Confirm your password" />
+                        <FormControl id="signup-confirm-password-txt" onChange={confirmPasswordHandler} placeholder="Confirm your password" />
                     </InputGroup>
-                    <small className="text-muted">{confirmPasswordSmall}</small>
+                    <small className={confirmPasswordSmall.color}>{confirmPasswordSmall.text}</small>
                 </form>
 
                 <p style={{textAlign:"center",marginTop:"8px"}}>

@@ -1,9 +1,24 @@
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import {useState,useEffect} from 'react';
 import Home from '../views/home';
 import EntryPoint from '../views/signUpIn';
 import Navbar from '../components/navbar/navbar';
+import {verifyUser} from '../repository/auth.handler';
 
 const Forms = () => {
+
+    const [isValid,setValid] = useState(false); 
+    const [user,setUser] = useState(null);
+
+    useEffect(() =>{
+
+        const verification_result = (err, result) =>{
+            console.log(result);
+        }
+
+        verifyUser(verification_result);
+
+    });
 
     return ( 
         <>

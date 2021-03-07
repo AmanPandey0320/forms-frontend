@@ -6,9 +6,8 @@ import {SiMailDotRu} from 'react-icons/si';
 import {useState,useEffect} from 'react';
 import {RiLockPasswordLine} from 'react-icons/ri';
 import {FcGoogle} from 'react-icons/fc';
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
-import {googleClientID} from '../../config';
 import {signupAPI,signinAPI} from '../../repository/auth.handler';
 
 dotenv.config();
@@ -16,6 +15,7 @@ dotenv.config();
 
 const SignInCard = () => {
 
+    const history = useHistory();
     const [passwordSmall,setPasswordSmall] = useState({
         text:' ',
         color:'text-primary'
@@ -72,14 +72,15 @@ const SignInCard = () => {
             email:email,
             password:password
 
-
         },(err,responce)=>{
             if(err){
-                console.log(err);
+                setActiveState(true);
+                alert(responce);
             }else{
-                console.log(responce);
+                setActiveState(true);
+                history.push(responce.path);
             }
-            setActiveState(true);
+            
         });
         
     }
