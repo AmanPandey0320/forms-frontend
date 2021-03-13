@@ -1,9 +1,11 @@
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import {useState,useEffect} from 'react';
 import Home from '../views/home';
+import CreateForm from '../views/createform';
 import EntryPoint from '../views/signUpIn';
 import Navbar from '../components/navbar/navbar';
 import {verifyUser} from '../repository/auth.handler';
+import { SiFacebook } from 'react-icons/si';
 
 const Forms = () => {
 
@@ -13,7 +15,11 @@ const Forms = () => {
     useEffect(() =>{
 
         const verification_result = (err, result) =>{
-            console.log(result);
+            if(err){
+                setValid(false);
+            }else{
+                setValid(true);
+            }
         }
 
         verifyUser(verification_result);
@@ -24,12 +30,16 @@ const Forms = () => {
         <>
         <BrowserRouter>
             <Route exact path = '/'>
-                <Navbar BrandName="Forms" pageName='home'/>
+                <Navbar BrandName="Forms" valid={isValid} pageName='home'/>
                 <Home />
             </Route>
             <Route exact path = '/home'>
-                <Navbar BrandName="Forms" pageName='home'/>
+                <Navbar BrandName="Forms" valid={isValid} pageName='home'/>
                 <Home/>
+            </Route>
+            <Route exact path = '/newform'>
+                <Navbar BrandName="Forms" valid={isValid} pageName='newform'/>
+                <CreateForm/>
             </Route>
             <Route exact path = '/signup'>
                 <EntryPoint  card="up"/>

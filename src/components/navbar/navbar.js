@@ -2,7 +2,7 @@ import {React,Component} from 'react';
 import {Nav, Navbar,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'; 
 import EntryBtn from './entryPoint';
-
+import CreateFormsBtn from './createFormsBtn';
 
 
 
@@ -32,7 +32,8 @@ class NavBar extends Component {
                 <Navbar.Collapse className="" id="navbar-collape">
                        {(this.props.pageName === 'home') && <this.NavItem />}
                     <Nav>
-                        {(this.props.pageName === 'home') && <EntryBtn />}
+                        {(this.props.pageName === 'home' && this.props.valid === false) && <EntryBtn />}
+                        {(this.props.valid === true && this.props.pageName === 'home') && <CreateFormsBtn/>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

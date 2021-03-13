@@ -50,5 +50,6 @@ export const signinAPI = (data,callback) => {
 
 export const verifyUser = (callback) =>{
     const authKey = cookie.get('forms_auth_key');
+    // console.log(authKey);
     return callback(null,authKey);
 }
