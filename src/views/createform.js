@@ -12,6 +12,7 @@ import Radios from '../components/Radios'
 import './createform.css'
 import { blue, red } from '@material-ui/core/colors';
 import Switches from '../components/Switches';
+import MyMuiThemes from '../themes/MuiThemes';
 
 //bbgopa
 
@@ -53,10 +54,18 @@ const CreateForm = () => {
     const [formDescription,setFormDescription] = useState('Form description');
     const [formData,setFormData] = useState([
         {
-            type:"tb",
+            type:0,
             question:"What is your name?"
         }
     ]);
+
+    /*
+     *0:small text box 
+     *1:big text area
+     *2:single option
+     *3:multiple option
+     *4:upload file
+     */
 
     const GetRadio = ()=>{
         const RdBtn = Radios[currTheme];
@@ -112,15 +121,17 @@ const CreateForm = () => {
             <div className="forms-head form-width" style={{backgroundColor:'white',borderColor:formTheme[currTheme].body}}>
                  
                 <form className={materialClass.root} noValidate autoComplete="off">
-                    <TextField InputProps={{ classes: { root: materialClass.title} }} id="form-title" onChange={(event)=>{setFormTitle(event.target.value)}} label="Title" defaultValue="Untitled form"/>
-                    <TextField InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} label="Description"/>
+                    <ThemeProvider theme={MyMuiThemes[currTheme]}>
+                        <TextField InputProps={{ classes: { root: materialClass.title} }} id="form-title" onChange={(event)=>{setFormTitle(event.target.value)}} label="Title" defaultValue="Untitled form"/>
+                        <TextField InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} label="Description"/>
+                    </ThemeProvider>
                 </form>
                 
             </div>
 
-            <div className="form-body form-width">
+            <div className="form-body  form-width">
 
-                
+
                 
             </div>
 

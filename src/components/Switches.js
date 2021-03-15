@@ -1,7 +1,6 @@
 import formTheme from '../themes/formsthemes';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
-import { amber, purple } from '@material-ui/core/colors';
 
 //bbgopa
 

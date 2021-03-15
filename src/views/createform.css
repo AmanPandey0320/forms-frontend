@@ -8,6 +8,10 @@
     background-color: #ffd1bf;
 }
 
+.form-body{
+    background-color: white;
+}
+
 .form-width{
     width:90%;
     margin: auto;
