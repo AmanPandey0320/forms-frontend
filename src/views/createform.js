@@ -1,11 +1,15 @@
 import {useEffect,useState} from 'react';
 import {Navbar,Nav,Modal,Dropdown,DropdownButton,ButtonGroup} from 'react-bootstrap'
-import {MdAddBox,MdSend,MdPalette} from 'react-icons/md';
-import {IconButton,TextField,Button, Radio} from '@material-ui/core';
+import {MdSettings,MdSend,MdPalette} from 'react-icons/md';
+import {BsCircleFill,BsCheckCircle} from 'react-icons/bs';
+import {IconContext} from 'react-icons';
+import {IconButton,TextField, Radio} from '@material-ui/core';
+import Button from '@material-ui/core/Button'
 import { makeStyles,createMuiTheme,ThemeProvider, rgbToHex } from '@material-ui/core/styles';
 import formTheme from '../themes/formsthemes';
 import Radios from '../components/Radios'
 import './createform.css'
+import { blue, red } from '@material-ui/core/colors';
 
 //bbgopa
 
@@ -31,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
           primary:{
               500:'#303331',
               600:"#303330"
-          }
+          },
+          secondary:red,
+
       }
   });
 
@@ -49,6 +55,9 @@ const CreateForm = () => {
             question:"What is your name?"
         }
     ]);
+
+
+
     return ( 
         <div className="my-nav-below my-form-view" style={{backgroundColor:formTheme[currTheme].bg}}>
             <Navbar variant="light" fixed="top" bg="light" expand="lg">
@@ -69,15 +78,15 @@ const CreateForm = () => {
                                 variant="outline-dark"
                                 title={`Add Item`}
                             >
-                                <Dropdown.Item eventKey="1"><Button onClick={()=>{alert('aman')}} color="light">Small-text</Button></Dropdown.Item>
-                                <Dropdown.Item eventKey="2"><Button color="light">Big-text</Button></Dropdown.Item>
-                                <Dropdown.Item eventKey="3"><Button color="light">Single-correct MCQ</Button></Dropdown.Item>
-                                <Dropdown.Item eventKey="4"><Button color="light">Multi-correct MCQ</Button></Dropdown.Item>
-                                <Dropdown.Item eventKey="5"><Button color="light">File-upload</Button></Dropdown.Item>
+                                <Dropdown.Item eventKey="1">Small-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="2">Big-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="3">Single-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="4">Multi-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="5">File-upload</Dropdown.Item>
 
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
-                                <IconButton color="primary"><MdPalette/></IconButton>
+                                <IconButton color="primary" onClick={()=>{setModalState(true)}}><MdSettings/></IconButton>
                                 <IconButton color="primary" aria-label="create and share form"><MdSend/></IconButton>
                             </ThemeProvider>
                         </div>
@@ -107,13 +116,34 @@ const CreateForm = () => {
 
             <Modal show={modalState} onHide={()=>{setModalState(false)}}>
                 <Modal.Header>
-                   <div className="bg-primary">Aman</div>
+                   <Modal.Title><MdSettings/>&nbsp;Settings</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    modal body
+                    <p className="recentactivitycontent">
+                        <span><IconContext.Provider value={{size:'1.35em'}}><MdPalette/></IconContext.Provider>&nbsp;Theme</span>
+                        <span>
+                            {formTheme.map((eachTheme,index)=>{
+                                return(
+                                    <IconButton onClick={()=>{setCurrTheme(index)}} key={`themeBtn${index}`}>
+                                        <IconContext.Provider value={{color:eachTheme.body}}>
+                                            {(currTheme!=index) && <BsCircleFill/>}
+                                            {(currTheme == index) && <BsCheckCircle/>}
+                                        </IconContext.Provider>
+                                    </IconButton>
+                                )
+                            })}
+                        </span>
+                    </p><hr></hr>
+                    <p className="recentactivitycontent">
+
+                    </p><hr></hr>
                 </Modal.Body>
                 <Modal.Footer> 
-                    Modal footer
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" onClick={()=>{setModalState(false)}} color="secondary">Cancle</Button>
+                    </ThemeProvider>
+
+                    <Button variant="contained" color="primary">Done</Button>
                 </Modal.Footer>
             </Modal>
 
