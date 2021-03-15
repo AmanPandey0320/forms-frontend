@@ -1,4 +1,4 @@
-import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom';
 import {useState,useEffect} from 'react';
 import Home from '../views/home';
 import CreateForm from '../views/createform';
@@ -11,6 +11,7 @@ const Forms = () => {
 
     const [isValid,setValid] = useState(false); 
     const [user,setUser] = useState(null);
+    const history = useHistory();
 
     useEffect(() =>{
 
@@ -18,7 +19,12 @@ const Forms = () => {
             if(err){
                 setValid(false);
             }else{
-                setValid(true);
+                // console.log(result);
+                if(result.verify_response.status == 200){
+                    setValid(true);
+                }else{
+                    setValid(false);
+                }
             }
         }
 
@@ -38,8 +44,7 @@ const Forms = () => {
                 <Home/>
             </Route>
             <Route exact path = '/newform'>
-                <Navbar BrandName="Forms" valid={isValid} pageName='newform'/>
-                <CreateForm/>
+                <CreateForm valid={isValid}/>
             </Route>
             <Route exact path = '/signup'>
                 <EntryPoint  card="up"/>

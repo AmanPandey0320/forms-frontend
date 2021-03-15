@@ -50,6 +50,24 @@ export const signinAPI = (data,callback) => {
 
 export const verifyUser = (callback) =>{
     const authKey = cookie.get('forms_auth_key');
+    const config = {
+        headers: {
+            'Content-Type' : 'application/json',
+            Authorization: `Bearer forms_jwt_cookie`
+        },
+        withCredentials: true
+    }
+    const data = {authKey};
     // console.log(authKey);
-    return callback(null,authKey);
+    axios.post(baseUrl + '/api/auth/verify',JSON.stringify(data),config).then(response=>{
+
+        // console.log(response.data);
+        return callback(null,response.data);
+
+    }).catch(err=>{
+
+        console.log(err);
+        return callback(err);
+
+    });
 }

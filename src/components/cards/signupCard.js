@@ -103,7 +103,7 @@ const SignupCard = () => {
                     alert('Unable to sign up!');
                 }else{
                     setActiveState(true);
-                    // history.push('/');
+                    history.push('/');
                     alert('Please verify your e-mail.');
                 }
             })
