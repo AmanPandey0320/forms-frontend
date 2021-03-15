@@ -62,6 +62,6 @@ const AmberRadio = withStyles({
     checked: {},
 })((props) => <Radio color="default" {...props} />);
 
-const Radios = [<BlueRadio/>,<BlackRadio/>,<GreenRadio/>,<OrangeRadio/>,<PurpleRadio/>,<AmberRadio/>]
+const Radios = [BlueRadio,BlackRadio,GreenRadio,OrangeRadio,PurpleRadio,AmberRadio]
 
 export default Radios;

@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 import {Navbar,Nav,Modal,Dropdown,DropdownButton,ButtonGroup} from 'react-bootstrap'
 import {MdSettings,MdSend,MdPalette} from 'react-icons/md';
 import {BsCircleFill,BsCheckCircle} from 'react-icons/bs';
+import {IoSchoolSharp} from 'react-icons/io5';
 import {IconContext} from 'react-icons';
 import {IconButton,TextField, Radio} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
@@ -10,6 +11,7 @@ import formTheme from '../themes/formsthemes';
 import Radios from '../components/Radios'
 import './createform.css'
 import { blue, red } from '@material-ui/core/colors';
+import Switches from '../components/Switches';
 
 //bbgopa
 
@@ -37,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
               600:"#303330"
           },
           secondary:red,
-
       }
   });
 
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
     const materialClass = useStyles();
+    const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
     const [formTitle,setFormTitle] = useState('Untitled form');
@@ -56,7 +58,19 @@ const CreateForm = () => {
         }
     ]);
 
+    const GetRadio = ()=>{
+        const RdBtn = Radios[currTheme];
 
+        return (
+            <RdBtn/>
+        );
+    };
+
+    const GetSwitch = ()=>{
+        const SwBtn = Switches[currTheme];
+
+        return <SwBtn checked={exam} onChange={()=>{setExam(!exam)}} />
+    }
 
     return ( 
         <div className="my-nav-below my-form-view" style={{backgroundColor:formTheme[currTheme].bg}}>
@@ -135,7 +149,8 @@ const CreateForm = () => {
                         </span>
                     </p><hr></hr>
                     <p className="recentactivitycontent">
-
+                        <span><IconContext.Provider value={{size:'1.35em'}}><IoSchoolSharp/></IconContext.Provider>&nbsp; Exam-mode</span>
+                        <span><GetSwitch/></span>
                     </p><hr></hr>
                 </Modal.Body>
                 <Modal.Footer> 
