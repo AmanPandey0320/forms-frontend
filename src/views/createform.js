@@ -8,7 +8,6 @@ import {IconButton,TextField, Radio} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import { makeStyles,createMuiTheme,ThemeProvider, rgbToHex } from '@material-ui/core/styles';
 import formTheme from '../themes/formsthemes';
-import Radios from '../components/Radios'
 import './createform.css'
 import { blue, red } from '@material-ui/core/colors';
 import Switches from '../components/Switches';
@@ -16,6 +15,7 @@ import MyMuiThemes from '../themes/MuiThemes';
 import SmallTextModal from '../components/Modals/smallText';
 import BigTextModal from '../components/Modals/bigText';
 import SingleMCQ from '../components/Modals/singleMCQ';
+import MultiMCQ from '../components/Modals/multipleMCQ';
 
 //bbgopa
 
@@ -50,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
     const materialClass = useStyles();
-    const [stModalView,setStModalView]=useState(false);
+    const [stModalView,setStModalView] = useState(false);
     const [btModalView,setBtModalView] = useState(false);
     const [smModalView,setSmModalView] = useState(false);
+    const [mmModalView,setMmModalView] = useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
@@ -97,6 +98,19 @@ const CreateForm = () => {
         setSmModalView(false);
     }
 
+    const handleMultiAdd = (data)=>{
+        
+        const mmdata = {
+            type:3,
+            que:data.question,
+            option:data.option
+        }
+
+        setFormData([...formData,mmdata]);
+
+        setMmModalView(false);
+    }
+
     /*
      *0:small text box 
      *1:big text area
@@ -134,7 +148,7 @@ const CreateForm = () => {
                                 <Dropdown.Item eventKey="1" onClick={()=>{setStModalView(true)}}>Small-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="2" onClick={()=>{setBtModalView(true)}}>Big-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="3" onClick={()=>{setSmModalView(true)}}>Single-correct MCQ</Dropdown.Item>
-                                <Dropdown.Item eventKey="4">Multi-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="4" onClick={()=>{setMmModalView(true)}}>Multi-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="5">File-upload</Dropdown.Item>
 
                             </DropdownButton>
@@ -202,6 +216,7 @@ const CreateForm = () => {
             <SmallTextModal value= ' ' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
             <BigTextModal value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
             <SingleMCQ value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
+            <MultiMCQ value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
             
         </div>
      );
