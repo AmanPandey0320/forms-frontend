@@ -54,6 +54,7 @@ const CreateForm = () => {
     const [btModalView,setBtModalView] = useState(false);
     const [smModalView,setSmModalView] = useState(false);
     const [mmModalView,setMmModalView] = useState(false);
+    const [fuModalView,setFuModalView] = useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
@@ -111,6 +112,19 @@ const CreateForm = () => {
         setMmModalView(false);
     }
 
+    const handleFileAdd = (question)=>{
+
+        const fudata = {
+            type:4,
+            que:question
+        }
+
+        setFormData([...formData,fudata]);
+
+        setFuModalView(false);
+
+    }
+
     /*
      *0:small text box 
      *1:big text area
@@ -149,7 +163,7 @@ const CreateForm = () => {
                                 <Dropdown.Item eventKey="2" onClick={()=>{setBtModalView(true)}}>Big-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="3" onClick={()=>{setSmModalView(true)}}>Single-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="4" onClick={()=>{setMmModalView(true)}}>Multi-correct MCQ</Dropdown.Item>
-                                <Dropdown.Item eventKey="5">File-upload</Dropdown.Item>
+                                <Dropdown.Item eventKey="5" onClick={()=>{setFuModalView(true)}}>File-upload</Dropdown.Item>
 
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
@@ -213,10 +227,11 @@ const CreateForm = () => {
                 </Modal.Footer>
             </Modal>
 
-            <SmallTextModal value= ' ' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
+            <SmallTextModal value= ' ' type='0' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
             <BigTextModal value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
             <SingleMCQ value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
             <MultiMCQ value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
+            <SmallTextModal value= ' ' type='4' handleFormInsert={handleFileAdd} stModalView={fuModalView} theme = {currTheme} setStModalView={setFuModalView}/>
             
         </div>
      );

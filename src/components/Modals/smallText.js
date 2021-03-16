@@ -2,7 +2,7 @@ import { ThemeProvider,makeStyles } from '@material-ui/styles';
 import {Button, createMuiTheme, FormControl, Input, InputAdornment, InputLabel, TextField} from '@material-ui/core';
 import {useState} from 'react';
 import { Modal } from 'react-bootstrap';
-import {AiFillFileText} from 'react-icons/ai'
+import {AiFillFileText,AiFillFile} from 'react-icons/ai'
 import {BsFillQuestionSquareFill} from 'react-icons/bs';
 import {SiAddthis} from 'react-icons/si';
 import { IconContext } from 'react-icons/lib';
@@ -39,9 +39,11 @@ const SmallTextModal = (props)=>{
                 <Modal.Header>
                     <Modal.Title>
                         <IconContext.Provider value={{size:'1.5em',color:formThemes[props.theme].body}}>
-                            <AiFillFileText/>
+                            {(props.type === '0') && <AiFillFileText/>}
+                            {(props.type === '4') && <AiFillFile/>}
                         </IconContext.Provider>
-                        <span>&nbsp;Small-textfield</span>
+                        {(props.type === '0') && <span>&nbsp;Small-textfield</span>}
+                        {(props.type === '4') && <span>&nbsp;File-upload</span>}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
