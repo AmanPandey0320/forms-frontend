@@ -14,6 +14,7 @@ import { blue, red } from '@material-ui/core/colors';
 import Switches from '../components/Switches';
 import MyMuiThemes from '../themes/MuiThemes';
 import SmallTextModal from '../components/Modals/smallText';
+import BigTextModal from '../components/Modals/bigText';
 
 //bbgopa
 
@@ -48,18 +49,14 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
     const materialClass = useStyles();
-    const[stModalView,setStModalView]=useState(false);
+    const [stModalView,setStModalView]=useState(false);
+    const [btModalView,setBtModalView] = useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
     const [formTitle,setFormTitle] = useState('Untitled form');
     const [formDescription,setFormDescription] = useState('Form description');
-    const [formData,setFormData] = useState([
-        {
-            type:0,
-            que:"What is your name?"
-        }
-    ]);
+    const [formData,setFormData] = useState([]);
 
     const handleSmallAdd = (question)=>{
         const smdata = {
@@ -70,6 +67,19 @@ const CreateForm = () => {
         setFormData([...formData,smdata]);
 
         setStModalView(false);
+    }
+    
+    const handleBigAdd = (question)=>{
+
+        const bgdata = {
+            type:1,
+            que:question
+        };
+
+        setFormData([...formData,bgdata]);
+
+        setBtModalView(false);
+
     }
 
     /*
@@ -107,7 +117,7 @@ const CreateForm = () => {
                                 title={`Add Item`}
                             >
                                 <Dropdown.Item eventKey="1" onClick={()=>{setStModalView(true)}}>Small-text</Dropdown.Item>
-                                <Dropdown.Item eventKey="2">Big-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="2" onClick={()=>{setBtModalView(true)}}>Big-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="3">Single-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="4">Multi-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="5">File-upload</Dropdown.Item>
@@ -136,7 +146,7 @@ const CreateForm = () => {
 
             <div className="form-body  form-width">
 
-                
+                {console.log(formData)}
                 
             </div>
 
@@ -175,7 +185,7 @@ const CreateForm = () => {
             </Modal>
 
             <SmallTextModal value= ' ' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
-
+            <BigTextModal value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
         </div>
      );
 }
