@@ -13,13 +13,14 @@ import './createform.css'
 import { blue, red } from '@material-ui/core/colors';
 import Switches from '../components/Switches';
 import MyMuiThemes from '../themes/MuiThemes';
+import SmallTextModal from '../components/Modals/smallText';
 
 //bbgopa
 
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
-        margin: theme.spacing(1),
+        margin: 'auto',
         width: '95%',
       },
     },
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
     const materialClass = useStyles();
+    const[stModalView,setStModalView]=useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
@@ -55,9 +57,20 @@ const CreateForm = () => {
     const [formData,setFormData] = useState([
         {
             type:0,
-            question:"What is your name?"
+            que:"What is your name?"
         }
     ]);
+
+    const handleSmallAdd = (question)=>{
+        const smdata = {
+            type:0,
+            que:question
+        };
+
+        setFormData([...formData,smdata]);
+
+        setStModalView(false);
+    }
 
     /*
      *0:small text box 
@@ -66,14 +79,6 @@ const CreateForm = () => {
      *3:multiple option
      *4:upload file
      */
-
-    const GetRadio = ()=>{
-        const RdBtn = Radios[currTheme];
-
-        return (
-            <RdBtn/>
-        );
-    };
 
     const GetSwitch = ()=>{
         const SwBtn = Switches[currTheme];
@@ -101,7 +106,7 @@ const CreateForm = () => {
                                 variant="outline-dark"
                                 title={`Add Item`}
                             >
-                                <Dropdown.Item eventKey="1">Small-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="1" onClick={()=>{setStModalView(true)}}>Small-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="2">Big-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="3">Single-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="4">Multi-correct MCQ</Dropdown.Item>
@@ -131,13 +136,9 @@ const CreateForm = () => {
 
             <div className="form-body  form-width">
 
-
+                
                 
             </div>
-
-            {/* <div className="my-pos-br">
-                <Button onClick={()=>{setModalState(true)}} variant="contained"><MdAddBox/>&nbsp;Add</Button>
-            </div> */}
 
             <Modal show={modalState} onHide={()=>{setModalState(false)}}>
                 <Modal.Header>
@@ -172,6 +173,8 @@ const CreateForm = () => {
                     <Button variant="contained" color="primary">Done</Button>
                 </Modal.Footer>
             </Modal>
+
+            <SmallTextModal value= ' ' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
 
         </div>
      );
