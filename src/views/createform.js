@@ -15,6 +15,7 @@ import Switches from '../components/Switches';
 import MyMuiThemes from '../themes/MuiThemes';
 import SmallTextModal from '../components/Modals/smallText';
 import BigTextModal from '../components/Modals/bigText';
+import SingleMCQ from '../components/Modals/singleMCQ';
 
 //bbgopa
 
@@ -51,6 +52,7 @@ const CreateForm = () => {
     const materialClass = useStyles();
     const [stModalView,setStModalView]=useState(false);
     const [btModalView,setBtModalView] = useState(false);
+    const [smModalView,setSmModalView] = useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(5);
@@ -80,6 +82,19 @@ const CreateForm = () => {
 
         setBtModalView(false);
 
+    }
+
+    const handleSingleAdd = (data)=>{
+        
+        const smdata = {
+            type:2,
+            que:data.question,
+            option:data.option
+        };
+
+        setFormData([...formData,smdata]);
+
+        setSmModalView(false);
     }
 
     /*
@@ -118,7 +133,7 @@ const CreateForm = () => {
                             >
                                 <Dropdown.Item eventKey="1" onClick={()=>{setStModalView(true)}}>Small-text</Dropdown.Item>
                                 <Dropdown.Item eventKey="2" onClick={()=>{setBtModalView(true)}}>Big-text</Dropdown.Item>
-                                <Dropdown.Item eventKey="3">Single-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="3" onClick={()=>{setSmModalView(true)}}>Single-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="4">Multi-correct MCQ</Dropdown.Item>
                                 <Dropdown.Item eventKey="5">File-upload</Dropdown.Item>
 
@@ -186,6 +201,8 @@ const CreateForm = () => {
 
             <SmallTextModal value= ' ' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
             <BigTextModal value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
+            <SingleMCQ value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
+            
         </div>
      );
 }

@@ -43,7 +43,7 @@ const BigText = (props) => {
 
                 <ThemeProvider theme={theme}>
                     <Button variant='contained' onClick={()=>{props.setBtModalView(false)}} color="secondary">Cancle</Button>
-                    <Button variant='contained' onClick={()=>{props.handleFormInsert(quetxt)}} color="primary"><SiAddthis/>&nbsp;Add</Button>
+                    <Button variant='contained' onClick={()=>{props.handleFormInsert(quetxt);setQuetxt('')}} color="primary"><SiAddthis/>&nbsp;Add</Button>
                 </ThemeProvider>
 
             </Modal.Footer>

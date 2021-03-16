@@ -23,6 +23,7 @@ const SmallTextModal = (props)=>{
     const handleAdd = ()=>{
 
         props.handleFormInsert(quetxt);
+        setQuetxt('');
 
     }
 
