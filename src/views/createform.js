@@ -19,6 +19,7 @@ import SmallTxtView from '../components/formElements/smallText';
 import BigTxtView from '../components/formElements/bigText';
 import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
+import FileUpload from '../components/formElements/fileUpload';
 
 //bbgopa
 
@@ -197,7 +198,7 @@ const CreateForm = () => {
                 <BigTxtView question="Where do you live?" theme={currTheme} index="2" create="1"/>
                 <SingleMCQView question="What is your gender?" theme={currTheme} index="3" create="1" options={['Male','Female']}/>
                 <MultipleMCQView question="What is your gender?" theme={currTheme} index="4" create="1" options={['Male','Female']}/>
-                
+                <FileUpload question="Upload your aadhar card." theme={currTheme} index="5" create="1"/>
 
                 
             </div>
