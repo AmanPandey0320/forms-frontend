@@ -1,4 +1,3 @@
-import './signupin.css';
 import dotenv from 'dotenv';
 import {FormControl,Button,InputGroup,Spinner ,Form} from 'react-bootstrap';
 import NavBar from '../navbar/navbar';

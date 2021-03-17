@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import './signupin.css';
 import {FormControl,Button,InputGroup,Spinner ,Form} from 'react-bootstrap';
 import NavBar from '../navbar/navbar';
 import {SiMailDotRu} from 'react-icons/si';

@@ -8,7 +8,6 @@ import {IconButton,TextField, Radio} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import { makeStyles,createMuiTheme,ThemeProvider, rgbToHex } from '@material-ui/core/styles';
 import formTheme from '../themes/formsthemes';
-import './createform.css'
 import { blue, red } from '@material-ui/core/colors';
 import Switches from '../components/Switches';
 import MyMuiThemes from '../themes/MuiThemes';
@@ -16,6 +15,8 @@ import SmallTextModal from '../components/Modals/smallText';
 import BigTextModal from '../components/Modals/bigText';
 import SingleMCQ from '../components/Modals/singleMCQ';
 import MultiMCQ from '../components/Modals/multipleMCQ';
+import SmallTxtView from '../components/formElements/smallText';
+import BigTxtView from '../components/formElements/bigText';
 
 //bbgopa
 
@@ -167,8 +168,8 @@ const CreateForm = () => {
 
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
-                                <IconButton color="primary" onClick={()=>{setModalState(true)}}><MdSettings/></IconButton>
-                                <IconButton color="primary" aria-label="create and share form"><MdSend/></IconButton>
+                                <IconButton  onClick={()=>{setModalState(true)}}><MdSettings color="#303331"/></IconButton>
+                                <IconButton  aria-label="create and share form"><MdSend color="#303331"/></IconButton>
                             </ThemeProvider>
                         </div>
 
@@ -181,15 +182,19 @@ const CreateForm = () => {
                 <form className={materialClass.root} noValidate autoComplete="off">
                     <ThemeProvider theme={MyMuiThemes[currTheme]}>
                         <TextField InputProps={{ classes: { root: materialClass.title} }} id="form-title" onChange={(event)=>{setFormTitle(event.target.value)}} label="Title" defaultValue="Untitled form"/>
-                        <TextField InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} label="Description"/>
+                        <TextField className="mt-2" InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} label="Description"/>
                     </ThemeProvider>
                 </form>
                 
             </div>
 
-            <div className="form-body  form-width">
+            <div className="form-width">
 
-                {console.log(formData)}
+                {/* {console.log(formData)} */}
+                <SmallTxtView question="What is your name?" theme={currTheme} index="1" create="1"/>
+                <BigTxtView question="Where do you live?" theme={currTheme} index="2" create="1"/>
+                
+
                 
             </div>
 
@@ -227,11 +232,11 @@ const CreateForm = () => {
                 </Modal.Footer>
             </Modal>
 
-            <SmallTextModal value= ' ' type='0' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
-            <BigTextModal value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
-            <SingleMCQ value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
-            <MultiMCQ value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
-            <SmallTextModal value= ' ' type='4' handleFormInsert={handleFileAdd} stModalView={fuModalView} theme = {currTheme} setStModalView={setFuModalView}/>
+            <SmallTextModal currData={{}} value= ' ' type='0' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
+            <BigTextModal currData={{}} value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
+            <SingleMCQ currData={{}} value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
+            <MultiMCQ currData={{}} value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
+            <SmallTextModal currData={{}} value= ' ' type='4' handleFormInsert={handleFileAdd} stModalView={fuModalView} theme = {currTheme} setStModalView={setFuModalView}/>
             
         </div>
      );

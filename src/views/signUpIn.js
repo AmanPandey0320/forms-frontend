@@ -1,7 +1,6 @@
 import {useEffect,useState} from 'react';
 import SignupCard from '../components/cards/signupCard'
 import SigninCard from '../components/cards/signinCard'
-import './signupin.css'
 
 const EnterApp = (props) => {
 
