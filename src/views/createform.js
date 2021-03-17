@@ -193,13 +193,16 @@ const CreateForm = () => {
 
             <div className="form-width">
 
-                {/* {console.log(formData)} */}
-                <SmallTxtView question="What is your name?" theme={currTheme} index="1" create="1"/>
-                <BigTxtView question="Where do you live?" theme={currTheme} index="2" create="1"/>
-                <SingleMCQView question="What is your gender?" theme={currTheme} index="3" create="1" options={['Male','Female']}/>
-                <MultipleMCQView question="What is your gender?" theme={currTheme} index="4" create="1" options={['Male','Female']}/>
-                <FileUpload question="Upload your aadhar card." theme={currTheme} index="5" create="1"/>
-
+                {formData.map((data,index)=>{
+                    switch (data.type) {
+                        case 0:return(<SmallTxtView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 1:return(<BigTxtView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 2:return(<SingleMCQView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 3:return(<MultipleMCQView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 4:return(<FileUpload key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        default:return(<h3 className="my-4" style={{textAlign:'center'}}>Error showing element! Please contact sender.</h3>);
+                    }
+                })}
                 
             </div>
 
