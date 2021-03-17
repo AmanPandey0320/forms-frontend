@@ -5,7 +5,7 @@ import formThemes from "../../themes/formsthemes";
 import MuiThemes from "../../themes/MuiThemes";
 
 const SmallTxtView = (props) => {
-    const {index,question,theme:currTheme} = props;
+    const {index,question,theme:currTheme,create} = props;
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
 
