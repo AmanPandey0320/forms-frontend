@@ -18,6 +18,7 @@ import MultiMCQ from '../components/Modals/multipleMCQ';
 import SmallTxtView from '../components/formElements/smallText';
 import BigTxtView from '../components/formElements/bigText';
 import SingleMCQView from '../components/formElements/singleMCQ';
+import MultipleMCQView from '../components/formElements/multipleMCQ';
 
 //bbgopa
 
@@ -195,6 +196,7 @@ const CreateForm = () => {
                 <SmallTxtView question="What is your name?" theme={currTheme} index="1" create="1"/>
                 <BigTxtView question="Where do you live?" theme={currTheme} index="2" create="1"/>
                 <SingleMCQView question="What is your gender?" theme={currTheme} index="3" create="1" options={['Male','Female']}/>
+                <MultipleMCQView question="What is your gender?" theme={currTheme} index="4" create="1" options={['Male','Female']}/>
                 
 
                 

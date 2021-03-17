@@ -1,5 +1,5 @@
 import {withStyles} from '@material-ui/core/styles';
-import CheckBox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import formThemes from '../themes/formsthemes';
 
 const BlueCheckbox = withStyles({
