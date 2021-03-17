@@ -54,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateForm = () => {
     const materialClass = useStyles();
+    const [curData,setCurData]=useState({});
+    const [edIndex,setEdindex] = useState(0);
     const [stModalView,setStModalView] = useState(false);
     const [btModalView,setBtModalView] = useState(false);
     const [smModalView,setSmModalView] = useState(false);
@@ -61,7 +63,7 @@ const CreateForm = () => {
     const [fuModalView,setFuModalView] = useState(false);
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
-    const [currTheme,setCurrTheme] = useState(5);
+    const [currTheme,setCurrTheme] = useState(0);
     const [formTitle,setFormTitle] = useState('Untitled form');
     const [formDescription,setFormDescription] = useState('Form description');
     const [formData,setFormData] = useState([]);
@@ -72,7 +74,13 @@ const CreateForm = () => {
             que:question
         };
 
+       if(edIndex == formData.length){
         setFormData([...formData,smdata]);
+       }else{
+           let newData = formData;
+           newData[edIndex] = smdata
+           setFormData(newData);
+       }
 
         setStModalView(false);
     }
@@ -84,7 +92,13 @@ const CreateForm = () => {
             que:question
         };
 
-        setFormData([...formData,bgdata]);
+        if(edIndex == formData.length){
+            setFormData([...formData,bgdata]);
+           }else{
+               let newData = formData;
+               newData[edIndex] = bgdata
+               setFormData(newData);
+        }
 
         setBtModalView(false);
 
@@ -98,7 +112,13 @@ const CreateForm = () => {
             option:data.option
         };
 
-        setFormData([...formData,smdata]);
+        if(edIndex == formData.length){
+            setFormData([...formData,smdata]);
+           }else{
+               let newData = formData;
+               newData[edIndex] = smdata
+               setFormData(newData);
+        }
 
         setSmModalView(false);
     }
@@ -111,7 +131,13 @@ const CreateForm = () => {
             option:data.option
         }
 
-        setFormData([...formData,mmdata]);
+        if(edIndex == formData.length){
+            setFormData([...formData,mmdata]);
+           }else{
+               let newData = formData;
+               newData[edIndex] = mmdata
+               setFormData(newData);
+        }
 
         setMmModalView(false);
     }
@@ -122,8 +148,13 @@ const CreateForm = () => {
             type:4,
             que:question
         }
-
-        setFormData([...formData,fudata]);
+        if(edIndex == formData.length){
+            setFormData([...formData,fudata]);
+           }else{
+               let newData = formData;
+               newData[edIndex] = fudata
+               setFormData(newData);
+        }
 
         setFuModalView(false);
 
@@ -137,6 +168,26 @@ const CreateForm = () => {
         }
 
         setFormData(newFormData);
+    }
+
+    const handleEdit = (index)=>{
+        const curd = formData[index];
+        setEdindex(index);
+        setCurData(curd);
+        switch (curd.type) {
+            case 0:setStModalView(true);
+                break;
+            case 1:setBtModalView(true);
+                break;
+            case 2:setSmModalView(true);
+                break;
+            case 3:setMmModalView(true);
+                break;
+            case 4:setFuModalView(true);
+                break;
+            default:alert('Some error occured!');
+                break;
+        }
     }
 
     const GetSwitch = ()=>{
@@ -163,13 +214,13 @@ const CreateForm = () => {
                                 id={`dropdown-button-drop-left`}
                                 drop="left"
                                 variant="outline-dark"
-                                title={`Add Item`}
-                            >
-                                <Dropdown.Item eventKey="1" onClick={()=>{setStModalView(true)}}>Small-text</Dropdown.Item>
-                                <Dropdown.Item eventKey="2" onClick={()=>{setBtModalView(true)}}>Big-text</Dropdown.Item>
-                                <Dropdown.Item eventKey="3" onClick={()=>{setSmModalView(true)}}>Single-correct MCQ</Dropdown.Item>
-                                <Dropdown.Item eventKey="4" onClick={()=>{setMmModalView(true)}}>Multi-correct MCQ</Dropdown.Item>
-                                <Dropdown.Item eventKey="5" onClick={()=>{setFuModalView(true)}}>File-upload</Dropdown.Item>
+                                title={`Add Item`}>
+
+                                <Dropdown.Item eventKey="1" onClick={()=>{setEdindex(formData.length);setCurData({});setStModalView(true)}}>Small-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="2" onClick={()=>{setEdindex(formData.length);setCurData({});setBtModalView(true)}}>Big-text</Dropdown.Item>
+                                <Dropdown.Item eventKey="3" onClick={()=>{setEdindex(formData.length);setCurData({});setSmModalView(true)}}>Single-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="4" onClick={()=>{setEdindex(formData.length);setCurData({});setMmModalView(true)}}>Multi-correct MCQ</Dropdown.Item>
+                                <Dropdown.Item eventKey="5" onClick={()=>{setEdindex(formData.length);setCurData({});setFuModalView(true)}}>File-upload</Dropdown.Item>
 
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
@@ -197,11 +248,11 @@ const CreateForm = () => {
 
                 {formData.map((data,index)=>{
                     switch (data.type) {
-                        case 0:return(<SmallTxtView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
-                        case 1:return(<BigTxtView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
-                        case 2:return(<SingleMCQView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
-                        case 3:return(<MultipleMCQView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
-                        case 4:return(<FileUpload handledelete={handleDelete} key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 0:return(<SmallTxtView handleedit={handleEdit}  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 1:return(<BigTxtView handleedit={handleEdit}  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 2:return(<SingleMCQView handleedit={handleEdit}  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 3:return(<MultipleMCQView  handleedit={handleEdit} handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 4:return(<FileUpload handleedit={handleEdit} handledelete={handleDelete} key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
                         default:return(<h3 className="my-4" style={{textAlign:'center'}}>Error showing element! Please contact sender.</h3>);
                     }
                 })}
@@ -242,11 +293,11 @@ const CreateForm = () => {
                 </Modal.Footer>
             </Modal>
 
-            <SmallTextModal currData={{}} value= ' ' type='0' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
-            <BigTextModal currData={{}} value=' ' handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
-            <SingleMCQ currData={{}} value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
-            <MultiMCQ currData={{}} value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
-            <SmallTextModal currData={{}} value= ' ' type='4' handleFormInsert={handleFileAdd} stModalView={fuModalView} theme = {currTheme} setStModalView={setFuModalView}/>
+            <SmallTextModal currData={curData} value= {formData.length} type='0' handleFormInsert={handleSmallAdd} stModalView={stModalView} theme = {currTheme} setStModalView={setStModalView}/>
+            <BigTextModal currData={curData} value= {formData.length} handleFormInsert={handleBigAdd} btModalView={btModalView} theme={currTheme} setBtModalView={setBtModalView} />
+            <SingleMCQ currData={curData} value={formData.length} handleFormInsert={handleSingleAdd} smModalView={smModalView} theme={currTheme} setSmModalView={setSmModalView}/>
+            <MultiMCQ currData={curData} value={formData.length} handleFormInsert={handleMultiAdd} mmModalView={mmModalView} theme={currTheme} setMmModalView={setMmModalView}/>
+            <SmallTextModal currData={curData} value= {formData.length} type='4' handleFormInsert={handleFileAdd} stModalView={fuModalView} theme = {currTheme} setStModalView={setFuModalView}/>
             
         </div>
      );

@@ -3,9 +3,10 @@ import {MdQuestionAnswer,MdDelete} from 'react-icons/md';
 import {RiFileEditFill} from 'react-icons/ri';
 import formThemes from "../../themes/formsthemes";
 import MuiThemes from "../../themes/MuiThemes";
+import SmallTextModal from '../Modals/smallText';
 
 const SmallTxtView = (props) => {
-    const {index,question,theme:currTheme,create,handledelete} = props;
+    const {index,question,theme:currTheme,create,handledelete,handleedit} = props;
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
 
@@ -18,10 +19,12 @@ const SmallTxtView = (props) => {
 
             <div className="mt-2"  style={{textAlign:"right"}}>
 
-                    <span><IconButton ><RiFileEditFill color="#303331"/></IconButton></span>
+                    <span><IconButton onClick={()=>{handleedit(index-1)}} ><RiFileEditFill color="#303331"/></IconButton></span>
                     <span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span>
 
             </div>
+
+            
             
         </div>
      );

@@ -51,7 +51,7 @@ const SmallTextModal = (props)=>{
                     <ThemeProvider theme={MuiThemes[props.theme]}>
                         <FormControl fullWidth >
                             <InputLabel htmlFor="small text question">Enter your question :</InputLabel>
-                            <Input multiline onChange={(event=>{setQuetxt(event.target.value)})} startAdornment={<InputAdornment position="start"><BsFillQuestionSquareFill color={formThemes[props.theme].body}/></InputAdornment>} />
+                            <Input multiline  onChange={(event=>{setQuetxt(event.target.value)})} startAdornment={<InputAdornment position="start"><BsFillQuestionSquareFill color={formThemes[props.theme].body}/></InputAdornment>} />
                         </FormControl>
                     </ThemeProvider>
                 </Modal.Body>

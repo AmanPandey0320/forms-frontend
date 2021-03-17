@@ -51,7 +51,7 @@ const SingleMCQModal = (props) => {
                 <ThemeProvider theme={MuiThemes[props.theme]}>
                     <IconButton color="primary" onClick={()=>{setOptions([...options,'New option'])}}>
                     <IconContext.Provider value={{color:formThemes[props.theme].body}}>
-                        <span className="my-1"><IoIosAddCircle/>&nbsp;Add option</span>
+                        <span className="my-1"><IoIosAddCircle/></span>
                     </IconContext.Provider>
                     </IconButton>
                 </ThemeProvider>
