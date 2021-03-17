@@ -5,7 +5,7 @@ import formThemes from "../../themes/formsthemes";
 import MuiThemes from "../../themes/MuiThemes";
 
 const BigTxtView = (props) => {
-    const {index,question,theme:currTheme} = props;
+    const {index,question,theme:currTheme,handledelete} = props;
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
 
@@ -19,7 +19,7 @@ const BigTxtView = (props) => {
             <div className="mt-2"  style={{textAlign:"right"}}>
 
                     <span><IconButton ><RiFileEditFill color="#303331"/></IconButton></span>
-                    <span><IconButton ><MdDelete color="#303331"/></IconButton></span>
+                    <span><IconButton onClick={()=>{handledelete(index-1)}}><MdDelete color="#303331"/></IconButton></span>
 
             </div>
             

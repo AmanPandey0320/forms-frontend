@@ -129,13 +129,15 @@ const CreateForm = () => {
 
     }
 
-    /*
-     *0:small text box 
-     *1:big text area
-     *2:single option
-     *3:multiple option
-     *4:upload file
-     */
+    const handleDelete = (index)=>{
+        let newFormData = [...formData.slice(0,index)]
+        
+        if(index!=formData.length-1){
+            newFormData = [...newFormData,...formData.slice(index+1)];
+        }
+
+        setFormData(newFormData);
+    }
 
     const GetSwitch = ()=>{
         const SwBtn = Switches[currTheme];
@@ -195,11 +197,11 @@ const CreateForm = () => {
 
                 {formData.map((data,index)=>{
                     switch (data.type) {
-                        case 0:return(<SmallTxtView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
-                        case 1:return(<BigTxtView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
-                        case 2:return(<SingleMCQView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
-                        case 3:return(<MultipleMCQView key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
-                        case 4:return(<FileUpload key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 0:return(<SmallTxtView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 1:return(<BigTxtView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
+                        case 2:return(<SingleMCQView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 3:return(<MultipleMCQView  handledelete={handleDelete}key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1" options={data.option}/>);
+                        case 4:return(<FileUpload handledelete={handleDelete} key={`Que${index}`} question={data.que} theme={currTheme} index={index+1} create="1"/>);
                         default:return(<h3 className="my-4" style={{textAlign:'center'}}>Error showing element! Please contact sender.</h3>);
                     }
                 })}

@@ -8,7 +8,7 @@ import Radios from "../Radios";
 
 const SingleMCQ = (props) => {
 
-    const {question,options,theme:currTheme,index} = props;
+    const {question,options,theme:currTheme,index,handledelete} = props;
     const MyRadio = Radios[currTheme];
 
     return ( 
@@ -28,7 +28,7 @@ const SingleMCQ = (props) => {
             <div  style={{textAlign:"right"}}>
 
                     <span><IconButton ><RiFileEditFill color="#303331"/></IconButton></span>
-                    <span><IconButton ><MdDelete color="#303331"/></IconButton></span>
+                    <span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span>
 
             </div>
         </div>
