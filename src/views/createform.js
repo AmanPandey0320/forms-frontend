@@ -20,6 +20,7 @@ import BigTxtView from '../components/formElements/bigText';
 import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
+import {sendForm} from '../logics/formHandler';
 
 //bbgopa
 
@@ -225,7 +226,7 @@ const CreateForm = () => {
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
                                 <IconButton  onClick={()=>{setModalState(true)}}><MdSettings color="#303331"/></IconButton>
-                                <IconButton  aria-label="create and share form"><MdSend color="#303331"/></IconButton>
+                                <IconButton onClick={()=>{sendForm(formData,formTitle,formDescription,currTheme)}} aria-label="create and share form"><MdSend color="#303331"/></IconButton>
                             </ThemeProvider>
                         </div>
 
