@@ -61,7 +61,11 @@ export const verifyUser = (callback) =>{
     // console.log(authKey);
     axios.post(baseUrl + '/api/auth/verify',JSON.stringify(data),config).then(response=>{
 
-        // console.log(response.data);
+        // console.log(response.data.verify_response.token);
+        cookie.set('forms_auth_key',response.data.verify_response.token,{
+            maxAge:2*60*60*1000,
+            path:'/'
+        });
         return callback(null,response.data);
 
     }).catch(err=>{

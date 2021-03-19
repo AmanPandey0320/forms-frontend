@@ -5,6 +5,7 @@ import CreateForm from '../views/createform';
 import EntryPoint from '../views/signUpIn';
 import Navbar from '../components/navbar/navbar';
 import {verifyUser} from '../repository/auth.handler';
+import Dashboard from '../views/dashboard';
 import { SiFacebook } from 'react-icons/si';
 
 const Forms = () => {
@@ -30,7 +31,7 @@ const Forms = () => {
 
         verifyUser(verification_result);
 
-    });
+    },[]);
 
     return ( 
         <>
@@ -51,6 +52,10 @@ const Forms = () => {
             </Route>
             <Route exact path = '/signin'>
                 <EntryPoint  card="in"/>
+            </Route>
+            <Route exact path="/dashboard">
+                <Navbar BrandName="Forms" valid={isValid} pageName='home'/>
+                <Dashboard valid={isValid}/>
             </Route>
         </BrowserRouter>
         </>

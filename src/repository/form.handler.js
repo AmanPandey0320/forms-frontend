@@ -23,3 +23,16 @@ export const createForm = async (data,callback)=>{
         return callback(err);
     })
 }
+export const readAllForm = async (callback)=>{
+
+    const authKey = cookie.get('forms_auth_key');
+    const data = {authKey};
+
+    axios.post(baseUrl+'/api/form/getall',JSON.stringify(data),config).then(res=>{
+        const resdata =  res.data;
+        return callback(null,resdata);
+    }).catch(err=>{
+        return callback(err);
+    })
+
+}
