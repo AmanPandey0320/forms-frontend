@@ -1,7 +1,6 @@
 import {useEffect,useState} from 'react';
+import FormList from '../components/formList';
 import {readAllForm} from '../repository/form.handler';
-import SingleListItem from '../components/singleItemForm';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 const Dashboard = (props) => {
 
@@ -28,8 +27,10 @@ const Dashboard = (props) => {
 
     return ( 
         <div className="my-nav-below">
-            {pending && <span className="text-1">Loading...</span>}
-            {!pending && <SingleListItem data={data[0]}/>}
+            <div className="form-width">
+                {pending && <span className="text-1">Loading...</span>}
+                {!pending && <FormList data ={data}/> }
+            </div>
         </div>
      );
 }

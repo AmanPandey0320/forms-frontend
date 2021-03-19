@@ -17,12 +17,7 @@ const SmallTxtView = (props) => {
                 </FormControl>
             </ThemeProvider>
 
-            <div className="mt-2"  style={{textAlign:"right"}}>
-
-                    <span><IconButton onClick={()=>{handleedit(index-1)}} ><RiFileEditFill color="#303331"/></IconButton></span>
-                    <span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span>
-
-            </div>
+            {(create == '1') && <div className="mt-2"  style={{textAlign:"right"}}><span><IconButton onClick={()=>{handleedit(index-1)}} ><RiFileEditFill color="#303331"/></IconButton></span><span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span></div>}
 
             
             

@@ -8,7 +8,7 @@ import Radios from "../Checkboxes";
 
 const MultipleMCQ = (props) => {
 
-    const {question,options,theme:currTheme,index,handledelete,handleedit} = props;
+    const {question,options,theme:currTheme,index,handledelete,handleedit,create} = props;
     const MyRadio = Radios[currTheme];
 
     return ( 
@@ -23,12 +23,7 @@ const MultipleMCQ = (props) => {
                         })}
                 </FormControl>
             </ThemeProvider>
-            <div  style={{textAlign:"right"}}>
-
-                    <span><IconButton onClick={()=>{handleedit(index-1)}}><RiFileEditFill color="#303331"/></IconButton></span>
-                    <span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span>
-
-            </div>
+            {(create == '1') && <div  style={{textAlign:"right"}}><span><IconButton onClick={()=>{handleedit(index-1)}}><RiFileEditFill color="#303331"/></IconButton></span><span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span></div>}
         </div>
      );
 }

@@ -1,7 +1,13 @@
+import SingleListItem from '../components/singleItemForm';
+
 const FormList = (props) => {
+    const {data} = props;
+    // console.log(data);
     return ( 
-        <h1>dhcvhdc</h1>
+        <div>
+            {data.map((formData,index)=><SingleListItem key={`form${index}`} data={formData}/>)}
+        </div>
      );
 }
  
-export default FormList;props
+export default FormList;

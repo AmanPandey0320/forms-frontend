@@ -36,3 +36,18 @@ export const readAllForm = async (callback)=>{
     })
 
 }
+
+export const readOne = async (form_id,cb)=>{
+
+    const authKey = cookie.get('forms_auth_key');
+    const data = {authKey,form_id};
+
+    axios.post(baseUrl+'/api/form/getone',JSON.stringify(data),config).then(res=>{
+        
+        return cb(null,res.data);
+
+    }).catch(err=>{
+        return cb(err);
+    })
+
+}

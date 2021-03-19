@@ -6,7 +6,7 @@ import formThemes from '../../themes/formsthemes';
 
 const FileUpload = (props) => {
 
-    const {question,theme:currTheme,index,handledelete,handleedit} = props;
+    const {question,theme:currTheme,index,handledelete,handleedit,create} = props;
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
             <p className="mt-1 mb-4" style={{fontFamily: '"Roboto Slab", serif'}}><strong><span>{index}.&nbsp;</span>{question}</strong></p>
@@ -16,12 +16,7 @@ const FileUpload = (props) => {
                 </Form.Group>
             </Form>
             
-            <div  style={{textAlign:"right"}}>
-
-                    <span><IconButton onClick={()=>{handleedit(index-1)}}><RiFileEditFill color="#303331"/></IconButton></span>
-                    <span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span>
-
-            </div>
+            {(create == '1') && <div  style={{textAlign:"right"}}><span><IconButton onClick={()=>{handleedit(index-1)}}><RiFileEditFill color="#303331"/></IconButton></span><span><IconButton onClick={()=>{handledelete(index-1)}} ><MdDelete color="#303331"/></IconButton></span></div>}
         </div>
      );
 }
