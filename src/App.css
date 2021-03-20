@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 
 
 .my-nav-below{
-    margin-top:60px;
+    margin-top:57px;
 }
 .my-pos-br{
     position: fixed;
@@ -110,4 +110,70 @@
 
 .edit-form-op{
     margin-top: 4px;
+}
+
+.home-img{
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('./assets/homebg2.png');
+    height: 85vh;
+    width: 101vw;
+    position: absolute;
+    left: -1px;
+    top: 57px;
+    z-index: -1;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+.home-head-content{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+
+}
+.home-head-card{
+    width:70vw;
+    margin: 8px;
+    margin-inline: auto;
+    opacity: 0.9;
+}
+.head-txt{
+    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 32px;
+}
+.card-btn-home{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    
+}
+
+@media only screen and (min-width:1100px){
+
+    .home-head-content{
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+    
+    }
+    .home-head-card{
+        width:30vw;
+        margin-inline: auto;
+        opacity: 0.9;
+    }
+    .head-txt{
+        color: white;
+        font-family: 'Open Sans Condensed', sans-serif;
+        text-align: center;
+        margin-top: 100px;
+        font-size: 64px;
+    }
+    
 }
