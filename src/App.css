@@ -3,7 +3,7 @@
 
 
 .my-nav-below{
-    margin-top:57px;
+    margin-top:60px;
 }
 .my-pos-br{
     position: fixed;
@@ -83,6 +83,10 @@
     }
 }
 
+.form-single-item {
+    background-color: white;
+}
+
 .small-txt-view{
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -125,6 +129,7 @@
     filter: blur(3px);
     -webkit-filter: blur(3px);
 }
+
 .home-head-content{
     width: 100vw;
     display: flex;
@@ -181,3 +186,26 @@
     }
     
 }
+
+.dash-img{
+
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('./assets/dashbg1.png');
+    height: 35vh;
+    width: 101vw;
+    position: absolute;
+    left: -1px;
+    top: 57px;
+    z-index: -1;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+
+}
+
+.dash-body{
+    margin-top: 25vh;
+}
+
+

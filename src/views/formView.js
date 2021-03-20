@@ -77,6 +77,8 @@ const FormView = (props) => {
 
             </div>
 
+            <br/>
+
         </div>
      );
 }

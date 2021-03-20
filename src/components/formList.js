@@ -7,19 +7,19 @@ const FormList = (props) => {
     const {data} = props;
     const [col,setCol]=useState(2);
     const isMobile = useMediaQuery({
-        query:'(min-device-width: 768px)'
+        query:'(min-device-width: 300px)'
     });
     const isTablet = useMediaQuery({
-        query:'(min-device-width: 900px)'
+        query:'(min-device-width: 700px)'
     });
     const isLaptop = useMediaQuery({
-        query:'(min-device-width: 1224px)'
+        query:'(min-device-width: 1524px)'
     })
 
     useEffect(()=>{
         if(isLaptop) setCol(5);
         else if(isTablet) setCol(3);
-        else if(isMobile) setCol(1);
+        else if(isMobile) setCol(2);
     });
     // console.log(data);
     return ( 

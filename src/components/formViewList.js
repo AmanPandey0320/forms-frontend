@@ -5,9 +5,11 @@ import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
 import { Button, ThemeProvider } from '@material-ui/core';
 import MuiThemes from '../themes/MuiThemes';
+import { GrPowerReset } from 'react-icons/gr';
 import { useEffect } from 'react';
 import { submitResponse } from '../repository/res.handler';
 import { useHistory } from 'react-router';
+import { IconContext } from 'react-icons/lib';
 
 const FormViewList = (props) => {
 
