@@ -21,13 +21,12 @@ const SingleItemForm = (props) => {
 
     return ( 
         <div className=" my-1 small-txt-view" style={{borderColor:formThemes[props.data.theme].body}}>
-            <div className="form-single-item recentactivitycontent">
-                <span><strong>{props.data.title}</strong></span>
-                <span>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()} at {date.getHours()} : {date.getMinutes()} IST </span>
+            <div className="form-single-item ">
+                <p><strong>{props.data.title}</strong></p>
+                <p>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</p>
+                <p>at {date.getHours()} : {date.getMinutes()} IST </p>
             </div>
-            <hr></hr>
-            <span>{props.data.description}</span>
-            <div style={{textAlign:'right'}}>
+            <div style={{textAlign:'center'}}>
                 <IconButton><MdDelete size="0.75em" color='grey'/></IconButton>
                 <IconButton><RiFileEditFill size="0.75em" color='black'/></IconButton>
                 <IconButton onClick = {openForm} ><IoEnter size="0.9em" color={formThemes[props.data.theme].body}/></IconButton>

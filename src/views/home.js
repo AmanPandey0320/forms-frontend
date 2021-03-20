@@ -2,11 +2,14 @@ import {React,useState,useEffect} from 'react';
 import { Card } from 'react-bootstrap';
 import { Button, ThemeProvider } from '@material-ui/core';
 import MuiThemes from '../themes/MuiThemes';
+import { useHistory } from 'react-router';
 
 const theme = MuiThemes[0];
 
 
 const Home = () => {
+
+    const history = useHistory();
 
 
         return(
@@ -25,7 +28,7 @@ const Home = () => {
                             <p style={{maxWidth:"80%",margin:'auto'}}>Collect information and organize them with us. For free</p>
                             <span className="card-btn-home">
                                 <ThemeProvider theme={theme}>
-                                    <Button variant="contained" color="primary">Get Started</Button>
+                                    <Button onClick={()=>{history.push('/dashboard')}} variant="contained" color="primary">Get Started</Button>
                                 </ThemeProvider>
                             </span>
                         </Card>

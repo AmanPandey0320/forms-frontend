@@ -84,7 +84,6 @@
 }
 
 .small-txt-view{
-
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -138,8 +137,13 @@
     width:70vw;
     margin: 8px;
     margin-inline: auto;
-    opacity: 0.9;
+    opacity: 1.0;
 }
+
+.home-head-card:hover{
+    opacity: 1.0;
+}
+
 .head-txt{
     color: white;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -166,7 +170,7 @@
     .home-head-card{
         width:30vw;
         margin-inline: auto;
-        opacity: 0.9;
+        opacity: 0.85;
     }
     .head-txt{
         color: white;
