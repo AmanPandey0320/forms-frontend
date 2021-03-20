@@ -6,12 +6,15 @@ import FileUpload from '../components/formElements/fileUpload';
 import { Button, ThemeProvider } from '@material-ui/core';
 import MuiThemes from '../themes/MuiThemes';
 import { useEffect } from 'react';
+import { submitResponse } from '../repository/res.handler';
+import { useHistory } from 'react-router';
 
 const FormViewList = (props) => {
 
     let userRes = [];
-    const {data,theme:currTheme} = props;
+    const {data,theme:currTheme,form_id} = props;
     const formData = JSON.parse(data);
+    const history = useHistory();
 
     useEffect(()=>{
         formData.forEach(element => userRes.push({}));
@@ -19,6 +22,22 @@ const FormViewList = (props) => {
 
     const responseHandler = (eachRes,index)=>{
         userRes[index] = eachRes;
+    }
+
+    const submitHandler = ()=>{
+        const data = {
+            response:JSON.stringify(userRes),
+            form_id:form_id,
+        }
+        
+        submitResponse(data,(err,info)=>{
+            if(err){
+                alert(err);
+            }else{
+                history.push('/home');
+                alert('Your response has been submitted!');
+            }
+        });
     }
 
     return ( 
@@ -35,7 +54,7 @@ const FormViewList = (props) => {
                 })}
                 <ThemeProvider theme = {MuiThemes[currTheme]}>
                         <span>
-                        <Button color="primary" onClick={()=>{console.log(userRes)}} variant="contained">Submit</Button>
+                        <Button color="primary" onClick={()=>{submitHandler()}} variant="contained">Submit</Button>
                         &nbsp;&nbsp;<Button color="primary" variant="contained">Reset</Button>
                         </span>
                     </ThemeProvider>

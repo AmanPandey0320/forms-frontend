@@ -73,7 +73,7 @@ const FormView = (props) => {
 
             <div className="form-width" style={{borderColor:formTheme[data.theme].body}}>
 
-                {!pending && <FormViewList data={data.data} theme={data.theme}/> }
+                {!pending && <FormViewList data={data.data} form_id={id} theme={data.theme}/> }
 
             </div>
 

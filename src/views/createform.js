@@ -20,7 +20,8 @@ import BigTxtView from '../components/formElements/bigText';
 import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
-import {sendForm} from '../logics/formHandler';
+import { createForm } from '../repository/form.handler';
+import { useHistory } from 'react-router';
 
 //bbgopa
 
@@ -51,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
       }
   });
 
+ 
+
 
 
 const CreateForm = () => {
@@ -68,6 +71,20 @@ const CreateForm = () => {
     const [formTitle,setFormTitle] = useState('Untitled form');
     const [formDescription,setFormDescription] = useState('Form description');
     const [formData,setFormData] = useState([]);
+    const history = useHistory();
+
+    const sendForm = (data,title,desc,theme)=>{
+
+        createForm({data,title,desc,theme},(err,info)=>{
+            if(err){
+                alert(err.message);
+            }else{
+                history.push('/dashboard');
+                alert('form sent');
+            }
+        });
+    
+      }
 
     const handleSmallAdd = (question)=>{
         const smdata = {
