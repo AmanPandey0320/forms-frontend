@@ -1,5 +1,6 @@
 import { FormControl, FormControlLabel, RadioGroup ,IconButton} from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
+import { useEffect } from "react";
 import {MdDelete} from 'react-icons/md';
 import {RiFileEditFill} from 'react-icons/ri';
 import formThemes from '../../themes/formsthemes';
@@ -8,8 +9,22 @@ import Radios from "../Radios";
 
 const SingleMCQ = (props) => {
 
-    const {question,options,theme:currTheme,index,handledelete,handleedit,create} = props;
+    const {question,options,theme:currTheme,index,handledelete,handleedit,create,responseHandler} = props;
     const MyRadio = Radios[currTheme];
+    
+    const handleChange = (event,opi)=>{
+
+        const res = {
+            qno:index,
+            ans: event.target.value,
+            resOp:opi,
+            qtype:2,
+            timestamp:Date.now()
+        }
+
+        responseHandler(res,index-1);
+
+    }
 
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
@@ -19,7 +34,7 @@ const SingleMCQ = (props) => {
                     <RadioGroup aria-label="gender" name={`question${index}`}>
                         {options.map((option,i)=>{
                             return(
-                                <FormControlLabel key={`que${index}op${i}`} control={<MyRadio/>} value={option} label={option}/>
+                                <FormControlLabel key={`${i}`} onChange={(event)=>{handleChange(event,i)}} control={<MyRadio/>} value={option} label={option}/>
                             );
                         })}
                     </RadioGroup>

@@ -29,7 +29,7 @@ const Dashboard = (props) => {
         <div className="my-nav-below">
             <div className="form-width">
                 {pending && <span className="text-1">Loading...</span>}
-                {!pending && <FormList data ={data}/> }
+                {!pending && <FormList owner={true} data ={data}/> }
             </div>
         </div>
      );

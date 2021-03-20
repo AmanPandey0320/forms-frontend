@@ -1,5 +1,6 @@
 import { FormControl, FormControlLabel, RadioGroup ,IconButton} from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
+import { useEffect } from "react";
 import {MdDelete} from 'react-icons/md';
 import {RiFileEditFill} from 'react-icons/ri';
 import formThemes from '../../themes/formsthemes';
@@ -8,8 +9,38 @@ import Radios from "../Checkboxes";
 
 const MultipleMCQ = (props) => {
 
-    const {question,options,theme:currTheme,index,handledelete,handleedit,create} = props;
+    const {question,options,theme:currTheme,index,handledelete,handleedit,create,responseHandler} = props;
     const MyRadio = Radios[currTheme];
+    let op = [];
+    let ans = [];
+    let res = {
+        qno:index,
+        qtype:3,
+        timestamp: Date.now(),
+        resOp:op,
+        ans:ans
+    }
+
+    const changeHandler = (event,i)=>{
+
+        if(res.resOp[i] == false){
+            res.ans[i]=event.target.value;
+            res.resOp[i] = true;
+        }else{
+            res.ans[i]=' ';
+            res.resOp[i] = false;
+        }
+
+        responseHandler(res,index -1);
+        
+    }
+
+    useEffect(()=>{
+        options.forEach(ele=>{
+            op.push(false);
+            ans.push(' ');
+        });
+    },[]);
 
     return ( 
         <div className="form-body small-txt-view my-2" style={{borderColor:formThemes[currTheme].body}}>
@@ -18,7 +49,7 @@ const MultipleMCQ = (props) => {
                 <FormControl component="fieldset">
                         {options.map((option,i)=>{
                             return(
-                                <FormControlLabel key={`que${index}op${i}`} control={<MyRadio />} value={option} label={option}/>
+                                <FormControlLabel key={`que${index}op${i}`} onChange={(event)=>{changeHandler(event,i)}} control={<MyRadio />} value={option} label={option}/>
                             );
                         })}
                 </FormControl>

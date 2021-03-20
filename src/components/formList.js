@@ -5,7 +5,7 @@ const FormList = (props) => {
     // console.log(data);
     return ( 
         <div>
-            {data.map((formData,index)=><SingleListItem key={`form${index}`} data={formData}/>)}
+            {data.map((formData,index)=><SingleListItem owner={props.owner} key={`form${index}`} data={formData}/>)}
         </div>
      );
 }

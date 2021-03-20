@@ -15,7 +15,7 @@ const SingleItemForm = (props) => {
         const {form_id} = props.data;
         history.push({
             pathname:`/form/${form_id}`,
-            state:props.data
+            state:{owner:props.owner}
         });
     }
 
