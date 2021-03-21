@@ -21,7 +21,7 @@ const Dashboard = (props) => {
     })
 
     useEffect(()=>{
-        if(isLaptop) setCol(5);
+        if(isLaptop) setCol(4);
         else if(isTablet) setCol(3);
         else if(isMobile) setCol(2);
     });
@@ -48,7 +48,6 @@ const Dashboard = (props) => {
         <div className="my-nav-below">
             <div className="dash-head">
                 <img className="dash-img" />
-                
             </div>
             <div className="form-width dash-body">
                 {pending && <span className="text-1">Loading...</span>}

@@ -23,8 +23,8 @@ const SingleItemForm = (props) => {
         <div className=" my-1 form-single-item  small-txt-view" style={{borderColor:formThemes[props.data.theme].body}}>
             <div>
                 <p><strong>{props.data.title}</strong></p>
-                <p>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</p>
-                <p>at {date.getHours()} : {date.getMinutes()} IST </p>
+                <p><small>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</small></p>
+                <p><small>at {date.getHours()} : {date.getMinutes()} IST</small> </p>
             </div>
             <div style={{textAlign:'center'}}>
                 <IconButton><MdDelete size="0.75em" color='grey'/></IconButton>

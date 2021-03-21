@@ -74,7 +74,7 @@ const SignInCard = () => {
         },(err,responce)=>{
             if(err){
                 setActiveState(true);
-                alert(responce);
+                alert(err);
             }else{
                 setActiveState(true);
                 console.log(responce);

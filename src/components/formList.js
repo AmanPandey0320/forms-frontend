@@ -5,9 +5,9 @@ import SingleListItem from '../components/singleItemForm';
 
 const FormList = (props) => {
     const {data} = props;
-    const [col,setCol]=useState(2);
+    const [col,setCol]=useState(1);
     const isMobile = useMediaQuery({
-        query:'(min-device-width: 300px)'
+        query:'(min-device-width: 350px)'
     });
     const isTablet = useMediaQuery({
         query:'(min-device-width: 700px)'
@@ -17,7 +17,7 @@ const FormList = (props) => {
     })
 
     useEffect(()=>{
-        if(isLaptop) setCol(5);
+        if(isLaptop) setCol(4);
         else if(isTablet) setCol(3);
         else if(isMobile) setCol(2);
     });
@@ -29,7 +29,7 @@ const FormList = (props) => {
         
         <div>
             {console.log(col)}
-            <GridList  cols={col}>
+            <GridList cellHeight={190}  cols={col}>
 
                 {
                     

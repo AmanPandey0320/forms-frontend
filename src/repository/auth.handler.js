@@ -8,6 +8,23 @@ const cookie = new Cookie();
 
 console.log(baseUrl);
 
+export const logoutAPI = async (cb) => {
+
+    try{
+
+        await cookie.remove('forms_auth_key');
+        return cb(null,{code:200,message:'logged out',path:'/home'});
+
+
+    }catch(err){
+
+        console.log(err);
+        return cb(err);
+
+    }
+
+}
+
 export const signupAPI = (data,callback) => {
     
     axios({
@@ -56,6 +73,13 @@ export const verifyUser = (callback) =>{
             Authorization: `Bearer forms_jwt_cookie`
         },
         withCredentials: true
+    }
+    if(authKey === null  || authKey === undefined){
+        return callback({
+            code:401,
+            message:'no auth key fund',
+            path:'/signup'
+        });
     }
     const data = {authKey};
     console.log(authKey);
