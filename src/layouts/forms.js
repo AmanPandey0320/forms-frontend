@@ -46,7 +46,10 @@ const Forms = () => {
                 <Home/>
             </Route>
             <Route exact path = '/newform'>
-                <CreateForm valid={isValid}/>
+                <CreateForm edit='0' valid={isValid}/>
+            </Route>
+            <Route exact path = '/editform'>
+                <CreateForm edit='1' valid={isValid}/>
             </Route>
             <Route exact path = '/signup'>
                 <EntryPoint  card="up"/>

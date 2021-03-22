@@ -23,8 +23,8 @@ const SingleItemForm = (props) => {
 
     const editForm = (event)=>{
         history.push({
-            pathname:`/newform`,
-            state:JSON.parse(props.data.data)
+            pathname:`/editform`,
+            state:props.data
         });
     }
 
@@ -36,6 +36,7 @@ const SingleItemForm = (props) => {
 
     return ( 
         <div className=" my-1 form-single-item  small-txt-view" style={{borderColor:formThemes[props.data.theme].body}}>
+            {/* {console.log(props.data)} */}
             <div>
                 <p><strong>{props.data.title}</strong></p>
                 <p><IoDocumentTextSharp size="1.3em" color={formThemes[props.data.theme].body}/>&nbsp;<small>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</small></p>

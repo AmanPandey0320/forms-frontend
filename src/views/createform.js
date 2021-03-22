@@ -21,6 +21,7 @@ import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
 import { createForm } from '../repository/form.handler';
+import {RiSave3Fill} from 'react-icons/ri';
 import { useHistory,useLocation } from 'react-router';
 
 //bbgopa
@@ -57,8 +58,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CreateForm = (props) => {
+    const editMode = props.edit;
     const location = useLocation();
-    const propsData = location.state || [];
+    let propsData = [];
     const materialClass = useStyles();
     const [curData,setCurData]=useState({});
     const [edIndex,setEdindex] = useState(0);
@@ -70,10 +72,19 @@ const CreateForm = (props) => {
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(0);
-    const [formTitle,setFormTitle] = useState('Untitled form');
-    const [formDescription,setFormDescription] = useState('Form description');
-    const [formData,setFormData] = useState(propsData);
+    const [formTitle,setFormTitle] = useState('');
+    const [formDescription,setFormDescription] = useState('');
     const history = useHistory();
+
+    let ttl='Untitled form',desc='';
+
+    if(editMode == '1'){
+        propsData = JSON.parse(location.state.data) || [];
+        ttl = location.state.title;
+        desc = location.state.description;
+    }
+
+    const [formData,setFormData] = useState(propsData);
 
     const sendForm = (data,title,desc,theme)=>{
 
@@ -225,7 +236,7 @@ const CreateForm = (props) => {
                   width="32"
                   src='/assets/logo.svg'
                   />
-                  {console.log(location.state)}
+                  {/* {console.log(location.state.title)} */}
                 <span style={{fontFamily: 'Lemonada'}}>Forms</span></Navbar.Brand>      
                     <Nav className="ml-auto">
                         <div>
@@ -246,7 +257,8 @@ const CreateForm = (props) => {
                             </DropdownButton>
                             <ThemeProvider theme={theme}>
                                 <IconButton  onClick={()=>{setModalState(true)}}><MdSettings color="#303331"/></IconButton>
-                                <IconButton onClick={()=>{sendForm(formData,formTitle,formDescription,currTheme)}} aria-label="create and share form"><MdSend color="#303331"/></IconButton>
+                                { (editMode == '0') && <IconButton onClick={()=>{sendForm(formData,formTitle,formDescription,currTheme)}} aria-label="create and share form"><MdSend color="#303331"/></IconButton>}
+                                {(editMode == '1') && <IconButton onClick={()=>{alert('edited and saved!')}} aria-label="create and share form"><RiSave3Fill color="#303331"/></IconButton>}
                             </ThemeProvider>
                         </div>
 
@@ -258,8 +270,8 @@ const CreateForm = (props) => {
                  
                 <form className={materialClass.root} noValidate autoComplete="off">
                     <ThemeProvider theme={MyMuiThemes[currTheme]}>
-                        <TextField InputProps={{ classes: { root: materialClass.title} }} id="form-title" onChange={(event)=>{setFormTitle(event.target.value)}} label="Title" defaultValue="Untitled form"/>
-                        <TextField className="mt-2" InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} label="Description"/>
+                        <TextField InputProps={{ classes: { root: materialClass.title} }} id="form-title" onChange={(event)=>{setFormTitle(event.target.value)}} label="Title" defaultValue={ttl}/>
+                        <TextField className="mt-2" InputProps={{ classes: { root: materialClass.description} }} id="form-discription" onChange={(event)=>{setFormDescription(event.target.value)}} defaultValue={desc} label="Description"/>
                     </ThemeProvider>
                 </form>
                 
