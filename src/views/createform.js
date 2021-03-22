@@ -21,7 +21,7 @@ import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
 import { createForm } from '../repository/form.handler';
-import { useHistory } from 'react-router';
+import { useHistory,useLocation } from 'react-router';
 
 //bbgopa
 
@@ -56,7 +56,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const CreateForm = () => {
+const CreateForm = (props) => {
+    const location = useLocation();
+    const propsData = location.state || [];
     const materialClass = useStyles();
     const [curData,setCurData]=useState({});
     const [edIndex,setEdindex] = useState(0);
@@ -70,7 +72,7 @@ const CreateForm = () => {
     const [currTheme,setCurrTheme] = useState(0);
     const [formTitle,setFormTitle] = useState('Untitled form');
     const [formDescription,setFormDescription] = useState('Form description');
-    const [formData,setFormData] = useState([]);
+    const [formData,setFormData] = useState(propsData);
     const history = useHistory();
 
     const sendForm = (data,title,desc,theme)=>{
@@ -223,6 +225,7 @@ const CreateForm = () => {
                   width="32"
                   src='/assets/logo.svg'
                   />
+                  {console.log(location.state)}
                 <span style={{fontFamily: 'Lemonada'}}>Forms</span></Navbar.Brand>      
                     <Nav className="ml-auto">
                         <div>

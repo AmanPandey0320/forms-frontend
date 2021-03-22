@@ -61,6 +61,9 @@ const Forms = () => {
             <Route exact path='/form/:id'>
                 <FormView valid={isValid} theme={0} />
             </Route>
+            <Route exact path='/template'>
+                <p>template</p>
+            </Route>
         </BrowserRouter>
         </>
      );

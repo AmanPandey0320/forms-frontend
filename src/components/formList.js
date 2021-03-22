@@ -4,23 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import SingleListItem from '../components/singleItemForm';
 
 const FormList = (props) => {
-    const {data} = props;
-    const [col,setCol]=useState(1);
-    const isMobile = useMediaQuery({
-        query:'(min-device-width: 350px)'
-    });
-    const isTablet = useMediaQuery({
-        query:'(min-device-width: 700px)'
-    });
-    const isLaptop = useMediaQuery({
-        query:'(min-device-width: 1524px)'
-    })
-
-    useEffect(()=>{
-        if(isLaptop) setCol(4);
-        else if(isTablet) setCol(3);
-        else if(isMobile) setCol(2);
-    });
+    const {data,col} = props;
     // console.log(data);
     return ( 
         // <div>
@@ -29,7 +13,7 @@ const FormList = (props) => {
         
         <div>
             {console.log(col)}
-            <GridList cellHeight={190}  cols={col}>
+            <GridList cellHeight={143}  cols={col}>
 
                 {
                     

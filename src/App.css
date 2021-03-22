@@ -3,7 +3,7 @@
 
 
 .my-nav-below{
-    margin-top:60px;
+    margin-top:57px;
 }
 .my-pos-br{
     position: fixed;
@@ -187,25 +187,42 @@
     
 }
 
-.dash-img{
 
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-image: url('./assets/dashbg1.png');
-    height: 35vh;
-    width: 101vw;
-    position: absolute;
-    left: -1px;
-    top: 57px;
-    z-index: -1;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+
+.dash-head{
+
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    
+}
+.dash-head-element{
+    width: 20%;
+    height: 20%;
+    text-align: center;
+    padding: 8px;
+    
+}
+
+@media only screen and (min-width:1400px){
+
+    .dash-head-element{
+        width: 10%;
+        height: 20%;
+        text-align: center;
+        padding: 8px;
+        
+    }
 
 }
 
-.dash-body{
-    margin-top: 25vh;
+.dash-head-element:hover{
+    cursor: pointer;
+}
+
+.dash-img{
+    width: 90%;
 }
 
 

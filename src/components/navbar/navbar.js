@@ -12,7 +12,7 @@ class NavBar extends Component {
         return ( 
             <Nav className="ml-3 mr-auto">
                 <Link className="mr-4" to="/home" style={{color: 'white',textDecoration: 'none'}}>Home</Link>
-                <Link className="mr-4" to="/getstarted" style={{color: 'white',textDecoration: 'none'}}>Get Started</Link>
+                <Link className="mr-4" to="/template" style={{color: 'white',textDecoration: 'none'}}>Templates</Link>
                 <Link className="mr-4" to="/help" style={{color: 'white',textDecoration: 'none'}}>Help</Link>
             </Nav>
          );

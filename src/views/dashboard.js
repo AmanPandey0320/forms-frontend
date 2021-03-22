@@ -3,21 +3,23 @@ import {useEffect,useState} from 'react';
 import FormList from '../components/formList';
 import {readAllForm} from '../repository/form.handler';
 import { useMediaQuery } from 'react-responsive';
+import formThemes from '../themes/formsthemes';
+import DashBoardHead from '../components/dashBoardHead';
 
 const Dashboard = (props) => {
 
     const[pending,setPending] = useState(true);
     const [data,setData] = useState([]);
 
-    const [col,setCol]=useState(2);
+    const [col,setCol]=useState(1);
     const isMobile = useMediaQuery({
-        query:'(min-device-width: 568px)'
+        query:'(min-device-width: 350px)'
     });
     const isTablet = useMediaQuery({
-        query:'(min-device-width: 768px)'
+        query:'(min-device-width: 700px)'
     });
     const isLaptop = useMediaQuery({
-        query:'(min-device-width: 1224px)'
+        query:'(min-device-width: 1524px)'
     })
 
     useEffect(()=>{
@@ -46,12 +48,11 @@ const Dashboard = (props) => {
 
     return ( 
         <div className="my-nav-below">
-            <div className="dash-head">
-                <img className="dash-img" />
-            </div>
+            <DashBoardHead/>
             <div className="form-width dash-body">
+                
                 {pending && <span className="text-1">Loading...</span>}
-                {!pending && <FormList owner={true} data ={data}/> }
+                {!pending && <FormList owner={true} col={col} data ={data}/> }
             </div>
         </div>
      );
