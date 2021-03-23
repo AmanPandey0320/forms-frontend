@@ -35,16 +35,11 @@ const SingleItemForm = (props) => {
     },[]);
 
     return ( 
-        <div className=" my-1 form-single-item  small-txt-view" style={{borderColor:formThemes[props.data.theme].body}}>
+        <div className=" my-1 form-single-item  small-txt-view" onClick={editForm} style={{borderColor:formThemes[props.data.theme].body}}>
             {/* {console.log(props.data)} */}
             <div>
                 <p><strong>{props.data.title}</strong></p>
                 <p><IoDocumentTextSharp size="1.3em" color={formThemes[props.data.theme].body}/>&nbsp;<small>on {date.getDate()}/{date.getMonth()}/{date.getFullYear()}</small></p>
-            </div>
-            <div style={{textAlign:'center'}}>
-                <IconButton><MdDelete size="0.75em" color='grey'/></IconButton>
-                <IconButton onClick = {editForm}><RiFileEditFill size="0.75em" color='black'/></IconButton>
-                <IconButton onClick = {openForm} ><IoEnter size="0.9em" color={formThemes[props.data.theme].body}/></IconButton>
             </div>
         </div>
      );

@@ -3,7 +3,7 @@
 
 
 .my-nav-below{
-    margin-top:57px;
+    margin-top:60px;
 }
 .my-pos-br{
     position: fixed;
@@ -85,6 +85,7 @@
 
 .form-single-item {
     background-color: white;
+    cursor: pointer;
 }
 
 .small-txt-view{

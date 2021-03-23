@@ -13,7 +13,7 @@ const FormList = (props) => {
         
         <div>
             {console.log(col)}
-            <GridList cellHeight={143}  cols={col}>
+            <GridList cellHeight={103}  cols={col}>
 
                 {
                     

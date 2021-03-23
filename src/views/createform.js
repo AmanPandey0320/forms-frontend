@@ -20,7 +20,7 @@ import BigTxtView from '../components/formElements/bigText';
 import SingleMCQView from '../components/formElements/singleMCQ';
 import MultipleMCQView from '../components/formElements/multipleMCQ';
 import FileUpload from '../components/formElements/fileUpload';
-import { createForm } from '../repository/form.handler';
+import { createForm, editOne } from '../repository/form.handler';
 import {RiSave3Fill} from 'react-icons/ri';
 import { useHistory,useLocation } from 'react-router';
 
@@ -72,8 +72,6 @@ const CreateForm = (props) => {
     const [exam,setExam]=useState(false)
     const [modalState,setModalState] = useState(false)
     const [currTheme,setCurrTheme] = useState(0);
-    const [formTitle,setFormTitle] = useState('');
-    const [formDescription,setFormDescription] = useState('');
     const history = useHistory();
 
     let ttl='Untitled form',desc='';
@@ -85,6 +83,8 @@ const CreateForm = (props) => {
     }
 
     const [formData,setFormData] = useState(propsData);
+    const [formTitle,setFormTitle] = useState(ttl);
+    const [formDescription,setFormDescription] = useState(desc);
 
     const sendForm = (data,title,desc,theme)=>{
 
@@ -97,7 +97,27 @@ const CreateForm = (props) => {
             }
         });
     
-      }
+    }
+
+    const editForm = ()=>{
+
+        /*console.log(location.state.title,formData);
+        form_id,data,title,description,cb
+        */
+
+        const form_id = location.state.form_id;
+
+        editOne(form_id,formData,formTitle,formDescription,(err,info)=>{
+            if(err){
+                alert(err);
+            }else{
+                history.push('/dashboard');
+                alert('form updated!');
+            }
+        })
+        
+
+    }
 
     const handleSmallAdd = (question)=>{
         const smdata = {
@@ -258,12 +278,14 @@ const CreateForm = (props) => {
                             <ThemeProvider theme={theme}>
                                 <IconButton  onClick={()=>{setModalState(true)}}><MdSettings color="#303331"/></IconButton>
                                 { (editMode == '0') && <IconButton onClick={()=>{sendForm(formData,formTitle,formDescription,currTheme)}} aria-label="create and share form"><MdSend color="#303331"/></IconButton>}
-                                {(editMode == '1') && <IconButton onClick={()=>{alert('edited and saved!')}} aria-label="create and share form"><RiSave3Fill color="#303331"/></IconButton>}
+                                {(editMode == '1') && <IconButton onClick={()=>{editForm()}} aria-label="create and share form"><RiSave3Fill color="#303331"/></IconButton>}
                             </ThemeProvider>
                         </div>
 
                     </Nav>
             </Navbar>
+
+            <br/>
 
 
             <div className="forms-head form-width" style={{backgroundColor:'white',borderColor:formTheme[currTheme].body}}>

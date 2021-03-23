@@ -51,3 +51,16 @@ export const readOne = async (form_id,cb)=>{
     })
 
 }
+
+export const editOne = async (form_id,data,title,description,cb) => {
+    const authKey = cookie.get('forms_auth_key');
+    const newdata = {authKey,data,form_id,title,description};
+
+    axios.post(baseUrl+'/api/form/editform',JSON.stringify(newdata),config).then(res=>{
+
+        return cb(null,res);
+
+    }).catch(err=>{
+        return cb(err);
+    });
+}
