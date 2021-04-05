@@ -2,7 +2,6 @@ import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom';
 import {useState,useEffect} from 'react';
 import Home from '../views/home';
 import CreateForm from '../views/createform';
-import EntryPoint from '../views/signUpIn';
 import Navbar from '../components/navbar/navbar';
 import {verifyUser} from '../repository/auth.handler';
 import Dashboard from '../views/dashboard';
@@ -50,12 +49,6 @@ const Forms = () => {
             </Route>
             <Route exact path = '/editform'>
                 <CreateForm edit='1' valid={isValid}/>
-            </Route>
-            <Route exact path = '/signup'>
-                <EntryPoint  card="up"/>
-            </Route>
-            <Route exact path = '/signin'>
-                <EntryPoint  card="in"/>
             </Route>
             <Route exact path="/dashboard">
                 <Navbar BrandName="Forms" valid={isValid} pageName='home'/>
