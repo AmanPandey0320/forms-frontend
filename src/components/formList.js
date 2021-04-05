@@ -5,24 +5,31 @@ import SingleListItem from '../components/singleItemForm';
 
 const FormList = (props) => {
     const {data,col} = props;
+    let formData = [],temp = [];
+    data.map((item,idx)=>{
+        if(idx != 0 && idx%col == 0){
+            formData.push(temp);
+            temp=[];
+        }
+        temp.push(item);
+    });
+
+    formData.push(temp);
     // console.log(data);
     return ( 
-        // <div>
-        //     {data.map((formData,index)=><SingleListItem owner={props.owner} key={`form${index}`} data={formData}/>)}
-        // </div>
         
         <div>
-            {console.log(col)}
-            <GridList cellHeight={103}  cols={col}>
-
-                {
-                    
-                    data.map((formData,index)=><GridListTile key={`form${index}`} col = {index%col+1}>
-                        <SingleListItem owner={props.owner} data={formData}/>
-                    </GridListTile>)
-                }
-
-            </GridList>
+            {
+                formData.map((arr,arrIndex)=>{
+                    return(
+                        <div className="form-list">
+                            {
+                                arr.map((arrData,index)=><SingleListItem owner={props.owner} data={arrData}/>)
+                            }
+                        </div>
+                    )
+                })
+            }
         </div>
      );
 }

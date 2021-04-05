@@ -82,7 +82,7 @@ export const verifyUser = (callback) =>{
         });
     }
     const data = {authKey};
-    console.log(authKey);
+    // console.log(authKey);
     axios.post(baseUrl + '/api/auth/verify',JSON.stringify(data),config).then(response=>{
 
         // console.log(response.data.verify_response.token);

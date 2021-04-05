@@ -23,8 +23,8 @@ class NavBar extends Component {
             <Navbar bg="primary"  fixed="top" expand="lg" variant="dark">
               <Navbar.Brand href="#">
                   <img 
-                  height="32"
-                  width="32"
+                  height="48"
+                  width="48"
                   src='/assets/logo.svg'
                   />
                 <span style={{fontFamily: 'Lemonada'}}>{this.props.BrandName}</span></Navbar.Brand>
