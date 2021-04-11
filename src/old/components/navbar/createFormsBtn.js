@@ -1,7 +1,7 @@
 import {Button} from 'react-bootstrap';
 import {Link, useHistory} from 'react-router-dom';
 import {HiOutlineViewGridAdd} from 'react-icons/hi';
-import { logoutAPI } from '../../repository/auth.handler';
+import { logoutAPI } from '../../old/repository/auth.handler';
 
 const CreateFormsBtn = () => {
     const history = useHistory();

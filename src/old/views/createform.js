@@ -7,19 +7,19 @@ import {IconContext} from 'react-icons';
 import {IconButton,TextField, Radio} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import { makeStyles,createMuiTheme,ThemeProvider, rgbToHex } from '@material-ui/core/styles';
-import formTheme from '../themes/formsthemes';
+import formTheme from '../../themes/formsthemes';
 import { blue, red } from '@material-ui/core/colors';
-import Switches from '../components/Switches';
-import MyMuiThemes from '../themes/MuiThemes';
-import SmallTextModal from '../components/Modals/smallText';
-import BigTextModal from '../components/Modals/bigText';
-import SingleMCQ from '../components/Modals/singleMCQ';
-import MultiMCQ from '../components/Modals/multipleMCQ';
-import SmallTxtView from '../components/formElements/smallText';
-import BigTxtView from '../components/formElements/bigText';
-import SingleMCQView from '../components/formElements/singleMCQ';
-import MultipleMCQView from '../components/formElements/multipleMCQ';
-import FileUpload from '../components/formElements/fileUpload';
+import Switches from '../../components/Switches';
+import MyMuiThemes from '../../themes/MuiThemes';
+import SmallTextModal from '../../components/Modals/smallText';
+import BigTextModal from '../../components/Modals/bigText';
+import SingleMCQ from '../../components/Modals/singleMCQ';
+import MultiMCQ from '../../components/Modals/multipleMCQ';
+import SmallTxtView from '../../components/formElements/smallText';
+import BigTxtView from '../../components/formElements/bigText';
+import SingleMCQView from '../../components/formElements/singleMCQ';
+import MultipleMCQView from '../../components/formElements/multipleMCQ';
+import FileUpload from '../../components/formElements/fileUpload';
 import { createForm, editOne } from '../repository/form.handler';
 import {RiSave3Fill} from 'react-icons/ri';
 import { useHistory,useLocation } from 'react-router';
@@ -87,8 +87,9 @@ const CreateForm = (props) => {
     const [formDescription,setFormDescription] = useState(desc);
 
     const sendForm = (data,title,desc,theme)=>{
-
-        createForm({data,title,desc,theme},(err,info)=>{
+        const duration = 90;
+        const istest = false;
+        createForm({data,title,desc,theme,istest,duration},(err,info)=>{
             if(err){
                 alert(err.message);
             }else{

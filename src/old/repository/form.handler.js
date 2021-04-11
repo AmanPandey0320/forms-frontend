@@ -15,8 +15,8 @@ const config = {
 }
 
 export const createForm = async (data,callback)=>{
-    const authKey = cookie.get('forms_auth_key');
-    data.authKey = authKey;
+    const auth_token = cookie.get('forms_auth_key');
+    data.auth_token = auth_token;
     axios.post(baseUrl+'/api/form/create',JSON.stringify(data),config).then(response=>{
         return callback(null,response);
     }).catch(err=>{
@@ -25,11 +25,12 @@ export const createForm = async (data,callback)=>{
 }
 export const readAllForm = async (callback)=>{
 
-    const authKey = cookie.get('forms_auth_key');
-    const data = {authKey};
+    const auth_token = cookie.get('forms_auth_key');
+    const data = {auth_token};
 
     axios.post(baseUrl+'/api/form/getall',JSON.stringify(data),config).then(res=>{
         const resdata =  res.data;
+        // console.log(resdata);
         return callback(null,resdata);
     }).catch(err=>{
         return callback(err);
@@ -39,8 +40,8 @@ export const readAllForm = async (callback)=>{
 
 export const readOne = async (form_id,cb)=>{
 
-    const authKey = cookie.get('forms_auth_key');
-    const data = {authKey,form_id};
+    const auth_token = cookie.get('forms_auth_key');
+    const data = {auth_token,form_id};
 
     axios.post(baseUrl+'/api/form/getone',JSON.stringify(data),config).then(res=>{
         

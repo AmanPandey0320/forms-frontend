@@ -1,12 +1,12 @@
 import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom';
 import {useState,useEffect} from 'react';
-import Home from '../views/home';
-import CreateForm from '../views/createform';
+import Home from '../old/views/home';
+import CreateForm from '../old/views/createform';
 import Navbar from '../components/navbar/navbar';
-import {verifyUser} from '../repository/auth.handler';
-import Dashboard from '../views/dashboard';
+import {verifyUser} from '../old/repository/auth.handler';
+import Dashboard from '../old/views/dashboard';
 import { SiFacebook } from 'react-icons/si';
-import FormView from '../views/formView';
+import FormView from '../old/views/formView';
 
 const Forms = () => {
 
@@ -21,7 +21,7 @@ const Forms = () => {
                 setValid(false);
             }else{
                 // console.log(result);
-                if(result.verify_response.status == 200){
+                if(result.status == 200){
                     setValid(true);
                 }else{
                     setValid(false);

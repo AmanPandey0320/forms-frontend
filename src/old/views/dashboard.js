@@ -1,10 +1,10 @@
 import { GridList, GridListTile } from '@material-ui/core';
 import {useEffect,useState} from 'react';
-import FormList from '../components/formList';
+import FormList from '../../components/formList';
 import {readAllForm} from '../repository/form.handler';
 import { useMediaQuery } from 'react-responsive';
-import formThemes from '../themes/formsthemes';
-import DashBoardHead from '../components/dashBoardHead';
+import formThemes from '../../themes/formsthemes';
+import DashBoardHead from '../../components/dashBoardHead';
 
 const Dashboard = (props) => {
 
@@ -34,7 +34,7 @@ const Dashboard = (props) => {
             alert(err.message);
         }else{
             // console.log(info.formState);
-            setData(info.formState);
+            setData(info.result);
             setPending(false);
         }
     }

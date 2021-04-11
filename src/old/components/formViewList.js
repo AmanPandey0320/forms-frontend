@@ -1,8 +1,8 @@
-import SmallTxtView from '../components/formElements/smallText';
-import BigTxtView from '../components/formElements/bigText';
-import SingleMCQView from '../components/formElements/singleMCQ';
-import MultipleMCQView from '../components/formElements/multipleMCQ';
-import FileUpload from '../components/formElements/fileUpload';
+import SmallTxtView from './formElements/smallText';
+import BigTxtView from './formElements/bigText';
+import SingleMCQView from './formElements/singleMCQ';
+import MultipleMCQView from './formElements/multipleMCQ';
+import FileUpload from './formElements/fileUpload';
 import { Button, ThemeProvider } from '@material-ui/core';
 import MuiThemes from '../themes/MuiThemes';
 import { GrPowerReset } from 'react-icons/gr';

@@ -32,41 +32,22 @@ export const signupAPI = (data,callback) => {
         url: baseUrl + '/api/auth/signup',
         data: data
     }).then((response) =>{
-        cookie.set('forms_auth_key',response.data.token,{
+        
+        cookie.set('forms_auth_key',response.data.auth_token,{
             maxAge:2*60*60*1000,
             path:'/'
         });
+        const auth_token = cookie.get('forms_auth_key');
+        console.log(auth_token);
         return callback(null);
     }).catch((err) =>{
         console.log(err);
         return callback(err);
     });
 }
-export const signinAPI = (data,callback) => {
-    const key = cookie.get('forms_auth_key');
-    data.authKey = key;
-    // console.log(data);
-    const config = {
-        headers: {
-            'Content-Type' : 'application/json',
-            Authorization: `Bearer forms_jwt_cookie`
-        },
-        withCredentials: true
-    }
-    axios.post(baseUrl + '/api/auth/signin',JSON.stringify(data),config).then(response=>{
-        cookie.set('forms_auth_key',response.data.token,{
-            maxAge:2*60*60*1000,
-            path:'/'
-        });
-        return callback(null,response.data);
-    }).catch((err) =>{
-        console.log(err);
-        return callback(err);
-    })
-}
 
 export const verifyUser = (callback) =>{
-    const authKey = cookie.get('forms_auth_key');
+    const auth_token = cookie.get('forms_auth_key');
     const config = {
         headers: {
             'Content-Type' : 'application/json',
@@ -74,22 +55,24 @@ export const verifyUser = (callback) =>{
         },
         withCredentials: true
     }
-    if(authKey === null  || authKey === undefined){
+    if(auth_token === null  || auth_token === undefined){
         return callback({
             code:401,
             message:'no auth key fund',
             path:'/signup'
         });
     }
-    const data = {authKey};
-    // console.log(authKey);
+    const data = {auth_token};
+    // console.log(auth_token);
     axios.post(baseUrl + '/api/auth/verify',JSON.stringify(data),config).then(response=>{
 
         // console.log(response.data.verify_response.token);
-        cookie.set('forms_auth_key',response.data.verify_response.token,{
+        // console.log(response.data.auth_token);
+        cookie.set('forms_auth_key',response.data.auth_token,{
             maxAge:2*60*60*1000,
             path:'/'
         });
+        response.data.status = 200;
         return callback(null,response.data);
 
     }).catch(err=>{

@@ -1,7 +1,7 @@
 import { GridList, GridListTile } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import SingleListItem from '../components/singleItemForm';
+import SingleListItem from './singleItemForm';
 
 const FormList = (props) => {
     const {data,col} = props;
@@ -22,9 +22,9 @@ const FormList = (props) => {
             {
                 formData.map((arr,arrIndex)=>{
                     return(
-                        <div className="form-list">
+                        <div key={arrIndex} className="form-list">
                             {
-                                arr.map((arrData,index)=><SingleListItem owner={props.owner} data={arrData}/>)
+                                arr.map((arrData,index)=><SingleListItem key={index} owner={props.owner} data={arrData}/>)
                             }
                         </div>
                     )
