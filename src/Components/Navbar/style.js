@@ -11,8 +11,9 @@ padding:0px;
 margin:0px;
 .container{
     margin:0px;
-    padding:4px 4px;
+    padding:2px 4px;
     display:flex;
     flex-direction:row;
+    position:relative;
 }
 `;

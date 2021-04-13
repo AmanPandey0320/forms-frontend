@@ -2,7 +2,7 @@ import React from 'react';
 import {Nav} from './style';
 import Container from '../Container/index'
 import Logo from '../Image/logo';
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/logo3.svg'
 
 const Navbar = ({color,...props}) => {
     return ( 

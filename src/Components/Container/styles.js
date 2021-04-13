@@ -29,7 +29,7 @@ const ContainerWrapper = styled.div`
     width: 100%;
   }
   @media (min-width: 1220px) {
-    max-width: ${props => props.width || '1170px'};
+    max-width: ${props => props.width || '64%'};
     width: 100%;
   }
   @media (max-width: 768px) {
