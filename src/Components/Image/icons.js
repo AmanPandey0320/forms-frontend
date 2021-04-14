@@ -13,7 +13,6 @@ export default Icon;
 
 Icon.propTypes = {
     src:propTypes.string.isRequired,
-    alt:propTypes.string.isRequired,
     height:propTypes.string,
     width:propTypes.string
 }
