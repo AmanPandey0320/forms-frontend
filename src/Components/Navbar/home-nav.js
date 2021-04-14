@@ -13,7 +13,7 @@ dotenv.config();
 
 const clientId = process.env.REACT_APP_google_client_id;
 
-const responseGoogle = (responce) => {
+const successGoogle = (responce) => {
     const google_token = responce.googleId;
     const name = responce.profileObj.name;
     const data = {google_token,name};
@@ -22,7 +22,11 @@ const responseGoogle = (responce) => {
 
 }
 
-const GoogleBtn = ({renderProps})=>{
+const failureGoogle = (response)=>{
+    console.log(response);
+}
+
+const GoogleBtn = ()=>{
     const size = useMediaQuery({
         query:'(max-device-width: 750px)'
     })?["1.1em","2%","4px"]:["2em","1%","8px"];
@@ -34,8 +38,8 @@ const GoogleBtn = ({renderProps})=>{
                     <Icon src ={GoogleIcon} size={size[0]}/>
                 </Button>
             )}
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={successGoogle}
+            onFailure={failureGoogle}
             cookiePolicy={'single_host_origin'}
         />
     );
