@@ -6,7 +6,7 @@ import {ButtonWrapper} from './styles';
 
 const Button = ({color,children,...props}) => {
     return ( 
-        <ButtonWrapper color={color} {...props}>
+        <ButtonWrapper className="button" color={color} {...props}>
             <Container display="flex" flexDirection="row" fullWidth={true}>
                 {children}
             </Container>

@@ -4,7 +4,7 @@ import Container from '../Container/index';
 import Title from '../Title/index';
 import { useMediaQuery } from 'react-responsive';
 
-const Logo = ({color,brand,src,...props}) => {
+const Logo = ({color,brand,src,top,...props}) => {
 
     const constrains = useMediaQuery({
         query:'(max-device-width: 750px)'
@@ -13,7 +13,7 @@ const Logo = ({color,brand,src,...props}) => {
     return ( 
         <Container display="flex" flexDirection="row" >
             <span>{src && <Image src={src} alt={brand} height={constrains[0]} width={constrains[0]}/> }</span>
-            <Title space='8px' color={color} fontFamily='Exo' fontSize={constrains[1]} text={brand}/>
+            <Title space='8px' color={color} top={top} fontFamily='Exo' fontSize={constrains[1]} text={brand}/>
         </Container>
     );
 }

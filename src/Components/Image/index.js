@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 const Image = ({src,alt,...props}) => {
     return ( 
-        <ImageWrapper src={src} alt={alt} {...props}/>
+        <ImageWrapper className="img" src={src} alt={alt} {...props}/>
      );
 }
 

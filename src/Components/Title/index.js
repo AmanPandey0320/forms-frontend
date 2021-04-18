@@ -7,10 +7,12 @@ const Title = ({
     fontFamily,
     fontSize,
     space,
+    top,
     text
+    ,textAlign
 }) => {
     return ( 
-        <TitleWrapper space={space} color={color} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight}>
+        <TitleWrapper className="title" textAlign={textAlign} top={top} space={space} color={color} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight}>
             {text}
         </TitleWrapper>
      );
