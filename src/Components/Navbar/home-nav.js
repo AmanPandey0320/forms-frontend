@@ -7,7 +7,7 @@ import GoogleButton from '../Buttons/GoogleBtn'
 import UserContext from '../../context/userContext';
 
 const Navbar = ({color,...props}) => {
-    console.log(props);
+    // console.log(props);
     const authState = useContext(UserContext);
 
     return ( 

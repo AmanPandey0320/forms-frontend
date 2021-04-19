@@ -5,7 +5,7 @@ const initState = {
 
 const userReducer = (state = initState,action)=>{
     const { type } = action;
-    console.log(action);
+    // console.log(action);
     if(type === 'USER_LOGIN'){
         const {token,name} = action;
         state = {
@@ -14,7 +14,7 @@ const userReducer = (state = initState,action)=>{
             token:token
         }
     }
-    console.log(state);
+    // console.log(state);
     return state;
 }
 

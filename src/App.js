@@ -8,7 +8,7 @@ function App() {
   const [auth,setAuth] = useState(false);
   useEffect(()=>{
     verifyGoogle().then(state => setAuth(state));
-    console.log('done');
+    // console.log('done');
   },[]);
   return (
     <div className="App">

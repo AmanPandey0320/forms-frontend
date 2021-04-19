@@ -71,7 +71,7 @@ export const verifyGoogle = async ()=>{
                     path:'/'
                 });
 
-                console.log(info);
+                // console.log(info);
 
                 store.dispatch({type:'USER_LOGIN',token:info.auth_token,name:userName});
                 return resolve(true);
