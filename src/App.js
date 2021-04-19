@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Switch,BrowserRouter as Router,Route} from 'react-router-dom';
 import { verifyGoogle } from './logic/userLogic';
 import { Routes } from './Routes'
-import { UserProvider } from './context/userContext'
+import { UserProvider } from './context/userContext';
+import Home from './pages/Home/index';
 
 function App() {
   const [auth,setAuth] = useState(false);
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <UserProvider value={{verified:auth}}>
-        <Router>
+        {auth && <Router>
           {/* {console.log(Routes)} */}
           <Switch>
             {
@@ -29,7 +30,15 @@ function App() {
               })
             }
           </Switch>
-        </Router>
+        </Router>}
+        {
+          !auth && 
+          <Router>
+              <Switch>
+                  <Route path='/' component={Home}/>
+              </Switch>
+          </Router>
+        }
       </UserProvider>
       {/* <Home/> */}
     </div>
