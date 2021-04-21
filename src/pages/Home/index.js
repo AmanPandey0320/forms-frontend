@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from '../../Components/Container';
 import Navbar from '../../Components/Navbar/home-nav';
 import Sticky from 'react-stickynode';
 import TopScreen from './topScreen/topScreen';
@@ -13,7 +12,6 @@ const Home = () => {
                 <Navbar bg='#0080ff' color="#ffffff"/>
             </Sticky>
             <TopScreen/>
-            <span>aman</span>
         </div>
     );
 }
