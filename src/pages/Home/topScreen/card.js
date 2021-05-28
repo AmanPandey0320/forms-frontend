@@ -14,7 +14,7 @@ const HomeCard = ({img,text,button,handler}) => {
         btn:'45%'
 
     }:{
-        size:'200px',
+        size:'220px',
         btn:'24%'
     }
     const history = useHistory();
