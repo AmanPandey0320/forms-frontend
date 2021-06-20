@@ -9,6 +9,7 @@ display:flex;
 flex-diection:row;
 padding:0px;
 margin:0px;
+box-shadow: 0px 0px 4px;
 .container{
     margin:0px;
     padding:2px 4px;

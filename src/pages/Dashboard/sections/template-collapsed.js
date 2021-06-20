@@ -16,7 +16,7 @@ class Collapsed extends React.Component{
                             <img width="100px" src={blankFormIcon} alt="create blank form"/>
                         </Grid>
                         {
-                            templates.slice(0,8).map(template => {
+                            templates.slice(0,5).map(template => {
                                 return(
                                     <Grid className={classes.cItem} xs={4} lg={2} sm={3} item>
                                         <Avatar size="100px" name={template.title}/>

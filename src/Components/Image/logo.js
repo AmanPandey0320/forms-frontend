@@ -8,7 +8,7 @@ const Logo = ({color,brand,src,top,...props}) => {
 
     const constrains = useMediaQuery({
         query:'(max-device-width: 750px)'
-    })?["40px","1.5em"]:["64px","2.4em"];
+    })?["40px","1.5em"]:["60px","2.4em"];
 
     return ( 
         <Container display="flex" flexDirection="row" >
