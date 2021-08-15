@@ -19,7 +19,6 @@ console.log(client);
 
 export const Template = (DefaultTemplate,data) => {
 
-  
     const classes = useStyles();
     const query = gql`
     {
