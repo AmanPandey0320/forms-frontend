@@ -7,7 +7,7 @@ import { templates } from '../../../assets/data/dummyData'
 
 class Expanded extends React.Component{
     render(){
-        const { classes } = this.props;
+        const { classes,data } = this.props;
         var temp=[];
         templates.forEach(element => {
             temp.push(element)
@@ -25,12 +25,12 @@ class Expanded extends React.Component{
                             <img width="100px" src={blankFormIcon} alt="create blank form"/>
                         </Grid>
                         {
-                            temp.map(template => {
+                            data.map((template,index) => {
                                 return(
-                                    <Grid className={classes.cItem} xs={4} lg={2} sm={3} item>
+                                    <Grid key={index} className={classes.cItem} xs={4} lg={2} sm={3} item>
                                         <Avatar size="100px" name={template.title}/>
-                                        <Typography>{template.title}</Typography>
-                                        <Typography>{template.by}</Typography>
+                                        <Typography>{template.title.slice(0,12)}</Typography>
+                                        <Typography>{template.created_by}</Typography>
                                     </Grid>
                                 )
                             })
