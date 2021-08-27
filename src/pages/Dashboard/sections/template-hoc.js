@@ -43,7 +43,7 @@ export const Template = (DefaultTemplate,data) => {
             setQuery_data(result.data.templates)
         });
     },[query])
-    console.log(query_data);
+    console.log("gql query data -------->",query_data);
     
     return (<DefaultTemplate classes = {classes} data ={query_data} name={data}/>)
 }

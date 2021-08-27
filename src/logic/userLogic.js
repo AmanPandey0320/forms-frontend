@@ -1,10 +1,10 @@
 import { postToBackend } from "./repository";
 import Cookie from "universal-cookie";
-import userReducer from "../Reducers/userReducer";
-import { createStore } from "redux";
+import store from "../Reducers/store";
+import { userActions } from "../Reducers/UserSlice";
 
+const dispatch = store.dispatch;
 const cookie = new Cookie();
-const store = createStore(userReducer);
 
 export const successGoogle = (responce) => {
   const google_token = responce.googleId;
@@ -41,8 +41,8 @@ export const successGoogle = (responce) => {
           path: "/",
         });
         window.location.reload();
-      }else{
-          console.log(err)
+      } else {
+        console.log(err);
       }
     }
   });
@@ -81,13 +81,16 @@ export const verifyGoogle = async () => {
             sameSite: "strict",
           });
 
-          // console.log(info);
+          console.log(info);
 
-          store.dispatch({
-            type: "USER_LOGIN",
-            token: info.auth_token,
-            name: userName,
-          });
+          dispatch(
+            userActions.setUser({ token: data[0]?.auth_token, name: data[0]?.name })
+          );
+          // store.dispatch({
+          //   type: "USER_LOGIN",
+          //   token: info.auth_token,
+          //   name: userName,
+          // });
           return resolve(true);
         } else {
           console.log(err);
