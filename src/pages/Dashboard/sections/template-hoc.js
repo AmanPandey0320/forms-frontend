@@ -13,7 +13,8 @@ const baseUrl = process.env.REACT_APP_backend_api_url_local;
 const GRAPHQL_URL = baseUrl + '/gql/template';
 const client = new ApolloClient({
     uri: GRAPHQL_URL,
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    credentials:"include"
 });
 console.log(client);
 
