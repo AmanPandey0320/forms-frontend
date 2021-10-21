@@ -1,6 +1,7 @@
 import React from 'react';
 import ContainerWrapper from './styles';
 
+
 const Container = ({
   children,
   className,
@@ -8,7 +9,8 @@ const Container = ({
   noGutter,
   mobileGutter,
   width,
-  color
+  color,
+  bg
 }) => {
   // Add all classs to an array
   const addAllClasses = ['container'];
@@ -25,6 +27,7 @@ const Container = ({
       width={width}
       mobileGutter={mobileGutter}
       color={color}
+      background={bg}
     >
       {children}
     </ContainerWrapper>

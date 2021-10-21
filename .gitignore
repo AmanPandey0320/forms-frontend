@@ -27,3 +27,4 @@ src/config.js
 firebase.json
 .firebase
 test.html
+test.css

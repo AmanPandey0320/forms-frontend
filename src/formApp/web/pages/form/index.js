@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import Sticky from "react-stickynode";
 import Canvas from "../../shared/canvas";
-import Navbar from "../../shared/navbar/home-nav";
+import Navbar from "../../shared/navbar/formNavBar";
 
 class Forms extends React.Component {
   constructor(props) {
@@ -12,9 +12,9 @@ class Forms extends React.Component {
   render() {
     return (
       <>
-        <Canvas bg={"red"}>
+        <Canvas bg={"blue"}>
           <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
-            <Navbar bg="#ffffff" color="#000000" />
+            <Navbar bg="#ffffff" color="#262626" />
           </Sticky>
         </Canvas>
       </>

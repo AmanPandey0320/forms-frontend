@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
-import { color,display,flexDirection } from 'styled-system'
+import { color,display,flexDirection,justifyContent,background } from 'styled-system'
 
 const ContainerWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
+  width: min-content;
   ${props =>
     props.fullWidth &&
     css`
@@ -44,6 +45,8 @@ const ContainerWrapper = styled.div`
   ${color};
   ${display};
   ${flexDirection};
+  ${justifyContent};
+  ${background};
 `;
 
 export default ContainerWrapper;
