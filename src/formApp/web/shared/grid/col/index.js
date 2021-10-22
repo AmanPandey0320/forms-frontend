@@ -16,7 +16,16 @@ Col.propTypes = {
   shrink: PropTypes.number,
   reverse: PropTypes.bool,
   size: PropTypes.number,
-  justifyContent: PropTypes.string.isRequired,
+  justifyContent: PropTypes.oneOf([
+    "flex-start",
+    "flex-end",
+    "center",
+    "space-between",
+    "space-around",
+    "space-evenly",
+    "initial",
+    "inherit",
+  ]),
 };
 
 export default Col;

@@ -1,3 +1,3 @@
 export const CreateForm = (history)=>{
-    history.push('/dashboard');
+    history.push('/form-app/dashboard');
 }

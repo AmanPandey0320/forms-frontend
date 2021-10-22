@@ -1,3 +1,3 @@
 export const createFromTemplate = (tid, history) => (e) => {
-  history.push(`/form/${tid}`);
+  history.push(`/form-app/form/${tid}`);
 };

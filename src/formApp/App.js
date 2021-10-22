@@ -37,7 +37,7 @@ function App() {
           {!auth && (
             <Router>
               <Switch>
-                <Route path="/" exact component={Home} />
+                <Route path="/form-app" exact component={Home} />
               </Switch>
             </Router>
           )}

@@ -5,19 +5,19 @@ import Form from "./web/pages/form";
 export const Routes = [
   {
     id: 1,
-    to: "/",
+    to: "/form-app",
     child: Home,
     exact: true,
   },
   {
     id: 2,
-    to: "/dashboard",
+    to: "/form-app/dashboard",
     child: Dashboard,
     exact: true,
   },
   {
     id: 3,
-    to: "/form/:fid",
+    to: "/form-app/form/:fid",
     child: Form,
     exact: true,
   },
