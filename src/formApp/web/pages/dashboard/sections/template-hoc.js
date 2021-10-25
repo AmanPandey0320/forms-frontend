@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useStyles from "../../../mUIstyles/dashboard.template";
+import useStyles from "./styles";
 import dotenv from "dotenv";
 import {
   ApolloClient,
