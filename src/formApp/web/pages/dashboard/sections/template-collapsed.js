@@ -27,7 +27,7 @@ class Collapsed extends React.Component {
               return (
                 <FormCard
                   key={index}
-                  onClick={createFromTemplate(
+                  handler={createFromTemplate(
                     template.template_id,
                     this.props.history
                   )}

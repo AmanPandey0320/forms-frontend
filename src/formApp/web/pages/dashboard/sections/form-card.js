@@ -14,7 +14,16 @@ import { Tooltip, Grid } from "@material-ui/core";
 const Thumbnail = ({ children, data, ...props }) => {
   const classes = useStyles();
   return (
-    <Grid className={classes.cItem} xs={4} lg={2} sm={3} item>
+    <Grid
+      onClick={(e) => {
+        props.handler(e);
+      }}
+      className={classes.cItem}
+      xs={4}
+      lg={2}
+      sm={3}
+      item
+    >
       <ThumbnailWrapper borderColor={props.bg} background={props.bg}>
         <AvatarWrapper padding="6px">
           {/* <Avatar color={data.theme.color} name={data.title} size="100%" /> */}

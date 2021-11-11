@@ -9,7 +9,7 @@ import {
 } from "@apollo/client";
 import { useSelector } from "react-redux";
 dotenv.config();
-const baseUrl = process.env.REACT_APP_backend_api_url_local;
+const baseUrl = process.env.REACT_APP_backend_api_url;
 const GRAPHQL_URL = baseUrl + "/gql/template";
 const link = createHttpLink({
   uri: GRAPHQL_URL,

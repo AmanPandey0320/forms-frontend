@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 const axios = require("axios");
 dotenv.config();
-const baseUrl = process.env.REACT_APP_backend_api_url_local;
+const baseUrl = process.env.REACT_APP_backend_api_url;
 
 console.log(baseUrl);
 
