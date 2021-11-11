@@ -30,7 +30,7 @@ export const successGoogle = (responce) => {
       cookie.set("forms_auth_key", auth_token, {
         maxAge: 2 * 60 * 60 * 1000,
         path: "/",
-        sameSite: "strict",
+        sameSite: "none",
       });
       cookie.set("forms_user_name", data.name, {
         maxAge: 2 * 60 * 60 * 1000,
