@@ -27,7 +27,8 @@ class Expanded extends React.Component {
                 <FormCard
                   handler={createFromTemplate(
                     template.template_id,
-                    this.props.history
+                    this.props.history,
+                    this.props.toast
                   )}
                   key={index}
                   data={template}

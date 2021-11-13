@@ -6,6 +6,7 @@ import { UserProvider } from "./lib/context/userContext";
 import Home from "./web/pages/home/index";
 import { Provider } from "react-redux";
 import store from "./lib/store/store";
+import { ToastProvider } from "react-toast-notifications";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -15,34 +16,40 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Provider store={store}>
-        <UserProvider value={{ verified: auth }}>
-          {auth && (
-            <Router>
-              {/* {console.log(Routes)} */}
-              <Switch>
-                {Routes.map((item) => {
-                  return (
-                    <Route
-                      key={item.id}
-                      exact={item.exact}
-                      path={item.to}
-                      component={item.child}
-                    />
-                  );
-                })}
-              </Switch>
-            </Router>
-          )}
-          {!auth && (
-            <Router>
-              <Switch>
-                <Route path="/form-app" exact component={Home} />
-              </Switch>
-            </Router>
-          )}
-        </UserProvider>
-      </Provider>
+      <ToastProvider
+        autoDismiss={true}
+        autoDismissTimeout={5000}
+        placement="bottom-right"
+      >
+        <Provider store={store}>
+          <UserProvider value={{ verified: auth }}>
+            {auth && (
+              <Router>
+                {/* {console.log(Routes)} */}
+                <Switch>
+                  {Routes.map((item) => {
+                    return (
+                      <Route
+                        key={item.id}
+                        exact={item.exact}
+                        path={item.to}
+                        component={item.child}
+                      />
+                    );
+                  })}
+                </Switch>
+              </Router>
+            )}
+            {!auth && (
+              <Router>
+                <Switch>
+                  <Route path="/form-app" exact component={Home} />
+                </Switch>
+              </Router>
+            )}
+          </UserProvider>
+        </Provider>
+      </ToastProvider>
     </div>
   );
 }

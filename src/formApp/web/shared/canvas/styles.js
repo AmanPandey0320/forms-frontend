@@ -4,7 +4,8 @@ import { background } from "styled-system";
 export const CanvasWrapper = styled.div`
   ${background}
   min-height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x:hidden;
   position: fixed;
   width: 100%;
   height: 100%;

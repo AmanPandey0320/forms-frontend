@@ -29,7 +29,8 @@ class Collapsed extends React.Component {
                   key={index}
                   handler={createFromTemplate(
                     template.template_id,
-                    this.props.history
+                    this.props.history,
+                    this.props.toast
                   )}
                   data={template}
                 />

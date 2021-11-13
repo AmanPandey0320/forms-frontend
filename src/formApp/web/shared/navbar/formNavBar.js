@@ -13,13 +13,13 @@ const FormNavBar = ({ color, ...props }) => {
         flexDirection="row"
         justifyContent="initial"
       >
-        <Grid.row>
+        <Grid.row justifyContent="initial">
           <Grid.col xl={1} lg={1} md={2} sm={3} xs={2} >
             {" "}
             <Brand />
           </Grid.col>
           <Grid.col xl={4} lg={4} md={3} sm={3} >
-            <Grid.row reverse={true}></Grid.row>
+            <Grid.row justifyContent="initial" reverse={true}></Grid.row>
           </Grid.col>
         </Grid.row>
       </Container>
