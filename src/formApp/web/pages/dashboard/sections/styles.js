@@ -47,6 +47,7 @@ export const ThumbnailWrapper = styled.div`
 
 export const AvatarWrapper = styled.div`
   margin: auto;
+  background-color: white;
   ${padding};
   text-align: center;
   width: ${(props) => (props.size ? props.size : AVATAR_SIZE)}px;
@@ -95,5 +96,31 @@ export const Span = styled.span`
   vertical-align: top;
 `;
 export const Small = styled("span")(fontSize, color);
+
+export const formStyles = {
+  root: {
+    margin: "0px",
+    backgroundColor: "#f0fff3",
+    paddingInline: "16px",
+    paddingTop: "4px",
+    minWidth: "100vw",
+    "@media screen and (max-width: 1200px)": {
+      paddingInline: "16px",
+      paddingTop: "4px",
+    },
+    "@media screen and (max-width: 800px)": {
+      paddingInline: "12px",
+      paddingTop: "4px",
+    },
+    "@media screen and (max-width: 500px)": {
+      paddingInline: "6px",
+      paddingTop: "4px",
+    },
+    "@media screen and (max-width: 360px)": {
+      paddingInline: "4px",
+      paddingTop: "2px",
+    },
+  },
+};
 
 export default useStyles;

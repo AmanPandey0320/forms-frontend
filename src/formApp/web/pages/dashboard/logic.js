@@ -30,3 +30,13 @@ export const createFromTemplate = (tid, history, toast) => (e) => {
       console.log(err);
     });
 };
+
+/**
+ * 
+ * @param {*} id 
+ * @param {*} history 
+ * @param {*} toast 
+ */
+export const openForm = (id, history, toast) => (e) => {
+  history.push(`/form-app/form/${id}`);
+};

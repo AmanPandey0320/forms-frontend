@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useStyles from "../../mUIstyles/dashboard";
 import { Fade } from "react-reveal";
 import Navbar from "../../shared/navbar/home-nav";
@@ -11,6 +11,8 @@ import { LightGlowButton } from "../../shared/buttons/MUIbuttons";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { HiTemplate } from "react-icons/hi";
 import { SiFormstack } from "react-icons/si";
+import FormList from "./sections/formList";
+import { Grid } from "@material-ui/core";
 
 const Dashboard = (props) => {
   const classes = useStyles();
@@ -24,7 +26,7 @@ const Dashboard = (props) => {
         <Navbar bg="#ffffff" color="#000000" />
       </Sticky>
       <TopDiv>
-        <Heading1>
+        <Heading1 space="8px">
           <HiTemplate color="#0080ff" size="1.5em" />
           &nbsp;&nbsp;Templates
         </Heading1>
@@ -39,10 +41,17 @@ const Dashboard = (props) => {
       <Fade duration={500} bottom when={!fade}>
         <div>
           <TopDiv>
-            <Heading1>
-              <SiFormstack color="#0080ff" size="1.5em" />
-              &nbsp;&nbsp;Your Forms
-            </Heading1>
+            <Grid container direction="column">
+              <Grid item>
+                <Heading1 space="8px">
+                  <SiFormstack color="#0080ff" size="1.5em" />
+                  &nbsp;&nbsp;Your Forms
+                </Heading1>
+              </Grid>
+              <Grid item>
+                <FormList />
+              </Grid>
+            </Grid>
           </TopDiv>
         </div>
       </Fade>

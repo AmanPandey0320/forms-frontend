@@ -3,7 +3,6 @@ import useStyles, {
   ThumbnailWrapper,
   TitleWrapper,
   AvatarWrapper,
-  Small,
   Span,
 } from "./styles";
 // import Avatar from "react-avatar";
