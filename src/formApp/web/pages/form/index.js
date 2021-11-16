@@ -18,11 +18,14 @@ import Heading from "./elements/heading";
 import { http } from "../../../lib/utils/repository";
 import { withToastManager } from "react-toast-notifications";
 import store from "../../../lib/store/store";
-import { formActions } from "../../../lib/store/formSlice";
 import { Alert } from "@material-ui/lab";
+import { mapStateToProps, saveFromToStore } from "./logic";
+import { connect } from "react-redux";
+import Section from "./section";
+import Footer from "../../shared/footer";
 
 /**
- * 
+ *
  */
 class Forms extends React.Component {
   constructor(props) {
@@ -43,8 +46,8 @@ class Forms extends React.Component {
     });
   }
   /**
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   onCloseSnackBarEventListner(e) {
     this.setState({
@@ -68,7 +71,7 @@ class Forms extends React.Component {
           });
           return;
         }
-        this.dispatch(formActions.newForm({ form: data?.result }));
+        saveFromToStore(data?.result);
       })
       .catch((error) => {
         console.log(error);
@@ -82,11 +85,12 @@ class Forms extends React.Component {
   }
   /**
    * @render
-   * @returns 
+   * @returns
    */
   render() {
+    console.log("forms----->", this.props.form);
     /**
-     * 
+     *
      */
     if (this.state.loading) {
       return (
@@ -110,14 +114,14 @@ class Forms extends React.Component {
     }
 
     /**
-     * 
+     *
      */
     return (
       <>
         <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
           <Navbar bg="#ffffff" color="#262626" />
         </Sticky>
-        <Canvas bg={"blue"}>
+        <Canvas bg={this.props?.form?.theme?.bgColor}>
           <Container className={this.classes.formContainer}>
             <Grid container spacing={1} direction="column">
               <Grid item>
@@ -125,6 +129,19 @@ class Forms extends React.Component {
               </Grid>
               <Grid item>
                 <Heading />
+              </Grid>
+              <>
+                {this.props.sections?.map((sec) => (
+                  <Section key={sec} sid={sec} />
+                ))}
+              </>
+              {
+                /**
+                 * Footer here
+                 */
+              }
+              <Grid item>
+                <Footer />
               </Grid>
             </Grid>
           </Container>
@@ -134,4 +151,6 @@ class Forms extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(withRouter(withToastManager(Forms)));
+export default connect(mapStateToProps)(
+  withStyles(useStyles)(withRouter(withToastManager(Forms)))
+);

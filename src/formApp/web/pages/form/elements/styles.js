@@ -11,16 +11,16 @@ const useStyles = makeStyles((theme) => ({
   //style for font size
   resize: {
     [theme.breakpoints.down("xs")]: {
-      fontSize: 18,
+      fontSize: 20,
     },
     [theme.breakpoints.up("sm")]: {
-      fontSize: 24,
-    },
-    [theme.breakpoints.up("md")]: {
       fontSize: 30,
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: 36,
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 48,
     },
   },
 }));
