@@ -1,5 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
 
+export const getMuiTheme = ({ color, bgColor }) => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: color,
+        light: bgColor,
+      },
+    },
+  });
+  return theme;
+};
 const useStyles = {
   formContainer: {
     marginTop: "8px",

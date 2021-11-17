@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clear, newQuestion } from "./reducer";
+import {
+  clear,
+  newQuestion,
+  editRequired,
+  editTitle,
+  editWithKeyValue,
+} from "./reducer";
 
 const questionSlice = createSlice({
   name: "question",
@@ -10,6 +16,9 @@ const questionSlice = createSlice({
   reducers: {
     clear,
     newQuestion,
+    editRequired,
+    editTitle,
+    editWithKeyValue,
   },
 });
 

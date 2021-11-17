@@ -13,7 +13,7 @@ import Canvas from "../../shared/canvas";
 import Navbar from "../../shared/navbar/formNavBar";
 import Header from "./elements/header";
 import headImg from "../../../assets/headers/H001.png";
-import useStyles from "./style";
+import useStyles, { getMuiTheme } from "./style";
 import Heading from "./elements/heading";
 import { http } from "../../../lib/utils/repository";
 import { withToastManager } from "react-toast-notifications";
@@ -23,6 +23,7 @@ import { mapStateToProps, saveFromToStore } from "./logic";
 import { connect } from "react-redux";
 import Section from "./section";
 import Footer from "../../shared/footer";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 /**
  *
@@ -113,39 +114,40 @@ class Forms extends React.Component {
       );
     }
 
+    console.log(getMuiTheme(this.props?.form?.theme));
     /**
      *
      */
     return (
       <>
-        <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
-          <Navbar bg="#ffffff" color="#262626" />
-        </Sticky>
-        <Canvas bg={this.props?.form?.theme?.bgColor}>
-          <Container className={this.classes.formContainer}>
-            <Grid container spacing={1} direction="column">
-              <Grid item>
-                <Header bg={headImg} />
-              </Grid>
-              <Grid item>
-                <Heading />
-              </Grid>
-              <>
-                {this.props.sections?.map((sec) => (
-                  <Section key={sec} sid={sec} />
-                ))}
-              </>
-              {
-                /**
+        <ThemeProvider theme={getMuiTheme(this.props?.form?.theme)}>
+          <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
+            <Navbar bg="#ffffff" color="#262626" />
+          </Sticky>
+          <Canvas bg={this.props?.form?.theme?.bgColor}>
+            <Container className={this.classes.formContainer}>
+              <Grid container spacing={1} direction="column">
+                <Grid item>
+                  <Header bg={headImg} />
+                </Grid>
+                <Grid item>
+                  <Heading />
+                </Grid>
+                <>
+                  {this.props.sections?.map((sec) => (
+                    <Section key={sec} sid={sec} />
+                  ))}
+                </>
+                {/**
                  * Footer here
-                 */
-              }
-              <Grid item>
-                <Footer />
+                 */}
+                <Grid item>
+                  <Footer />
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-        </Canvas>
+            </Container>
+          </Canvas>
+        </ThemeProvider>
       </>
     );
   }

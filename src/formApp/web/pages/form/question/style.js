@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
   },
   container:{
       marginTop:"4px"
+  },
+  typeFormControl:{
+    width:""
   }
 }));
 
