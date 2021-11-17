@@ -6,6 +6,7 @@ import useStyles from "./style";
 import { useEffect, useRef } from "react";
 import { saveSection } from "../../../../lib/thunks/section.thunk";
 import { descriptionTextChangeListner, titleTextChangeListner } from "./logic";
+import Question from "../question";
 
 /**
  * @description
@@ -92,6 +93,11 @@ const Section = ({ sid, ...props }) => {
                   </Grid>
                 </Paper>
               </Grid>
+              <>
+                {section.questions?.map((qid, idx) => (
+                  <Question key={qid} qid={qid} idx={idx+1} />
+                ))}
+              </>
             </Grid>
           </Grid>
         </Grid>
