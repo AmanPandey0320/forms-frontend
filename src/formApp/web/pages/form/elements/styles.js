@@ -39,7 +39,7 @@ export const smallTextStyles = makeStyles((theme) => ({
 
 export const optionStyles = makeStyles((theme) => ({
   textField: {
-    width: "512px",
+    width: "256px",
   },
 }));
 

@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clear, newSection, editTitle, editSectionWithKey } from "./reducer";
+import {
+  clear,
+  newSection,
+  editTitle,
+  editSectionWithKey,
+  editQuestionOrder,
+} from "./reducer";
 
 const sectionSlice = createSlice({
   name: "section",
@@ -12,6 +18,7 @@ const sectionSlice = createSlice({
     newSection,
     editTitle,
     editSectionWithKey,
+    editQuestionOrder,
   },
 });
 

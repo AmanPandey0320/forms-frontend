@@ -28,3 +28,8 @@ export const editSectionWithKey = (state, action) => {
   const { id, key, value } = action.payload;
   state.data[id][key] = value;
 };
+
+export const editQuestionOrder = (state, action) => {
+  const { id, questions } = action.payload;
+  state.data[id].questions = questions;
+};

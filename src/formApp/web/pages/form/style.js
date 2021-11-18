@@ -14,6 +14,7 @@ export const getMuiTheme = ({ color, bgColor }) => {
 const useStyles = {
   formContainer: {
     marginTop: "8px",
+    width:"50%"
   },
   backdrop: {
     zIndex: 4,

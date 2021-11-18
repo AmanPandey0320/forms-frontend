@@ -18,7 +18,6 @@ const MultiMCQ = ({ id, ...props }) => {
           label={
             <TextField
               className={classes.textField}
-              variant="outlined"
               fullWidth
               value={option?.title}
             />

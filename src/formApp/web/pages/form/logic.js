@@ -13,12 +13,14 @@ export const mapStateToProps = (state, ownProps) => {
 };
 
 export const saveOptionToStore = (option) => {
-  dispatch(optionAction.newOption({option}))
+  dispatch(optionAction.newOption({ option }));
 };
 
-export const saveQuestionToStore = (question) => {
+export const saveQuestionToStore = (question, order) => {
   const options = question.options ? question.options.map((opt) => opt.id) : [];
-  dispatch(questionAction.newQuestion({ question: { ...question, options } }));
+  dispatch(
+    questionAction.newQuestion({ question: { ...question, options, order } })
+  );
   question.options?.forEach((opt) => {
     saveOptionToStore(opt);
   });
@@ -33,8 +35,8 @@ export const saveSectionToStore = (section) => {
     ? section.questions.map((que) => que.id)
     : [];
   dispatch(sectionActions.newSection({ section: { ...section, questions } }));
-  section.questions?.forEach((que) => {
-    saveQuestionToStore(que);
+  section.questions?.forEach((que, idx) => {
+    saveQuestionToStore(que, idx + 1);
   });
 };
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import useStyles from "./style";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { saveSection } from "../../../../lib/thunks/section.thunk";
 import { descriptionTextChangeListner, titleTextChangeListner } from "./logic";
 import Question from "../question";
@@ -15,6 +15,7 @@ import Question from "../question";
  * @returns
  */
 const Section = ({ sid, ...props }) => {
+  const [activeQue, setActiveQue] = useState(0);
   const classes = useStyles();
   const section = useSelector((state) => state.section.data[sid]);
   const dispatch = useDispatch();
@@ -95,7 +96,9 @@ const Section = ({ sid, ...props }) => {
               </Grid>
               <>
                 {section.questions?.map((qid, idx) => (
-                  <Question key={qid} qid={qid} idx={idx+1} />
+                  <Grid key={qid} onClick={(e) => setActiveQue(idx)} item>
+                    <Question qid={qid} active={idx === activeQue} idx={idx} />
+                  </Grid>
                 ))}
               </>
             </Grid>

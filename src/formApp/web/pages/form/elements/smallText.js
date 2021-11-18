@@ -7,7 +7,7 @@ const SmallText = ({ qid, ...props }) => {
   return (
     <TextField
       fullWidth
-      variant='outlined'
+      disabled
       id={qid}
       className={classes.textField}
       placeholder="Your answer here"

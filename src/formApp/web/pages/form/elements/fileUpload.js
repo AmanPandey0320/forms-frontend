@@ -30,7 +30,7 @@ const FileUpload = (props) => {
             </Grid>
           </Grid>
         )}
-        <Grid xs={3} item>
+        <Grid xs={4} item>
           <Button
             variant="contained"
             color="primary"

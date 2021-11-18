@@ -8,7 +8,7 @@ const ParagraphText = ({ qid, ...props }) => {
   return (
     <TextField
       id={qid}
-      variant="outlined"
+      disabled
       multiline
       rows={3}
       className={classes.textField}

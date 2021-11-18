@@ -12,7 +12,6 @@ const SingleMCQ = ({ id, ...props }) => {
         label={
           <TextField
             className={classes.textField}
-            variant="outlined"
             value={option?.title}
           />
         }
