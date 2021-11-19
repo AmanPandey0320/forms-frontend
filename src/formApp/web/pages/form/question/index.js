@@ -116,21 +116,20 @@ const Question = ({ qid, idx, active, ...props }) => {
                               {question.type === "ST" && <SmallText />}
                               {question.type === "PG" && <ParagraphText />}
                               {question.type === "SO" && (
-                                <Grid container spacing={1} direction="column">
-                                  {" "}
-                                  {question.options?.map((op) => (
-                                    <Grid item key={op}>
-                                      <SingleMCQ id={op} />
-                                    </Grid>
-                                  ))}{" "}
-                                </Grid>
+                                <SingleMCQ
+                                  qid={question.id}
+                                  oids={question.options}
+                                />
                               )}
                               {question.type === "MO" && (
                                 <Grid container spacing={1} direction="column">
                                   {" "}
                                   {question.options?.map((op) => (
                                     <Grid item key={op}>
-                                      <MultiMCQ id={op} />
+                                      <MultiMCQ
+                                        oids={question.options}
+                                        id={op}
+                                      />
                                     </Grid>
                                   ))}{" "}
                                 </Grid>

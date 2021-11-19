@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clear, newOption } from "./reducer";
+import { clear, newOption, editIsCorrect, editTitle } from "./reducer";
 
 const optionSlice = createSlice({
   name: "option",
@@ -10,6 +10,8 @@ const optionSlice = createSlice({
   reducers: {
     clear,
     newOption,
+    editIsCorrect,
+    editTitle,
   },
 });
 
