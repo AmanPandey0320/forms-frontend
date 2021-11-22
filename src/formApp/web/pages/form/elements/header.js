@@ -1,13 +1,28 @@
+import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
 import { themes } from "../../../../assets/data/theme";
+
+const useStyles = makeStyles((theme) => ({
+  img: {
+    height: "20vh",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "95vw",
+      height: "auto",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+}));
+
 const Header = (props) => {
+  const classes = useStyles();
   const bg = useSelector((state) => state.form.data?.theme?.header);
-  console.log(bg);
   return (
     <>
       {props.bg && (
-        <div style={{ height: "20vh" }}>
+        <div className={classes.img}>
           <img
             width="100%"
             alt="header-img"

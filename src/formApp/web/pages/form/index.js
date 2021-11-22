@@ -5,6 +5,7 @@ import {
   Backdrop,
   Snackbar,
   CircularProgress,
+  Toolbar,
 } from "@material-ui/core";
 import React from "react";
 import { withRouter } from "react-router";
@@ -128,6 +129,9 @@ class Forms extends React.Component {
             <Container className={this.classes.formContainer}>
               <Grid container spacing={1} direction="column">
                 <Grid item>
+                  <Toolbar />
+                </Grid>
+                <Grid item>
                   <Header bg={headImg} />
                 </Grid>
                 <Grid item>
@@ -135,7 +139,9 @@ class Forms extends React.Component {
                 </Grid>
                 <>
                   {this.props.sections?.map((sec) => (
-                    <Section key={sec} sid={sec} />
+                    <Grid key={sec} item>
+                      <Section  sid={sec} />
+                    </Grid>
                   ))}
                 </>
                 {/**
