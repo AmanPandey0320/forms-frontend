@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { formActions } from "../../../../lib/store/formSlice";
 import { useEffect, useRef } from "react";
 import { saveForm } from "../../../../lib/thunks/form.thunk";
+import { useMediaQuery } from "react-responsive";
 
 /**
  *
@@ -13,12 +14,12 @@ import { saveForm } from "../../../../lib/thunks/form.thunk";
  * @returns
  */
 const Heading = (props) => {
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 1000px)" });
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const isMounted = useRef(false);
-  const { title, ...rest } = useSelector(
-    (state) => state.form.data
-  );
+  const { title, ...rest } = useSelector((state) => state.form.data);
   console.log(rest);
 
   useEffect(() => {
@@ -39,8 +40,8 @@ const Heading = (props) => {
     dispatch(formActions.editTitle({ title }));
   };
 
-  const handleDescriptionChange = (e, editor) => {
-    const description = editor.getData();
+  const handleDescriptionChange = (e, editor = {}) => {
+    const description = isLargeScreen ? editor.getData() : e.target.value;
     dispatch(formActions.editDescription({ description }));
   };
   return (
@@ -64,35 +65,51 @@ const Heading = (props) => {
             />
           </Grid>
           <Grid item>
-            <Grid container direction="column">
-              <Grid item>
-                <Typography color="primary">
-                  <small>Description</small>
-                </Typography>
+            {isLargeScreen ? (
+              <Grid container direction="column">
+                <Grid item>
+                  <Typography color="primary">
+                    <small>Description</small>
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <CKEditor
+                    key="form_description_id"
+                    editor={ClassicEditor}
+                    onReady={(editor) => {
+                      editor?.editing.view.change((writer) => {
+                        writer.setStyle(
+                          "height",
+                          "100px",
+                          editor?.editing.view.document.getRoot()
+                        );
+                        writer.setStyle(
+                          "padding-inline",
+                          "16px",
+                          editor?.editing.view.document.getRoot()
+                        );
+                      });
+                    }}
+                    data={rest.description}
+                    onChange={handleDescriptionChange}
+                  />
+                </Grid>
               </Grid>
-              <Grid item>
-                <CKEditor
-                  key="form_description_id"
-                  editor={ClassicEditor}
-                  onReady={(editor) => {
-                    editor?.editing.view.change((writer) => {
-                      writer.setStyle(
-                        "height",
-                        "100px",
-                        editor?.editing.view.document.getRoot()
-                      );
-                      writer.setStyle(
-                        "padding-inline",
-                        "16px",
-                        editor?.editing.view.document.getRoot()
-                      );
-                    });
-                  }}
-                  data={rest.description}
+            ) : (
+              <>
+                <TextField
+                  id="form_description_txt"
+                  label="Description"
+                  value={rest.description}
+                  color="primary"
+                  error={true}
+                  helperText="Please open in desktop for better view"
+                  autoFocus={true}
                   onChange={handleDescriptionChange}
+                  fullWidth
                 />
-              </Grid>
-            </Grid>
+              </>
+            )}
           </Grid>
         </Grid>
       </Paper>

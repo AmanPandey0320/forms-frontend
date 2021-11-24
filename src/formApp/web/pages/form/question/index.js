@@ -112,7 +112,7 @@ const Question = ({ qid, idx, active, ...props }) => {
                             direction="row"
                             justify="space-between"
                           >
-                            <Grid xs={8} item>
+                            <Grid md={8} xs={12} item>
                               {question.type === "ST" && <SmallText />}
                               {question.type === "PG" && <ParagraphText />}
                               {question.type === "SO" && (
@@ -137,7 +137,7 @@ const Question = ({ qid, idx, active, ...props }) => {
                               {question.type === "DD" && <DatePicker />}
                               {question.type === "FU" && <FileUpload />}
                             </Grid>
-                            <Grid xs={3} item>
+                            <Grid md={3} item>
                               <Grid container direction="column">
                                 <Grid item>
                                   <Grid

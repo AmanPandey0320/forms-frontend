@@ -1,4 +1,5 @@
 import { createMuiTheme } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 
 export const getMuiTheme = ({ color, bgColor }) => {
   const theme = createMuiTheme({
@@ -11,10 +12,12 @@ export const getMuiTheme = ({ color, bgColor }) => {
   });
   return theme;
 };
-const useStyles = {
+
+export const formStyles = makeStyles((theme) => ({
   formContainer: {
     marginTop: "8px",
-    width: "50vw",
+    marginLeft: "16vw",
+    width: "52vw",
     "@media screen and (max-width: 1200px)": {},
     "@media screen and (max-width: 800px)": {},
     "@media screen and (max-width: 500px)": {
@@ -24,7 +27,35 @@ const useStyles = {
     },
     "@media screen and (max-width: 360px)": {},
   },
-  resize:{
+  gridContainer: {
+    marginTop: "8px",
+    width: "52vw",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "95vw",
+      padding: 0,
+      margin: "auto",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+  gridItem: {
+    marginTop: "8px",
+    width: "52vw",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "94.5vw",
+      padding: 0,
+      margin: "auto",
+      marginTop: "4px",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+}));
+
+const useStyles = {
+  resize: {
     width: "50vw",
     "@media screen and (max-width: 1200px)": {},
     "@media screen and (max-width: 800px)": {},

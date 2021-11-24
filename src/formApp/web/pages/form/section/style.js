@@ -10,6 +10,37 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "4px",
     color: theme.palette.common.white,
   },
+  gridContainer: {
+    marginTop: "8px",
+    width: "50vw",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "95vw",
+      padding: 0,
+      margin: "auto",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+  gridItem: {
+    width: "52vw",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "95vw",
+      padding: 0,
+      margin: "auto",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+  gridTextField: {
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      width: "87vw",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
   sectionHeading: {
     borderTopLeftRadius: "0px",
     padding: "8px",

@@ -6,6 +6,7 @@ import { themes } from "../../../../assets/data/theme";
 const useStyles = makeStyles((theme) => ({
   img: {
     height: "20vh",
+    paddingTop: "8px",
     "@media screen and (max-width: 1200px)": {},
     "@media screen and (max-width: 800px)": {},
     "@media screen and (max-width: 500px)": {

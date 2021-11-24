@@ -24,3 +24,15 @@ export const descriptionTextChangeListner = (id) => (e, editor) => {
     sectionActions.editSectionWithKey({ id, value, key: "description" })
   );
 };
+
+/**
+ * 
+ * @param {*} id 
+ * @returns 
+ */
+export const descriptionTextChangeListner2 = (id) => (e) => {
+  const value = e.target.value;
+  dispatch(
+    sectionActions.editSectionWithKey({ id, value, key: "description" })
+  );
+};
