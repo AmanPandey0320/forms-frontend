@@ -1,6 +1,7 @@
 import Home from "./web/pages/home/index";
 import Dashboard from "./web/pages/dashboard";
 import Form from "./web/pages/form";
+import Responder from "./web/pages/form/response-view";
 
 export const Routes = [
   {
@@ -19,6 +20,12 @@ export const Routes = [
     id: 3,
     to: "/form-app/form/:fid",
     child: Form,
+    exact: true,
+  },
+  {
+    id: 4,
+    to: "/form-app/response/submit/:fid",
+    child: Responder,
     exact: true,
   },
 ];
