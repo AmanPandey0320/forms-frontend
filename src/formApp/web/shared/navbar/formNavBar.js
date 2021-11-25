@@ -7,7 +7,7 @@ import { useState } from "react";
 import ShareModal from "../modals/shareModal";
 import { useParams } from "react-router";
 
-const FormNavBar = ({ color, ...props }) => {
+const FormNavBar = ({ color, response, ...props }) => {
   const classes = navbarStyles();
   const [share, setShare] = useState(false);
   const params = useParams();
@@ -26,29 +26,31 @@ const FormNavBar = ({ color, ...props }) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
-              <Grid container direction="row-reverse">
-                <Grid item>
-                  <IconButton color="primary">
-                    <FaUserCircle />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Setting">
+            {!response && (
+              <Grid item>
+                <Grid container direction="row-reverse">
+                  <Grid item>
                     <IconButton color="primary">
-                      <MdSettings />
+                      <FaUserCircle />
                     </IconButton>
-                  </Tooltip>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Share">
-                    <IconButton onClick={openShareModal} color="primary">
-                      <MdOutlineShare />
-                    </IconButton>
-                  </Tooltip>
+                  </Grid>
+                  <Grid item>
+                    <Tooltip title="Setting">
+                      <IconButton color="primary">
+                        <MdSettings />
+                      </IconButton>
+                    </Tooltip>
+                  </Grid>
+                  <Grid item>
+                    <Tooltip title="Share">
+                      <IconButton onClick={openShareModal} color="primary">
+                        <MdOutlineShare />
+                      </IconButton>
+                    </Tooltip>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>

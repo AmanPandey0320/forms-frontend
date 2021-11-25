@@ -1,7 +1,7 @@
 import Home from "./web/pages/home/index";
 import Dashboard from "./web/pages/dashboard";
 import Form from "./web/pages/form";
-import Responder from "./web/pages/form/response-view";
+import Responder from "./web/pages/response";
 
 export const Routes = [
   {
