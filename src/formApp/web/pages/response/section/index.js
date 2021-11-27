@@ -3,10 +3,12 @@ import DOMPurify from "dompurify";
 import data from "../../../../assets/data/data";
 import useStyles from "./styles";
 import Question from "../question";
+import { useSelector } from "react-redux";
 
-const Section = (props) => {
+const Section = ({ sid, ...props }) => {
   const classes = useStyles();
-  const html = DOMPurify.sanitize("<p>description:<ul><li>op1</li></ul></p>", {
+  const section = useSelector((state) => state.section.data[sid]);
+  const html = DOMPurify.sanitize(section.description, {
     ALLOWED_ATTR: data.ALLOWED_ATTR,
     ALLOWED_TAGS: data.ALLOWED_TAGS,
   });
@@ -24,7 +26,7 @@ const Section = (props) => {
           <Paper className={classes.sectionHeading}>
             <Grid item>
               <Typography className={classes.SectionTitle} align="justify">
-                Lorem ipsum dolor, sit ame
+                {section.title}
               </Typography>
             </Grid>
             <Grid item>
@@ -35,9 +37,11 @@ const Section = (props) => {
         <>
           {
             // questions
-            <Grid item>
-              <Question />
-            </Grid>
+            section.questions?.map((que, idx) => (
+              <Grid key={que} item>
+                <Question idx={idx} qid={que} />
+              </Grid>
+            ))
           }
         </>
       </Grid>

@@ -1,11 +1,31 @@
 import { Grid, TextField } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { responseActions } from "../../../../lib/store/responseSlice";
 
-const ParaText = (props) => {
+/**
+ *
+ * @param {*} props
+ * @returns
+ */
+const ParaText = ({ qid, ...props }) => {
+  const dispatch = useDispatch();
+  const response = useSelector((state) => state.response.data[qid]);
+
+  /**
+   *
+   * @param {*} e
+   */
+  const handleChange = (e) => {
+    const value = e.target.value;
+    dispatch(responseActions.edit({ qid, value, type: "ST" }));
+  };
   return (
     <>
       <Grid container direction="column">
         <Grid item>
           <TextField
+            value={response?.ans}
+            onChange={handleChange}
             placeholder="Your response here"
             multiline
             rows={3}

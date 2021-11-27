@@ -1,74 +1,82 @@
 import {
   Button,
   Grid,
-  RadioGroup,
   FormControlLabel,
-  Radio,
   Fade,
   FormControl,
   FormLabel,
   Checkbox,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { responseActions } from "../../../../lib/store/responseSlice";
 
-const SingleMCQ = (props) => {
-  const [val, setVal] = useState({ 0: true });
-  const optionChangeHandler = (e) => {
-    setVal((prev) => {
-      let data = { ...prev, 0: false };
-      data[e.target.value] = e.target.checked;
-      return data;
-    });
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
+const SingleMCQ = ({ qid, oids, ...props }) => {
+  const option = useSelector((state) => state.option.data);
+  const response = useSelector((state) => state.response.data[qid]);
+  const dispatch = useDispatch();
+  const [val, setVal] = useState(false);
+  /**
+   *
+   * @param {*} oid
+   * @returns
+   */
+  const optionChangeHandler = (oid) => (e) => {
+    const value = e.target.checked;
+    dispatch(responseActions.edit({ qid, oid, value, type: "MO" }));
   };
+  /**
+   *
+   * @param {*} e
+   */
   const clearForm = (e) => {
-    setVal({ 0: true });
+    dispatch(responseActions.clearOne({ qid, type: "MO" }));
   };
-  console.log(val);
+  /**
+   *
+   */
+  useEffect(() => {
+    let show = false;
+    oids?.forEach((oid) => {
+      show = show || Boolean(response?.ans[oid]);
+    });
+    setVal(show);
+  }, [response]);
+  /**
+   *
+   */
   return (
     <>
       <Grid container direction="column">
         <Grid item>
           <FormControl>
             <FormLabel component="legend">Options</FormLabel>
-            <FormControlLabel
-              label="option1"
-              value="1"
-              control={
-                <Checkbox
-                  checked={val["1"]}
-                  onChange={optionChangeHandler}
-                  size="small"
-                  color="primary"
+            {oids?.map((oid) => {
+              // console.log("oid---->", oid, response?.ans[oid]);
+              return (
+                <FormControlLabel
+                  key={oid}
+                  label={option[oid]?.title}
+                  value={`${option[oid]?.id}`}
+                  control={
+                    <Checkbox
+                      checked={Boolean(response?.ans[oid])}
+                      onChange={optionChangeHandler(oid)}
+                      size="small"
+                      color="primary"
+                    />
+                  }
                 />
-              }
-            />
-            <FormControlLabel
-              label="option2"
-              value="2"
-              control={
-                <Checkbox
-                  checked={val["2"]}
-                  onChange={optionChangeHandler}
-                  size="small"
-                  color="primary"
-                />
-              }
-            />
-            <FormControlLabel
-              label="option3"
-              value="3"
-              control={
-                <Checkbox
-                  checked={val["3"]}
-                  onChange={optionChangeHandler}
-                  size="small"
-                  color="primary"
-                />
-              }
-            />
+              );
+            })}
           </FormControl>
         </Grid>
-        <Fade in={!val[0]}>
+        <Fade in={val}>
           <Grid item>
             <Button onClick={clearForm} variant="text" color="primary">
               Clear

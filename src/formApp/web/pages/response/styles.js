@@ -1,4 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { createMuiTheme, makeStyles } from "@material-ui/core";
+
+export const getMuiTheme = ({ color, bgColor }) => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: color,
+        light: bgColor,
+      },
+    },
+  });
+  return theme;
+};
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -26,5 +38,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+/**
+ *
+ */
+export const useStyleWithClass = {
+  resize: {
+    width: "50vw",
+    "@media screen and (max-width: 1200px)": {},
+    "@media screen and (max-width: 800px)": {},
+    "@media screen and (max-width: 500px)": {
+      maxWidth: "95vw",
+    },
+    "@media screen and (max-width: 360px)": {},
+  },
+  backdrop: {
+    zIndex: 4,
+    color: "#fff",
+  },
+};
 
 export default useStyles;

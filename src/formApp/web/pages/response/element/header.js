@@ -6,10 +6,10 @@ import { headerStyle } from "./styles";
 
 const Header = (props) => {
   const classes = headerStyle();
-  const bg = 5;
+  const bg = props.data;
   return (
     <>
-      {
+      {bg && (
         <div>
           <img
             width="100%"
@@ -18,7 +18,7 @@ const Header = (props) => {
             src={bg ? themes[bg].img : themes[0].img}
           />
         </div>
-      }
+      )}
     </>
   );
 };

@@ -1,5 +1,4 @@
-import { createMuiTheme } from "@material-ui/core";
-import { makeStyles } from "@mui/styles";
+import { createMuiTheme, makeStyles } from "@material-ui/core";
 
 export const getMuiTheme = ({ color, bgColor }) => {
   const theme = createMuiTheme({

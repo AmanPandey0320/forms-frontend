@@ -12,7 +12,7 @@ import DOMPurify from "dompurify";
 const Heading = (props) => {
   const isLargeScreen = useMediaQuery({ query: "(min-width: 1000px)" });
   const classes = headingStyles();
-  const html = DOMPurify.sanitize("<p>this is a paragraph</p>", {
+  const html = DOMPurify.sanitize(props.d, {
     ALLOWED_ATTR: data.ALLOWED_ATTR,
     ALLOWED_TAGS: data.ALLOWED_TAGS,
   });
@@ -22,7 +22,7 @@ const Heading = (props) => {
         <Grid container direction="column">
           <Grid item>
             <Typography className={classes.title} align="justify">
-              Lorem ipsum dolor, sit ame
+              {props.t}
             </Typography>
           </Grid>
           <Grid item>
