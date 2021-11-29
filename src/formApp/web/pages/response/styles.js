@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
       width: "55vw",
     },
   },
+  progress:{
+    width:"24px"
+  }
 }));
 
 /**

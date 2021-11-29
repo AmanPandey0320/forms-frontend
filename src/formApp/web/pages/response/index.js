@@ -6,6 +6,7 @@ import {
   Snackbar,
   CircularProgress,
   withStyles,
+  Button,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import Sticky from "react-stickynode";
@@ -17,17 +18,28 @@ import Heading from "./element/heading";
 import Section from "./section";
 import Footer from "../../shared/footer";
 import { Component } from "react";
-import { mapStateToProps, saveFromToStore } from "./logic";
+import {
+  mapStateToProps,
+  saveFromToStore,
+  saveResponseToState,
+  submitForm,
+} from "./logic";
 import { connect, useSelector } from "react-redux";
-import { withToastManager } from "react-toast-notifications";
+import { useToasts, withToastManager } from "react-toast-notifications";
 import { withRouter } from "react-router";
 import { http } from "../../../lib/utils/repository";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { useState } from "react";
 
 const Responder = (props) => {
   const classes = useStyles();
   const form = useSelector((state) => state.form.data);
+  const toast = useToasts();
+  const [submitting, setSubmitting] = useState(false);
   // console.log("form in view------>", form);
+  const handleSubmit = (e) => {
+    submitForm(form.id, toast.addToast, setSubmitting);
+  };
   return (
     <>
       <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
@@ -35,7 +47,7 @@ const Responder = (props) => {
       </Sticky>
       <Canvas bg={form.theme?.bgColor}>
         <Container className={classes.formContainer}>
-          <Grid container direction="column">
+          <Grid container spacing={1} direction="column">
             <Grid item>
               <Toolbar />
             </Grid>
@@ -52,6 +64,20 @@ const Responder = (props) => {
                 </Grid>
               );
             })}
+            <Grid item>
+              <Grid container spacing={1} direction="row">
+                <Grid item>
+                  <Button
+                    disabled={submitting}
+                    color="primary"
+                    onClick={handleSubmit}
+                    variant="contained"
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
             <Grid item>
               <Footer />
             </Grid>
@@ -109,6 +135,9 @@ class Response extends Component {
         }
         if (Boolean(data?.result?.form)) {
           saveFromToStore(data?.result?.form);
+        }
+        if (Boolean(data?.result?.response)) {
+          saveResponseToState(data?.result?.response);
         }
       })
       .catch((error) => {

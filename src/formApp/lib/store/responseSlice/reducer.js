@@ -28,12 +28,22 @@ export const edit = (state, action) => {
 };
 
 /**
- * 
- * @param {*} state 
- * @param {*} action 
+ *
+ * @param {*} state
+ * @param {*} action
  */
 export const clearOne = (state, action) => {
   const { qid, type } = action.payload;
   const ans = type === "MO" ? {} : undefined;
   state.data[qid].ans = ans;
+};
+
+/**
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ */
+export const save = (state, action) => {
+  const { data } = action.payload;
+  state.data = data;
 };

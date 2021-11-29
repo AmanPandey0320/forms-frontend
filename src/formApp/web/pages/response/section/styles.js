@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     borderTopLeftRadius: "4px",
     borderTopRightRadius: "4px",
     color: theme.palette.common.white,
-    marginTop: "8px",
   },
   sectionHeading: {
     borderTopLeftRadius: "0px",

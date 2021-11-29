@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { init, edit, clearOne } from "./reducer";
+import { init, edit, clearOne, save } from "./reducer";
 
 const response = createSlice({
   name: "response",
@@ -7,7 +7,7 @@ const response = createSlice({
     data: {},
     required: {},
   },
-  reducers: { init, edit, clearOne },
+  reducers: { init, edit, clearOne, save },
 });
 
 export default response;

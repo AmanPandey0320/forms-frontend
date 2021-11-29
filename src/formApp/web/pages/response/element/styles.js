@@ -66,7 +66,7 @@ export const fileStyles = makeStyles((theme) => ({
     verticalAlign: "middle",
   },
   text: {
-    width: "90%",
+    maxWidth: "90%",
     fontSize: "small",
   },
   switch: {
@@ -78,5 +78,8 @@ export const fileStyles = makeStyles((theme) => ({
       marginLeft: 0,
       marginTop: theme.spacing(1),
     },
+  },
+  progress: {
+    width: "24px",
   },
 }));

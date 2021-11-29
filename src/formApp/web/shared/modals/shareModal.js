@@ -50,7 +50,7 @@ const ShareModal = (props) => {
     navigator.clipboard.writeText(url);
     setOpen(false);
     toast.addToast("Link copied", {
-      appearance: "success",
+      appearance: "info",
     });
   };
   return (

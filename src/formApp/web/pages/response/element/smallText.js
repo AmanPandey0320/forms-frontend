@@ -25,7 +25,7 @@ const SmallText = ({ qid, ...props }) => {
       <Grid container direction="column">
         <Grid item>
           <TextField
-            value={response?.ans}
+            value={response?.ans ? response?.ans : ""}
             onChange={handleChange}
             placeholder="Your response here"
             fullWidth
