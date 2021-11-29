@@ -16,7 +16,7 @@ const FormNavBar = ({ color, response, ...props }) => {
   };
   return (
     <>
-      <AppBar className={classes.root}>
+      <AppBar color="secondary" className={classes.root}>
         <Toolbar>
           <Grid container direction="row" justify="space-between">
             <Grid item>

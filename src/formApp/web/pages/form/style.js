@@ -7,6 +7,9 @@ export const getMuiTheme = ({ color, bgColor }) => {
         main: color,
         light: bgColor,
       },
+      secondary:{
+        main:"#ffffff"
+      }
     },
   });
   return theme;

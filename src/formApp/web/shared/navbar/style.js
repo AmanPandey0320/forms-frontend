@@ -28,7 +28,6 @@ export const Nav = styled.nav`
 
 export const navbarStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
   },
 }));
