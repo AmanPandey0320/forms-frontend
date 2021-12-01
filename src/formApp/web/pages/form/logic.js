@@ -9,6 +9,7 @@ export const mapStateToProps = (state, ownProps) => {
   return {
     form: state.form.data,
     sections: state.section?.order,
+    tab: state.util.formTab,
   };
 };
 

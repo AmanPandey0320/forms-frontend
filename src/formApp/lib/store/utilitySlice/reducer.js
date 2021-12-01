@@ -2,6 +2,10 @@ import { useHistory } from "react-router";
 
 export const initUtil = (state, action) => {
   const { history } = action.payload;
-  console.log("slice-->", history);
   state.history = history;
+};
+
+export const setFormTab = (state, action) => {
+  const { tab } = action.payload;
+  state.formTab = tab;
 };

@@ -8,7 +8,7 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import React from "react";
-import { withRouter } from "react-router";
+import {  withRouter } from "react-router";
 import Sticky from "react-stickynode";
 import Canvas from "../../shared/canvas";
 import Navbar from "../../shared/navbar/formNavBar";
@@ -25,19 +25,18 @@ import { connect } from "react-redux";
 import Section from "./section";
 import Footer from "../../shared/footer";
 import { ThemeProvider } from "@material-ui/core/styles";
+import Response from "./response";
 
+/**
+ *
+ * @param {*} props
+ * @returns
+ */
 const FormSfc = (props) => {
   const classes = formStyles();
   return (
     <Container className={classes.formContainer}>
-      <Grid
-        container
-        className={classes.gridContainer}
-        direction="column"
-      >
-        <Grid className={classes.gridItem} item>
-          <Toolbar />
-        </Grid>
+      <Grid container className={classes.gridContainer} direction="column">
         <Grid className={classes.gridItem} item>
           <Header bg={headImg} />
         </Grid>
@@ -68,10 +67,19 @@ const FormSfc = (props) => {
 class Forms extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: false, errMsg: "", loading: true, snackbar: false };
+    this.query = new URLSearchParams(this.props.location.search);
+    this.state = {
+      error: false,
+      errMsg: "",
+      loading: true,
+      snackbar: false,
+      tab: this.query.get("tab"),
+    };
     this.fid = this.props.match.params.fid;
+    this.history = this.props.history;
     this.classes = this.props.classes;
     this.dispatch = store.dispatch;
+    this.tabInfo = { form: 0, response: 1, 0: "form", 1: "response" };
   }
 
   /**
@@ -93,6 +101,13 @@ class Forms extends React.Component {
       snackbar: false,
     });
   }
+
+  getTab = (str) => {
+    if (this.tabInfo[str]) {
+      return this.tabInfo[str];
+    }
+    return this.tabInfo.form;
+  };
   /**
    * @lifecycle
    */
@@ -126,7 +141,7 @@ class Forms extends React.Component {
    * @returns
    */
   render() {
-    console.log("forms----->", this.props.form);
+    console.log("forms----->", this.props.tab);
     /**
      *
      */
@@ -160,7 +175,24 @@ class Forms extends React.Component {
             <Navbar bg="#ffffff" color="#262626" />
           </Sticky>
           <Canvas bg={this.props?.form?.theme?.bgColor}>
-            <FormSfc sections={this.props.sections} />
+            <Grid container direction="column">
+              <Grid item>
+                <Toolbar />
+              </Grid>
+              <Grid item>
+                <Toolbar />
+              </Grid>
+              {this.props.tab === "form" && (
+                <Grid item>
+                  <FormSfc sections={this.props.sections} />
+                </Grid>
+              )}
+              {this.props.tab === "response" && (
+                <Grid item>
+                  <Response />
+                </Grid>
+              )}
+            </Grid>
           </Canvas>
         </ThemeProvider>
       </>

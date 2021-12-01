@@ -39,7 +39,9 @@ class Avatar extends React.Component {
       case "square":
         return <SquareAvatar {...props} />;
       case "text":
-        return <TextAvatar {...props}>{this.titleEncoder()}</TextAvatar>;
+        return (
+          <TextAvatar {...props}>{this.titleEncoder().slice(0, 2)}</TextAvatar>
+        );
       default:
         return <CircularLogo {...props} />;
     }
@@ -55,6 +57,7 @@ Avatar.propTypes = {
   title: PropTypes.string,
   src: PropTypes.any,
   alt: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default Avatar;

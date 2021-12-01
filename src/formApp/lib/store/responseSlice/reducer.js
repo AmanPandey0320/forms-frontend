@@ -39,11 +39,23 @@ export const clearOne = (state, action) => {
 };
 
 /**
- * 
- * @param {*} state 
- * @param {*} action 
+ *
+ * @param {*} state
+ * @param {*} action
  */
 export const save = (state, action) => {
   const { data } = action.payload;
   state.data = data;
+};
+
+/**
+ * @description saves all response
+ * @param {*} state
+ * @param {*} action
+ */
+export const saveResponse = (state, action) => {
+  const { response, sentForm, allUid } = action.payload;
+  state.allResponse = response;
+  state.sentForm = sentForm;
+  state.allUid = allUid;
 };

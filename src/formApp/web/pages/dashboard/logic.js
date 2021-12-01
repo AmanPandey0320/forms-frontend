@@ -24,7 +24,7 @@ export const createFromTemplate = (tid, history, toast) => (e) => {
         return;
       }
       const { result } = data;
-      history.push(`/form-app/form/${result.id}`);
+      history.push(`/form-app/form/${result.id}?tab=form`);
     })
     .catch((err) => {
       console.log(err);
@@ -38,5 +38,5 @@ export const createFromTemplate = (tid, history, toast) => (e) => {
  * @param {*} toast 
  */
 export const openForm = (id, history, toast) => (e) => {
-  history.push(`/form-app/form/${id}`);
+  history.push(`/form-app/form/${id}?tab=form`);
 };

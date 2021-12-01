@@ -7,9 +7,9 @@ export const getMuiTheme = ({ color, bgColor }) => {
         main: color,
         light: bgColor,
       },
-      secondary:{
-        main:"#ffffff"
-      }
+      secondary: {
+        main: "#ffffff",
+      },
     },
   });
   return theme;
@@ -17,7 +17,6 @@ export const getMuiTheme = ({ color, bgColor }) => {
 
 export const formStyles = makeStyles((theme) => ({
   formContainer: {
-    marginTop: "8px",
     marginLeft: "16vw",
     width: "52vw",
     "@media screen and (max-width: 1200px)": {},
@@ -69,6 +68,10 @@ const useStyles = {
   backdrop: {
     zIndex: 4,
     color: "#fff",
+  },
+  tabs: {
+    borderRadius: 0,
+    flexGrow: 1,
   },
 };
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+const av_font_size = 64;
 
 /**
  * @description circilar logo
@@ -88,20 +89,26 @@ export const TextAvatar = styled.div`
   width: ${(props) => (props.size ? props.size : 32)}px;
   height: ${(props) => (props.size ? props.size : 32)}px;
   background-color: ${(props) => (props.color ? props.color : "grey")};
+  color: white;
   text-align: center;
+  font-size: ${av_font_size}px;
   @media screen and (max-width: 1200px) {
+    font-size: ${av_font_size}px;
     width: ${(props) => (props.size ? props.size : 32)}px;
     height: ${(props) => (props.size ? props.size : 32)}px;
   }
   @media screen and (max-width: 800px) {
+    font-size: ${av_font_size * 0.8}px;
     width: ${(props) => (props.size ? 0.8 * props.size : 26)}px;
     height: ${(props) => (props.size ? 0.8 * props.size : 26)}px;
   }
   @media screen and (max-width: 500px) {
+    font-size: ${av_font_size * 0.62}px;
     width: ${(props) => (props.size ? 0.62 * props.size : 20)}px;
     height: ${(props) => (props.size ? 0.62 * props.size : 20)}px;
   }
   @media screen and (max-width: 360px) {
+    font-size: ${av_font_size * 0.5}px;
     width: ${(props) => (props.size ? 0.5 * props.size : 16)}px;
     height: ${(props) => (props.size ? 0.5 * props.size : 16)}px;
   }
