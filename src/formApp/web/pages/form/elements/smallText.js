@@ -2,8 +2,20 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { smallTextStyles } from "./styles";
 
-const SmallText = ({ qid, ...props }) => {
+const SmallText = ({ qid, isRes, val, ...props }) => {
   const classes = smallTextStyles();
+  if (Boolean(isRes)) {
+    return (
+      <TextField
+        fullWidth
+        disabled
+        id={qid}
+        value={val ? val : ""}
+        className={classes.textField}
+        placeholder="Your answer here"
+      />
+    );
+  }
   return (
     <TextField
       fullWidth

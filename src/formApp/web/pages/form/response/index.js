@@ -14,6 +14,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Icon,
 } from "@material-ui/core";
 import { AccountCircleTwoTone } from "@material-ui/icons";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -24,6 +25,8 @@ import { fetchAllResponse } from "./logic";
 import { useDispatch, useSelector } from "react-redux";
 import { responseActions } from "../../../../lib/store/responseSlice";
 import useStyles from "./style";
+import ResponseView from "./responseView";
+import { MdOutlineShare } from "react-icons/md";
 
 /**
  *
@@ -63,17 +66,41 @@ const Response = (props) => {
   }, []);
 
   /** METHODS */
+  /**
+   *
+   * @param {*} e
+   */
   const onCloseSnackBarEventListner = (e) => {
     setSnackbar(false);
   };
+  /**
+   *
+   * @param {*} e
+   */
   const backDropClickListner = (e) => {
     setSnackbar(true);
   };
+  /**
+   *
+   * @param {*} e
+   */
   const openListMenu = (e) => {
     setAnchorE1(e.currentTarget);
   };
+  /**
+   *
+   * @param {*} e
+   */
   const onCloseListMenu = (e) => {
     setAnchorE1(null);
+  };
+  /**
+   *
+   * @param {*} idx
+   * @returns
+   */
+  const listItemOnClickListener = (idx) => (e) => {
+    setCurrRes(idx);
   };
 
   /** LOGS */
@@ -112,14 +139,36 @@ const Response = (props) => {
     return (
       <Container>
         <Grid container spacing={1} direction="column">
-          {msg.map((e) => (
-            <Grid item>
+          {msg.map((e, idx) => (
+            <Grid key={idx} item>
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
                 {e.message} — <strong>check it out!</strong>
               </Alert>
             </Grid>
           ))}
+        </Grid>
+      </Container>
+    );
+  }
+
+  /**
+   * no response view
+   */
+  if (allUid?.length === 0) {
+    return (
+      <Container>
+        <Grid container spacing={1} direction="column">
+          <Grid item>
+            <Alert severity="info">
+              <AlertTitle>Error</AlertTitle>
+              No response recieved — <strong>Click on </strong>
+              <IconButton color="primary">
+                <MdOutlineShare />{" "}
+              </IconButton>
+              <strong> to share form</strong>
+            </Alert>
+          </Grid>
         </Grid>
       </Container>
     );
@@ -137,19 +186,9 @@ const Response = (props) => {
               <Grid item>
                 <Grid container spacing={1} direction="row">
                   <Grid md={8} item>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Sit illo illum adipisci sapiente mollitia saepe quae nobis,
-                    distinctio voluptatum magni natus iste earum quas, nemo
-                    suscipit itaque delectus excepturi quia hic ipsum. Nobis
-                    neque aut, possimus debitis non enim! Consequatur dolor
-                    dolorum ratione impedit reiciendis corporis fugiat libero
-                    numquam temporibus quidem ab, mollitia maiores! Tempora
-                    repudiandae cum, quod accusantium ducimus, amet nesciunt quo
-                    voluptates ipsam rerum animi? Quasi velit alias libero
-                    molestiae iure et reprehenderit totam. Tempora sequi placeat
-                    dignissimos facere rem minima enim ullam obcaecati
-                    recusandae accusantium. Aut omnis corrupti eligendi labore
-                    fugit nobis tenetur, accusamus adipisci recusandae aperiam.
+                    {allUid[currRes]?.id && (
+                      <ResponseView rid={allUid[currRes]?.id} />
+                    )}
                   </Grid>
                   <Grid md={4} item>
                     <Grid container direction="column">
@@ -165,8 +204,10 @@ const Response = (props) => {
                               <List>
                                 {allUid?.map((uid, idx) => (
                                   <ListItem
+                                    button
                                     className={classes.emailDropDownListItem}
                                     key={uid.id}
+                                    onClick={listItemOnClickListener(idx)}
                                   >
                                     {" "}
                                     <ListItemAvatar>
