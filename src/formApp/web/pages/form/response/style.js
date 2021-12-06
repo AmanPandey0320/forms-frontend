@@ -40,6 +40,10 @@ export const resViewStyles = makeStyles((theme) => ({
     fontSize: "16px",
     color: "#606060",
   },
+  font3: {
+    fontSize: "18px",
+    color: theme.palette.common.black,
+  },
 }));
 
 export default useStyles;

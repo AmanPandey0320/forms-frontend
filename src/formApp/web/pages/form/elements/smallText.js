@@ -10,7 +10,7 @@ const SmallText = ({ qid, isRes, val, ...props }) => {
         fullWidth
         disabled
         id={qid}
-        value={val ? val : ""}
+        value={val?.ans ? val?.ans : ""}
         className={classes.textField}
         placeholder="Your answer here"
       />
