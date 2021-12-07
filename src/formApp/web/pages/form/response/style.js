@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.primary.main, 0.05),
     },
   },
+  font1:{
+    paddingTop:"10px",
+    fontSize:"16px"
+  }
 }));
 
 export const resViewStyles = makeStyles((theme) => ({

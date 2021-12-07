@@ -15,18 +15,20 @@ import {
   Menu,
   MenuItem,
   Icon,
+  Tooltip,
 } from "@material-ui/core";
+import { CSVLink } from "react-csv";
 import { AccountCircleTwoTone } from "@material-ui/icons";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchAllResponse } from "./logic";
+import { fetchAllResponse, getCsvProps } from "./logic";
 import { useDispatch, useSelector } from "react-redux";
 import { responseActions } from "../../../../lib/store/responseSlice";
 import useStyles from "./style";
 import ResponseView from "./responseView";
-import { MdOutlineShare } from "react-icons/md";
+import { MdOutlineShare, MdOutlineDownloadForOffline } from "react-icons/md";
 
 /**
  *
@@ -47,6 +49,19 @@ const Response = (props) => {
   const [snackbar, setSnackbar] = useState(false);
   const [currRes, setCurrRes] = useState(0);
   const [anchorE1, setAnchorE1] = useState(null);
+  const headers = [
+    { label: "que1", key: "1" },
+    { label: "que2", key: "2" },
+    { label: "que3", key: "3" },
+    { label: "que4", key: "4" },
+  ];
+  const data = [
+    { 1: "a1", 2: "a2", 3: "a3", 4: "a4" },
+    { 1: "b1", 2: "b2", 3: "b3", 4: "b4" },
+    { 1: "c1", 2: "c2", 3: "c3", 4: "c4" },
+    { 1: "d1", 2: "d2", 3: "d3", 4: "d4" },
+    { 1: "e1", 2: "e2", 3: "e3", 4: "e4" },
+  ];
 
   /** EFFECTS */
   useEffect(() => {
@@ -196,9 +211,29 @@ const Response = (props) => {
                         <Paper className={classes.emailDropDownDiv}>
                           <Grid container direction="column">
                             <Grid item>
-                              <Typography color="primary">
-                                Respondees
-                              </Typography>
+                              <Grid
+                                container
+                                justify="space-between"
+                                direction="row"
+                              >
+                                <Grid item>
+                                  <Typography
+                                    className={classes.font1}
+                                    color="primary"
+                                  >
+                                    Respondees
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  <CSVLink {...getCsvProps()}>
+                                    <Tooltip title="Download CSV">
+                                      <IconButton color="primary">
+                                        <MdOutlineDownloadForOffline />
+                                      </IconButton>
+                                    </Tooltip>
+                                  </CSVLink>
+                                </Grid>
+                              </Grid>
                             </Grid>
                             <Grid item>
                               <List>
