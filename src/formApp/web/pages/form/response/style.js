@@ -48,6 +48,9 @@ export const resViewStyles = makeStyles((theme) => ({
     fontSize: "18px",
     color: theme.palette.common.black,
   },
+  mainDiv:{
+    width:"100%"
+  }
 }));
 
 export default useStyles;

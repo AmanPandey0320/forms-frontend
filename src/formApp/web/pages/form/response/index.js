@@ -283,7 +283,6 @@ const Response = (props) => {
         onClose={onCloseListMenu}
       >
         <MenuItem>Delete</MenuItem>
-        <MenuItem>Download</MenuItem>
       </Menu>
     </>
   );
