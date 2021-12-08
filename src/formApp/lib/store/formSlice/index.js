@@ -1,5 +1,5 @@
 const { createSlice } = require("@reduxjs/toolkit");
-const { newForm, editDescription, editTitle } = require("./reducer");
+const { newForm, editDescription, editTitle, editTheme } = require("./reducer");
 
 const formSlice = createSlice({
   name: "form",
@@ -11,6 +11,7 @@ const formSlice = createSlice({
     newForm,
     editDescription,
     editTitle,
+    editTheme,
   },
 });
 

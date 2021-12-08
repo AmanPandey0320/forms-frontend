@@ -171,7 +171,7 @@ class Forms extends React.Component {
     return (
       <>
         <ThemeProvider theme={getMuiTheme(this.props?.form?.theme)}>
-          <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
+          <Sticky top={0} innerZ={99} activeClass="sticky-nav-active">
             <Navbar bg="#ffffff" color="#262626" />
           </Sticky>
           <Canvas bg={this.props?.form?.theme?.bgColor}>

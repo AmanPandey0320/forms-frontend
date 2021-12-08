@@ -20,10 +20,20 @@ export const editTitle = (state, action) => {
 };
 /**
  * @description reducer to edit the description of the form
- * @param {*} state 
- * @param {*} action 
+ * @param {*} state
+ * @param {*} action
  */
 export const editDescription = (state, action) => {
   const { description } = action.payload;
   state.data.description = description;
+};
+
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
+export const editTheme = (state, action) => {
+  const { key, value } = action.payload;
+  state.data.theme[key] = value;
 };

@@ -17,10 +17,12 @@ import ShareModal from "../modals/shareModal";
 import { useHistory, useLocation, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { utilActions } from "../../../lib/store/utilitySlice";
+import FormDrawer from "../drawers/form.drawer";
 
 const FormNavBar = ({ color, response, ...props }) => {
   const classes = navbarStyles();
   const [share, setShare] = useState(false);
+  const [drawer, setDrawer] = useState(false);
   const params = useParams();
   const location = useLocation();
   const history = useHistory();
@@ -34,6 +36,12 @@ const FormNavBar = ({ color, response, ...props }) => {
    */
   const handleTabChange = (e, n) => {
     history.push(`/form-app/form/${params.fid}?tab=${n}`);
+  };
+  const onCloseDrawer = (e) => {
+    setDrawer(false);
+  };
+  const openDrawer = (e) => {
+    setDrawer(true);
   };
   useEffect(() => {
     if (!response) {
@@ -67,7 +75,7 @@ const FormNavBar = ({ color, response, ...props }) => {
                       </Grid>
                       <Grid item>
                         <Tooltip title="Setting">
-                          <IconButton color="primary">
+                          <IconButton onClick={openDrawer} color="primary">
                             <MdSettings />
                           </IconButton>
                         </Tooltip>
@@ -109,6 +117,7 @@ const FormNavBar = ({ color, response, ...props }) => {
         open={share}
         setOpen={setShare}
       />
+      <FormDrawer open={drawer} onClose={onCloseDrawer} />
     </>
   );
 };
