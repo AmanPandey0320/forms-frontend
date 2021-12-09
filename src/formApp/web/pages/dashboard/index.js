@@ -22,7 +22,7 @@ const Dashboard = (props) => {
   };
   return (
     <div className={classes.root}>
-      <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
+      <Sticky top={0} innerZ={9} activeClass="sticky-nav-active">
         <Navbar bg="#ffffff" color="#000000" />
       </Sticky>
       <TopDiv>

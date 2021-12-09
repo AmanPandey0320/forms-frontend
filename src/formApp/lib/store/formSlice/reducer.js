@@ -37,3 +37,13 @@ export const editTheme = (state, action) => {
   const { key, value } = action.payload;
   state.data.theme[key] = value;
 };
+
+/**
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ */
+export const clear = (state,action) => {
+  state.data = {};
+  state.order = [];
+}

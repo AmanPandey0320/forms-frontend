@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     cursor: "pointer",
   },
+  backdrop: {
+    zIndex: 999,
+    color: "#fff",
+  },
 }));
 
 export const ThumbnailWrapper = styled.div`

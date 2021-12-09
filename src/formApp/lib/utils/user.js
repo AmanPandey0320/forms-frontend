@@ -8,9 +8,9 @@ const cookie = new Cookie();
 
 export const successGoogle = (responce) => {
   const google_token = responce.googleId;
-  const name = responce.profileObj.name;
-  const data = { google_token, name };
-  // console.log(data);
+  const { name, email, imageUrl } = responce.profileObj;
+  const data = { google_token, name, email, imageUrl };
+  console.log("google------>", responce);
 
   const config = {
     headers: {
@@ -20,29 +20,31 @@ export const successGoogle = (responce) => {
   };
   const endpoint = "/api/auth/signup";
   //TODO: call the api to sign in for google token
-  http(endpoint,"POST",data).then(res => {
-    const info = res.data;
-    console.log("user login ---->",info);
-    const { err, data, message } = info;
-    console.log(info);
-    if (err.length === 0) {
-      const { auth_token } = data[0];
-      cookie.set("forms_auth_key", auth_token, {
-        maxAge: 2 * 60 * 60 * 1000,
-        path: "/",
-        sameSite:"strict"
-      });
-      cookie.set("forms_user_name", data.name, {
-        maxAge: 2 * 60 * 60 * 1000,
-        path: "/",
-      });
-      window.location.reload();
-    } else {
-      console.log(err);
-    }
-  }).catch(err => {
-    alert("here", err.message);
-  })
+  http(endpoint, "POST", data)
+    .then((res) => {
+      const info = res.data;
+      console.log("user login ---->", info);
+      const { err, data, message } = info;
+      console.log(info);
+      if (err.length === 0) {
+        const { auth_token } = data[0];
+        cookie.set("forms_auth_key", auth_token, {
+          maxAge: 2 * 60 * 60 * 1000,
+          path: "/",
+          sameSite: "strict",
+        });
+        cookie.set("forms_user_name", data.name, {
+          maxAge: 2 * 60 * 60 * 1000,
+          path: "/",
+        });
+        window.location.reload();
+      } else {
+        console.log(err);
+      }
+    })
+    .catch((err) => {
+      alert("here", err.message);
+    });
   // postToBackend({ endpoint, data, config }, (err, info) => {
   //   if (err) {
   //     alert("here", err.message);
@@ -94,7 +96,7 @@ export const verifyGoogle = async () => {
         return resolve(false);
       } else {
         const { err, data, message } = info;
-        console.log("verify user ----->",info);
+        console.log("verify user ----->", info);
         if (err.length === 0) {
           const { auth_token } = data[0];
           cookie.set("forms_auth_key", auth_token, {
