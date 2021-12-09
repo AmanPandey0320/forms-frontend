@@ -11,7 +11,7 @@ import {
 } from "react-icons/md";
 import { addNewQuestion, addNewOption } from "./question.logic";
 
-const QuestionUtilities = ({ data, ...props }) => {
+const QuestionUtilities = ({ data, idx, ...props }) => {
   return (
     <>
       <Box style={{ marginTop: "4px", marginBottom: "36px" }}>
@@ -32,7 +32,7 @@ const QuestionUtilities = ({ data, ...props }) => {
             <Grid item>
               <Tooltip placement="bottom" title="Add question">
                 <IconButton
-                  onClick={addNewQuestion(data.sid, data.fid, data.order)}
+                  onClick={addNewQuestion(data.sid, data.fid, data.order, idx)}
                   color="primary"
                 >
                   <MdAddCircleOutline />

@@ -176,7 +176,7 @@ const Question = ({ qid, idx, active, ...props }) => {
           </Grid>
           {active && (
             <Grid item>
-              <QuestionUtilities data={question} />
+              <QuestionUtilities idx={idx} data={question} />
             </Grid>
           )}
         </Grid>

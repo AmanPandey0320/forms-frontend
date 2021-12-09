@@ -5,6 +5,7 @@ import {
   editRequired,
   editTitle,
   editWithKeyValue,
+  reorderQuestion,
 } from "./reducer";
 
 const questionSlice = createSlice({
@@ -19,6 +20,7 @@ const questionSlice = createSlice({
     editRequired,
     editTitle,
     editWithKeyValue,
+    reorderQuestion,
   },
 });
 

@@ -35,11 +35,25 @@ export const editTitle = (state, action) => {
 };
 
 /**
- * 
- * @param {*} state 
- * @param {*} action 
+ *
+ * @param {*} state
+ * @param {*} action
  */
 export const editWithKeyValue = (state, action) => {
   const { id, key, value } = action.payload;
   state.data[id][key] = value;
+};
+
+/**
+ *
+ * @param {*} state
+ * @param {*} action
+ */
+export const reorderQuestion = (state, action) => {
+  const { orders } = action.payload;
+  orders?.forEach((qid, idx) => {
+    if (state.data[qid].order != idx + 1) {
+      state.data[qid].order = idx + 1;
+    }
+  });
 };

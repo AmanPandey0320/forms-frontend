@@ -13,7 +13,7 @@ const dispatch = store.dispatch;
  * @param {*} order
  * @returns
  */
-export const addNewQuestion = (sid, fid, order) => (e) => {
+export const addNewQuestion = (sid, fid, order, idx) => (e) => {
   const formData = { sid, fid, order };
   http("/api/question/save-action", "POST", { formData })
     .then((res) => {
@@ -27,9 +27,9 @@ export const addNewQuestion = (sid, fid, order) => (e) => {
       const { question } = result;
       saveQuestionToStore(question, order);
       const ques = state.section.data[question.sid].questions;
-      let questions = ques.slice(0, order);
+      let questions = ques.slice(0, idx + 1);
       questions.push(question.id);
-      const temp = ques.slice(order, ques.length);
+      const temp = ques.slice(idx + 1, ques.length);
       questions = [...questions, ...temp];
       dispatch(
         sectionActions.editQuestionOrder({
@@ -37,6 +37,7 @@ export const addNewQuestion = (sid, fid, order) => (e) => {
           id: question.sid,
         })
       );
+      dispatch(questionAction.reorderQuestion({ orders: questions }));
     })
     .catch((err) => {
       console.log(err);
