@@ -24,11 +24,21 @@ export const editTitle = (state, action) => {
   state.data[id].title = title;
 };
 
+/**
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ */
 export const editSectionWithKey = (state, action) => {
   const { id, key, value } = action.payload;
   state.data[id][key] = value;
 };
 
+/**
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ */
 export const editQuestionOrder = (state, action) => {
   const { id, questions } = action.payload;
   state.data[id].questions = questions;

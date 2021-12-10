@@ -79,3 +79,12 @@ export const addNewOption = (qid, sid, fid) => (e) => {
       console.log(err);
     });
 };
+
+/**
+ * 
+ * @param {*} id 
+ * @returns 
+ */
+export const inactiveQuestion = (id) => (e) => {
+  dispatch(questionAction.editWithKeyValue({ id, key: "active", value: 0 }));
+};

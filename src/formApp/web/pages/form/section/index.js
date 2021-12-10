@@ -126,7 +126,7 @@ const Section = ({ sid, ...props }) => {
               <>
                 {section.questions?.map((qid, idx) => (
                   <Grid key={qid} onClick={(e) => setActiveQue(idx)} item>
-                    <Question qid={qid} active={idx === activeQue} idx={idx} />
+                    <Question qid={qid} len = {section?.questions?.length} active={idx === activeQue} idx={idx} />
                   </Grid>
                 ))}
               </>

@@ -8,10 +8,15 @@ import {
   MdOutlineAddBox,
   MdDelete,
   MdDeleteSweep,
+  MdOutlineUploadFile,
 } from "react-icons/md";
-import { addNewQuestion, addNewOption } from "./question.logic";
+import {
+  addNewQuestion,
+  addNewOption,
+  inactiveQuestion,
+} from "./question.logic";
 
-const QuestionUtilities = ({ data, idx, ...props }) => {
+const QuestionUtilities = ({ data, idx, sec, ...props }) => {
   return (
     <>
       <Box style={{ marginTop: "4px", marginBottom: "36px" }}>
@@ -39,24 +44,19 @@ const QuestionUtilities = ({ data, idx, ...props }) => {
                 </IconButton>
               </Tooltip>
             </Grid>
+            {sec && (
+              <Grid item>
+                <Tooltip placement="bottom" title="Add Section">
+                  <IconButton color="primary">
+                    <MdSplitscreen />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
+            )}
             <Grid item>
-              <Tooltip placement="bottom" title="Add Section">
+              <Tooltip placement="bottom" title="Add file">
                 <IconButton color="primary">
-                  <MdSplitscreen />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <Tooltip placement="bottom" title="Add Video">
-                <IconButton color="primary">
-                  <MdVideoLibrary />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <Tooltip placement="bottom" title="Add Image">
-                <IconButton color="primary">
-                  <MdImage />
+                  <MdOutlineUploadFile />
                 </IconButton>
               </Tooltip>
             </Grid>
@@ -66,14 +66,17 @@ const QuestionUtilities = ({ data, idx, ...props }) => {
                   <MdDeleteSweep />
                 </IconButton>
               </Tooltip>
-            </Grid>
+            </Grid>*/}
             <Grid item>
               <Tooltip placement="bottom" title="Delete question">
-                <IconButton color="primary">
+                <IconButton
+                  onClick={inactiveQuestion(data?.id)}
+                  color="primary"
+                >
                   <MdDelete />
                 </IconButton>
               </Tooltip>
-            </Grid> */}
+            </Grid>
           </Grid>
         </Paper>
       </Box>

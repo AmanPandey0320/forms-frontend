@@ -27,19 +27,21 @@ import {
 import useStyles from "./style";
 import { useEffect, useRef } from "react";
 import { saveQuestion } from "../../../../lib/thunks/question.thunk";
+import Lottie from "react-lottie";
+import deleteAnimation from "../../../../assets/lottie/delete.json";
 
 /**
  *
  * @param {*} param0
  * @returns
  */
-const Question = ({ qid, idx, active, ...props }) => {
+const Question = ({ qid, idx, active, len, ...props }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isMounted = useRef(false);
   const question = useSelector((state) => state.question.data[qid]);
   /**
-   *
+   *EFFECTS
    */
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,8 +56,42 @@ const Question = ({ qid, idx, active, ...props }) => {
     };
   }, [question]);
   /**
-   *
+   *VIEWS
    */
+
+  if (Boolean(question?.active) === false) {
+    const animation = {
+      loop: true,
+      autoplay: true,
+      animationData: deleteAnimation,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    };
+    const size = 32;
+    return (
+      <Box className={classes.container}>
+        <Grid container direction="column">
+          <Grid item>
+            <Paper className={`${classes.root} inactive`}>
+              <Grid direction="row" spacing={1} container>
+                <Grid item>
+                  <Lottie options={animation} width={size} height={size} />
+                </Grid>
+                <Grid item>
+                  <Typography className={`${classes.typography} inactive`}>
+                    Please wait while we delete this question
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  }
+
+  /** MAIN */
   return (
     <>
       <Box className={classes.container}>
@@ -176,7 +212,11 @@ const Question = ({ qid, idx, active, ...props }) => {
           </Grid>
           {active && (
             <Grid item>
-              <QuestionUtilities idx={idx} data={question} />
+              <QuestionUtilities
+                idx={idx}
+                sec={len === idx + 1}
+                data={question}
+              />
             </Grid>
           )}
         </Grid>

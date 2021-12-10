@@ -176,7 +176,7 @@ const Response = (props) => {
         <Grid container spacing={1} direction="column">
           <Grid item>
             <Alert severity="info">
-              <AlertTitle>Error</AlertTitle>
+              <AlertTitle>Attention!</AlertTitle>
               No response recieved — <strong>Click on </strong>
               <IconButton color="primary">
                 <MdOutlineShare />{" "}

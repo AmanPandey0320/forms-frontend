@@ -35,7 +35,7 @@ const FormNavBar = ({ color, response, ...props }) => {
    *
    */
   const handleTabChange = (e, n) => {
-    history.push(`/form-app/form/${params.fid}?tab=${n}`);
+    history.replace(`/form-app/form/${params.fid}?tab=${n}`);
   };
   const onCloseDrawer = (e) => {
     setDrawer(false);
