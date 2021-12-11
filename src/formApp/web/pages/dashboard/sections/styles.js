@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
   eRoot: {},
   cItem: {
     textAlign: "center",
-    cursor: "pointer",
   },
   backdrop: {
     zIndex: 999,

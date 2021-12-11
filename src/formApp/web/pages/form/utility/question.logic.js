@@ -4,6 +4,7 @@ import store from "../../../../lib/store/store";
 import { http } from "../../../../lib/utils/repository";
 import { saveQuestionToStore, saveOptionToStore } from "../logic";
 
+const baseUrl = process.env.REACT_APP_backend_api_url;
 const dispatch = store.dispatch;
 
 /**
@@ -81,10 +82,80 @@ export const addNewOption = (qid, sid, fid) => (e) => {
 };
 
 /**
+ *
+ * @param {*} id
+ * @returns
+ */
+export const inactiveQuestion = (id) => (e) => {
+  dispatch(questionAction.editWithKeyValue({ id, key: "active", value: 0 }));
+};
+
+/**
+ *@description handle file upload
+ * @param {*} e
+ */
+export const uploader = (file, id) => {
+  return new Promise((resolve, reject) => {
+    let body = new FormData();
+    let answer = { name: file.name, type: file.type };
+    body.append("file", file);
+    http("/api/storage/upload", "POST", body)
+      .then((res) => {
+        console.log("question file upload res------>", res);
+        const { code, message } = res.data;
+        if (code === 200) {
+          answer.sname = message;
+          dispatch(
+            questionAction.editWithKeyValue({
+              id,
+              key: "attachment",
+              value: message,
+            })
+          );
+          return resolve(answer);
+        } else {
+          return reject([{ code: "ERROR", message: "Some error occured!" }]);
+        }
+      })
+      .catch((err) => {
+        console.log("question file upload err ------>", err);
+        return reject([err]);
+      });
+  });
+};
+
+/**
+ *
+ * @param {*} name
+ * @param {*} newtab
+ * @returns
+ */
+export const openFile = (name, newtab) => (e) => {
+  if (Boolean(name) === false) {
+    return;
+  }
+  const _url = `${baseUrl}/api/storage/download/${name}`;
+  if (newtab) {
+    window.open(_url, "_blank").focus();
+  } else {
+    window.location = _url;
+  }
+};
+
+/**
  * 
  * @param {*} id 
  * @returns 
  */
-export const inactiveQuestion = (id) => (e) => {
-  dispatch(questionAction.editWithKeyValue({ id, key: "active", value: 0 }));
+export const removeFile = (id) => (e) => {
+  if (Boolean(id) === false) {
+    return;
+  }
+  dispatch(
+    questionAction.editWithKeyValue({
+      id,
+      key: "attachment",
+      value: "",
+    })
+  );
 };
