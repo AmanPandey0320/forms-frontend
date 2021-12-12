@@ -18,16 +18,20 @@ import {
   uploader,
   openFile,
   removeFile,
+  addNewSection,
 } from "./question.logic";
 import { useToasts } from "react-toast-notifications";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const QuestionUtilities = ({ data, idx, sec, ...props }) => {
   const fileRef = useRef();
   const toast = useToasts();
+  const params = useParams();
   const dispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState(false);
+  const [cSection, setCsection] = useState(false);
 
   /**METHODS */
 
@@ -53,6 +57,23 @@ const QuestionUtilities = ({ data, idx, sec, ...props }) => {
       })
       .finally(() => {
         setUploading(false);
+      });
+  };
+
+  /**
+   *
+   * @param {*} e
+   */
+  const newSectionHandler = (e) => {
+    setCsection(true);
+    addNewSection(params.fid)
+      .then((res) => {
+        setCsection(false);
+        toast.addToast("Section created", { appearance: "success" });
+      })
+      .catch((err) => {
+        setCsection(false);
+        toast.addToast("Some error occured!", { appearance: "error" });
       });
   };
 
@@ -94,7 +115,7 @@ const QuestionUtilities = ({ data, idx, sec, ...props }) => {
             {sec && (
               <Grid item>
                 <Tooltip placement="bottom" title="Add Section">
-                  <IconButton color="primary">
+                  <IconButton onClick={newSectionHandler} color="primary">
                     <MdSplitscreen />
                   </IconButton>
                 </Tooltip>

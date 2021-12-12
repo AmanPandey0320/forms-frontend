@@ -1,4 +1,11 @@
-import { Box, Grid, Paper, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -6,6 +13,7 @@ import useStyles from "./style";
 import { useEffect, useRef, useState } from "react";
 import { saveSection } from "../../../../lib/thunks/section.thunk";
 import {
+  addNewQuestion,
   descriptionTextChangeListner,
   descriptionTextChangeListner2,
   titleTextChangeListner,
@@ -19,7 +27,7 @@ import { useMediaQuery } from "react-responsive";
  * @param {*} props
  * @returns
  */
-const Section = ({ sid, ...props }) => {
+const Section = ({ sid, len, curr, ...props }) => {
   const isLargeScreen = useMediaQuery({ query: "(min-width: 1000px)" });
   const [activeQue, setActiveQue] = useState(0);
   const classes = useStyles();
@@ -51,7 +59,9 @@ const Section = ({ sid, ...props }) => {
               <Grid item>
                 <Grid container justify="flex-start" direction="row">
                   <Grid lg={2} item>
-                    <Box className={classes.sectionHead}>Section</Box>
+                    <Box className={classes.sectionHead}>
+                      Section {curr} of {len}
+                    </Box>
                   </Grid>
                 </Grid>
               </Grid>
@@ -126,9 +136,31 @@ const Section = ({ sid, ...props }) => {
               <>
                 {section.questions?.map((qid, idx) => (
                   <Grid key={qid} onClick={(e) => setActiveQue(idx)} item>
-                    <Question qid={qid} len = {section?.questions?.length} active={idx === activeQue} idx={idx} />
+                    <Question
+                      qid={qid}
+                      len={section?.questions?.length}
+                      active={idx === activeQue}
+                      idx={idx}
+                    />
                   </Grid>
                 ))}
+              </>
+              <>
+                {Boolean(section?.questions?.length) === false && (
+                  <Grid item>
+                    <Grid container direction="row-reverse">
+                      <Grid item>
+                        <Button
+                          onClick={addNewQuestion(section?.id, section?.fid)}
+                          color="primary"
+                        >
+                          {" "}
+                          Add question
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                )}
               </>
             </Grid>
           </Grid>

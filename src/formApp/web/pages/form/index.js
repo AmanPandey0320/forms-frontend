@@ -8,7 +8,7 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import React from "react";
-import {  withRouter } from "react-router";
+import { withRouter } from "react-router";
 import Sticky from "react-stickynode";
 import Canvas from "../../shared/canvas";
 import Navbar from "../../shared/navbar/formNavBar";
@@ -34,6 +34,7 @@ import Response from "./response";
  */
 const FormSfc = (props) => {
   const classes = formStyles();
+  const secLen = props.sections?.length;
   return (
     <Container className={classes.formContainer}>
       <Grid container className={classes.gridContainer} direction="column">
@@ -44,9 +45,9 @@ const FormSfc = (props) => {
           <Heading />
         </Grid>
         <>
-          {props.sections?.map((sec) => (
+          {props.sections?.map((sec,idx) => (
             <Grid className={classes.gridItem} item key={sec} item>
-              <Section sid={sec} />
+              <Section len={secLen} curr={idx + 1} sid={sec} />
             </Grid>
           ))}
         </>

@@ -143,9 +143,9 @@ export const openFile = (name, newtab) => (e) => {
 };
 
 /**
- * 
- * @param {*} id 
- * @returns 
+ *
+ * @param {*} id
+ * @returns
  */
 export const removeFile = (id) => (e) => {
   if (Boolean(id) === false) {
@@ -158,4 +158,35 @@ export const removeFile = (id) => (e) => {
       value: "",
     })
   );
+};
+
+/**
+ *
+ * @param {*} fid
+ * @returns
+ */
+export const addNewSection = (fid) => {
+  return new Promise((resolve, reject) => {
+    if (Boolean(fid) === false) {
+      return reject([{ code: "ERROR", message: "No form available!" }]);
+    }
+    http("/api/section/save-action", "POST", { fid })
+      .then((res) => {
+        console.log("add section res------>", res);
+        const { data, err, messages } = res.data;
+        if (err?.length > 0) {
+          return reject(err);
+        }
+        const { id, result: section } = data.result;
+        const questions = [];
+        dispatch(
+          sectionActions.newSection({ section: { ...section, questions } })
+        );
+        return resolve(id);
+      })
+      .catch((err) => {
+        console.log("add new section error------->", err);
+        return reject([err]);
+      });
+  });
 };
