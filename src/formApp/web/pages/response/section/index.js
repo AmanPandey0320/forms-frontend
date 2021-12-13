@@ -5,7 +5,7 @@ import useStyles from "./styles";
 import Question from "../question";
 import { useSelector } from "react-redux";
 
-const Section = ({ sid, ...props }) => {
+const Section = ({ sid, len, curr, ...props }) => {
   const classes = useStyles();
   const section = useSelector((state) => state.section.data[sid]);
   const html = DOMPurify.sanitize(section.description, {
@@ -18,7 +18,9 @@ const Section = ({ sid, ...props }) => {
         <Grid item>
           <Grid container direction="row">
             <Grid md={2} item>
-              <Box className={classes.sectionHead}>Section</Box>
+              <Box className={classes.sectionHead}>
+                Section {curr} of {len}
+              </Box>
             </Grid>
           </Grid>
         </Grid>

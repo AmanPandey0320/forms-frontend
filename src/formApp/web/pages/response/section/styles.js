@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   sectionHead: {
-    width: "min-content",
+    width: "max-content",
     backgroundColor: theme.palette.primary.main,
     padding: "8px",
     paddingInline: "16px",

@@ -57,10 +57,14 @@ const Responder = (props) => {
             <Grid item>
               <Heading t={form.title} d={form.description} />
             </Grid>
-            {form.sections?.map((sec) => {
+            {form.sections?.map((sec, idx) => {
               return (
                 <Grid key={sec.id} item>
-                  <Section sid={sec.id} />
+                  <Section
+                    len={form.sections?.length}
+                    curr={idx + 1}
+                    sid={sec.id}
+                  />
                 </Grid>
               );
             })}
