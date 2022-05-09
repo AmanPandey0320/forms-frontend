@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 const Footer = (props) => {
   return (
     <Typography style={{ padding: "100px",textAlign:"center" }}>
-      Forms - Aman Kr pandey - All Rights reserved - 2021
+      Forms - Minor Project - All Rights reserved - 2022
     </Typography>
   );
 };

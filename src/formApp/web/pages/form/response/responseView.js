@@ -128,7 +128,7 @@ const ResponseView = ({ rid, ...props }) => {
           </Grid>
           <Grid xs={12} item>
             <div>
-              <Grid container directiob="column">
+              <Grid container spacing={1} direction="column">
                 {form?.sections?.map((sec, idx) => (
                   <Grid xs={12} key={sec?.id} item>
                     <Paper className={classes.paper}>
