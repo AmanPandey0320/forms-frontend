@@ -134,7 +134,7 @@ export const openFile = (name, newtab) => (e) => {
   if (Boolean(name) === false) {
     return;
   }
-  const _url = `${baseUrl}/api/storage/download/${name}`;
+  const _url = `${name}`;
   if (newtab) {
     window.open(_url, "_blank").focus();
   } else {

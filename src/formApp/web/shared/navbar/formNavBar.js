@@ -1,5 +1,5 @@
 import Brand from "../brand";
-import { MdSettings, MdOutlineShare, MdGrading } from "react-icons/md";
+import { MdSettings, MdOutlineShare, MdDelete } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import {
   AppBar,
@@ -14,6 +14,7 @@ import {
 import { navbarStyles } from "./style";
 import { useEffect, useState } from "react";
 import ShareModal from "../modals/shareModal";
+import DeleteModal from "../modals/deleteModal";
 import { useHistory, useLocation, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { utilActions } from "../../../lib/store/utilitySlice";
@@ -22,6 +23,7 @@ import FormDrawer from "../drawers/form.drawer";
 const FormNavBar = ({ color, response, ...props }) => {
   const classes = navbarStyles();
   const [share, setShare] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [drawer, setDrawer] = useState(false);
   const params = useParams();
   const location = useLocation();
@@ -30,6 +32,9 @@ const FormNavBar = ({ color, response, ...props }) => {
   const query = new URLSearchParams(location.search);
   const openShareModal = (e) => {
     setShare(true);
+  };
+  const openDeleteModal = (e) => {
+    setDeleteModal(true);
   };
   /**
    *
@@ -87,6 +92,13 @@ const FormNavBar = ({ color, response, ...props }) => {
                           </IconButton>
                         </Tooltip>
                       </Grid>
+                      <Grid item>
+                        <Tooltip title="Delete">
+                          <IconButton onClick={openDeleteModal} color="primary">
+                            <MdDelete />
+                          </IconButton>
+                        </Tooltip>
+                      </Grid>
                     </Grid>
                   </Grid>
                 )}
@@ -116,6 +128,11 @@ const FormNavBar = ({ color, response, ...props }) => {
         link={`/form-app/response/submit/${params.fid}`}
         open={share}
         setOpen={setShare}
+      />
+      <DeleteModal
+        title="Delete this survey"
+        open={deleteModal}
+        setOpen={setDeleteModal}
       />
       <FormDrawer open={drawer} onClose={onCloseDrawer} />
     </>

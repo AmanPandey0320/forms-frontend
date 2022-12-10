@@ -46,7 +46,7 @@ const FormSfc = (props) => {
         </Grid>
         <>
           {props.sections?.map((sec,idx) => (
-            <Grid className={classes.gridItem} item key={sec} item>
+            <Grid className={classes.gridItem} item key={sec}>
               <Section len={secLen} curr={idx + 1} sid={sec} />
             </Grid>
           ))}
